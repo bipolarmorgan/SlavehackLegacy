@@ -5,7 +5,7 @@
 <?php
 	function Send_Mail($to, $subject, $body){
 		require 'class.phpmailer.php';
-		$from = "WitheredGryphon@gmail.com";
+		$from = "Slavehack: Legacy Mailbot";
 		$mail = new PHPMailer();
 		$mail -> IsSMTP();
 		$mail -> SMTPSecure = 'ssl';
@@ -13,8 +13,8 @@
 		$mail -> SMTPAuth = true;
 		$mail -> Host = "smtp.gmail.com";
 		$mail -> Port = 465;
-		$mail -> Username = "WitheredGryphon@gmail.com";
-		$mail -> Password = "3256924752049521169490";
+		$mail -> Username = "SlavehackLegacyMailbot@gmail.com";
+		$mail -> Password = "YVtYrqkMbxABsWm8";
 		$mail -> SetFrom($from, 'Slavehack Legacy Mailbot');
 		$mail -> AddReplyTo($from, 'Slavehack Legacy Mailbot');
 		$mail -> Subject = $subject;
