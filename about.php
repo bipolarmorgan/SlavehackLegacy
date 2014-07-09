@@ -1,8 +1,13 @@
+<?php
+	session_start();
+?>
+
 <html>
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
 	    <script type="text/javascript" src="js/jQuery.js"></script>
+		<link rel="shortcut icon" href="img/icon.ico" />
 	    <link rel="stylesheet" type="text/css" href="css/main.css">
 		<title>
 			About
@@ -16,7 +21,7 @@
 				<li><a href="about.php">About</a></li>
 				<li><a href="register.php">Register</a></li>
 				<li><a href="terms.html">Terms of Use</a></li>
-				<li><a href="login.php">Login</a></li>
+				<li><span id = "logswitch"></span></li>
 			</ul>
 		</div>
 
@@ -77,12 +82,21 @@
 
 <?php
 	$timestamp = $_SERVER['REQUEST_TIME'];
-	date_default_timezone_set('UTC');
-
-	$tz = "America/Chicago";
 
 	if(isset($_SESSION['tz'])){
 		$tz = $_SESSION['tz'];
+	} else {
+		$tz = "America/Chicago";
+	}
+
+	if(isset($_SESSION['user'])){
+		?><script>
+			$("#logswitch").html("<a href='logout.php'>Logout</a>");
+		</script><?php 
+	} else {
+		?><script>
+			$("#logswitch").html("<a href='login.php'>Login</a>");
+		</script><?php 
 	}
 
 	$dtzone = new DateTimeZone($tz);
@@ -91,7 +105,6 @@
 	$dtime->setTimestamp($timestamp);
 	$dtime->setTimeZone($dtzone);
 	$time = $dtime->format('g:i A m/d/y');
-
 	?>
     <script>
         $("#date").html('<?php echo $time; ?>');

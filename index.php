@@ -39,7 +39,7 @@
 				<li><a href="about.php">About</a></li>
 				<li><a href="register.php">Register</a></li>
 				<li><a href="terms.html">Terms of Use</a></li>
-				<li><a href="login.php">Login</a></li>
+				<li><span id = "logswitch"></span></li>
 			</ul>
 		</div>
 
@@ -83,6 +83,16 @@
 
 	if(isset($_SESSION['tz'])){
 		$tz = $_SESSION['tz'];
+	}
+
+	if(isset($_SESSION['user'])){
+		?><script>
+			$("#logswitch").html("<a href='logout.php'>Logout</a>");
+		</script><?php 
+	} else {
+		?><script>
+			$("#logswitch").html("<a href='login.php'>Login</a>");
+		</script><?php 
 	}
 
 	$dtzone = new DateTimeZone($tz);

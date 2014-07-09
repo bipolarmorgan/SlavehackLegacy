@@ -7,6 +7,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
 	    <link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="shortcut icon" href="img/icon.ico" />
     	<script type="text/javascript" src="js/jQuery.js"></script>
 		<title>
 			Register
@@ -20,7 +21,7 @@
 				<li><a href="about.php">About</a></li>
 				<li><a href="register.php">Register</a></li>
 				<li><a href="terms.html">Terms of Use</a></li>
-				<li><a href="login.php">Login</a></li>
+				<li><span id = "logswitch"></span></li>
 			</ul>
 		</div>
 
@@ -108,6 +109,16 @@
 
 	if(isset($_POST['mlist'])){
 		$listChk = true;
+	}
+
+	if(isset($_SESSION['user'])){
+		?><script>
+			$("#logswitch").html("<a href='logout.php'>Logout</a>");
+		</script><?php 
+	} else {
+		?><script>
+			$("#logswitch").html("<a href='login.php'>Login</a>");
+		</script><?php 
 	}
 
 	$dtzone = new DateTimeZone($tz);
@@ -263,10 +274,6 @@
             return crypt($input, sprintf('$2a$%02d$', $rounds) . $salt);
         }
 
-        function verify($password, $hashedPassword){
-            return crypt($password, $hashedPassword) == $hashedPassword;
-        }
-
         $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
         $query  = "CREATE DATABASE IF NOT EXISTS `sh_db` DEFAULT CHARACTER SET utf8";
         $query2 = "CREATE TABLE IF NOT EXISTS `users` (
@@ -345,54 +352,81 @@
         } else {
         	$userChk = true;
         }
-    }
 
-    if(isset($_POST['email'])){
-	    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-	    	?><script>
-	    		$("#error").append("Error: Invalid email detected. Please enter a valid email.<br />");
-	    	</script><?php
-	    } else {
-	    	$eCount = "";
-	    	$emailChk = true;
-	    	$activation = md5($email.time());
-	    	$eCount = mysqli_query($link, "SELECT uid FROM users WHERE email='$email'");
+        if(isset($_POST['email'])){
+		    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+		    	?><script>
+		    		$("#error").append("Error: Invalid email detected. Please enter a valid email.<br />");
+		    	</script><?php
+		    } else {
+		    	$eCount = "";
+		    	$emailChk = true;
+		    	$eCount = mysqli_query($link, "SELECT uid FROM users WHERE email='$email'");
 
-	    	if (!mysqli_num_rows($eCount)){
-	    		if($userChk && $passChk && $emailChk && $ustandChk && $agrChk){
-	    			$activation = md5($email.time());
+		    	if (!mysqli_num_rows($eCount)){
+		    		if($userChk && $passChk && $emailChk && $ustandChk && $agrChk){
+		    			$activation = md5($email.time());
+		    			$_SERVER['activation'] = $activation;
 
-	    			if($listChk){
-	    				if(!mysqli_query($link, "INSERT INTO users(login, hash, email, timezone, activation, email_confirmed, mailing_list)
-	    					VALUES('$user', '$newPass', '$email', '$tz', '$activation', false, 1)")) {
-	    					echo "Error: " . mysqli_error($link);
-	    				}
-	    			} else {
-	    				if(!mysqli_query($link, "INSERT INTO users(login, hash, email, timezone, activation, email_confirmed, mailing_list)
-	    					VALUES('$user', '$newPass', '$email', '$tz', '$activation', false, false)")) {
-	    					echo "Error: " . mysqli_error($link);
-	    				}			
-	    			}
+		    			if($listChk){
+		    				if(!mysqli_query($link, "INSERT INTO users(login, hash, email, timezone, activation, email_confirmed, mailing_list)
+		    					VALUES('$user', '$newPass', '$email', '$tz', '$activation', false, 1)")) {
+		    					echo "Error: " . mysqli_error($link);
+		    				}
+		    			} else {
+		    				if(!mysqli_query($link, "INSERT INTO users(login, hash, email, timezone, activation, email_confirmed, mailing_list)
+		    					VALUES('$user', '$newPass', '$email', '$tz', '$activation', false, false)")) {
+		    					echo "Error: " . mysqli_error($link);
+		    				}			
+		    			}
 
-	    			include 'smtp/Send_Mail.php';
-	    			$to = $email;
-	    			$subject = 'Slavehack Legacy: [Email Verification]';
-	    			$body = $user.', <br /><br />Thanks for signing up for Slavehack: Legacy.
-	    					<br /><br />To make sure you are a human, please
-	    					verify your email by using the link below. <br /><br /><a 
-	    					href="'.$base_url.'/SlavehackLegacy/activation.php?code='.$activation.'">'.$base_url.'/SlavehackLegacy/activation.php?code='.
-	    					$activation.'</a>';
+		    			include 'smtp/Send_Mail.php';
+		    			$to = $email;
+		    			$subject = 'Slavehack Legacy: [Email Verification]';
+		    			$body = $user.', <br /><br />Thanks for signing up for Slavehack: Legacy.
+		    					<br /><br />To make sure you are a human, please
+		    					verify your email by using the link below. <br /><br /><a 
+		    					href="'.$base_url.'/SlavehackLegacy/activation.php?code='.$activation.'">'.$base_url.'/SlavehackLegacy/activation.php?code='.
+		    					$activation.'</a>';
 
-	    			Send_Mail($to, $subject, $body);
-	    			?><script>
-	    				$("#success").html("Registration successful! Please use the activation link in your e-mail to continue.");
-	    			</script><?php 
-	    		} else { }
-	    	} else {
-	    		?><script>
-	    			$("#error").append("Error: E-mail already in use.");
-	    		</script><?php
+		    			Send_Mail($to, $subject, $body);
+		    			?><script>
+		    				$("#success").html("Registration successful! Please use the activation link in your e-mail to continue.");
+		    			</script><?php 
+		    		} else { }
+		    	} else {
+		    		?><script>
+		    			$("#error").append("Error: E-mail already in use.");
+		    		</script><?php
+		    	}
 	    	}
-	    }
+		}
+	}
+
+	if(isset($_GET['resend']) && $_GET['resend'] == true){
+	 	include 'smtp/Send_Mail.php';
+	 	include 'config.php';
+
+        $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
+        mysqli_select_db($link, DB_NAME) or die("Cannot connect to database.");
+        $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+	 	$user = mysqli_real_escape_string($link, $_GET['user']);
+	 	$result = mysqli_query($link, "SELECT * FROM users WHERE login = '$user'");
+        $row = mysqli_fetch_array($result);
+        $email = mysqli_real_escape_string($link, $row['email']);
+        $activation = mysqli_real_escape_string($link, $row['activation']);
+	 	$to = $email;
+	 	$subject = 'Slavehack Legacy: [Email Verification]';
+	 	$body = $user.', <br /><br />Thanks for signing up for Slavehack: Legacy.
+	 	    	<br /><br />To make sure you are a human, please
+	 	    	verify your email by using the link below. <br /><br /><a 
+	 	    	href="'.$base_url.'/SlavehackLegacy/activation.php?code='.$activation.'">'.$base_url.'/SlavehackLegacy/activation.php?code='.
+	 	    	$activation.'</a>';
+
+	 	Send_Mail($to, $subject, $body);
+	    ?><script>
+	 	    $("#success").html("Your activation e-mail has been re-sent.");
+	 	</script><?php 
 	}
 ?>

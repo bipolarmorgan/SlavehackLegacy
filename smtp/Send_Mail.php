@@ -14,7 +14,7 @@
 		$mail -> Host = "smtp.gmail.com";
 		$mail -> Port = 465;
 		$mail -> Username = "WitheredGryphon@gmail.com";
-		$mail -> Password = "--your_mail_password--";
+		$mail -> Password = "3256924752049521169490";
 		$mail -> SetFrom($from, 'Slavehack Legacy Mailbot');
 		$mail -> AddReplyTo($from, 'Slavehack Legacy Mailbot');
 		$mail -> Subject = $subject;
