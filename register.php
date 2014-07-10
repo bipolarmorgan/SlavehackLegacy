@@ -101,10 +101,10 @@
 		$_SESSION['tz'] = $_POST['tz'];
 	}
 
-	$tz = "America/Chicago";
-
 	if(isset($_SESSION['tz'])){
 		$tz = $_SESSION['tz'];		
+	} else {
+		$tz = "America/Chicago";
 	}
 
 	if(isset($_POST['mlist'])){
