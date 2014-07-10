@@ -1,0 +1,74 @@
+/* Icons courtesy of: 
+	http://www.iconfinder.net
+	Everaldo Coelho
+	Marco Martin
+	Visual Pharm - http://icons8.com/
+
+*/
+
+body{
+    background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 0;
+    top: 0;
+	font-family: 'Oswald', sans-serif;
+}
+
+#leftColumn {
+	background-image: url('../img/menubar.png');
+	background-repeat: repeat-y;
+	float:left;
+	height: 100%;
+	width: 16em;
+	text-decoration: none;
+}
+
+#leftColumn ul{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+#leftColumn li{
+	font-size: 1.25em;
+	margin-top: 1.5em;
+	margin-left: 0.25em;
+	margin-bottom: 1.5em;
+}
+
+#leftColumn a {
+	font-weight: lighter;
+	color: #ecf0f1;
+	display:inline-block;
+	text-decoration: none;
+	padding-left: 0.33em;
+	padding-right: 0.33em;
+}
+
+#leftColumn a:hover {
+	text-decoration: underline;
+}
+
+#leftColumn a:active {
+	color: #7f8c8d;
+}
+
+#leftColumn img {
+	display: inline-block;
+	margin: 0;
+	margin-right: 1em;
+}
+
+#captcha_block{
+	display: block;
+    position: fixed; 
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: black;
+    text-align: center;
+}
