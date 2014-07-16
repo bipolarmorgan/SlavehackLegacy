@@ -9,11 +9,19 @@
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
     	<script type="text/javascript" src="../js/jQuery.js"></script>
     	<link rel="stylesheet" type="text/css" href="backgrounds/desktop.css">
+        <script src = "js/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 		<title>
 			SHL - My Computer
 		</title>
+		<script>
+		    var socket = io.connect('http://localhost:3000');
+	        socket.on('login', function() {
+	            console.log("<?php echo($_SESSION['user'] . ' has signed on to ' . $_SESSION['ip']); ?>");
+	        });
 
-		<script type="text/javascript">
+	        socket.on('persist', function() {
+	        	console.log("User is still logged in.");
+	        });
 	        // function showRecaptcha(element) { -- Need a domain before we can use Recaptcha
 	        //    Recaptcha.create("your_public_key", element, {
 	        //    theme: "red",

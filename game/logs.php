@@ -12,10 +12,17 @@
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
      	<script type="text/javascript" src="../js/jQuery.js"></script>
+     	<script src = "js/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
     	<!--Captcha Stuff-->
 
 	</head>
 	<body>
+		<script>
+			var socket = io.connect('http://localhost:3000');
+	        socket.on('persist', function() {
+	        	console.log("User is still logged in.");
+	        });
+	    </script>
 		<div id = "leftColumn">
 			<ul>
 				<li><a href = "index.php"><img src = "img/ico_comp.png">My Computer</a></li>
@@ -85,6 +92,7 @@
 
 	$dtime->setTimestamp($timestamp);
 	$dtime->setTimeZone($dtzone);
+
 	$curTime = $dtime->format('g:i A m/d/y');
 	?><script>
 		$("#ipuser").html("<?php echo $ip;?>@<?php echo $user;?>");

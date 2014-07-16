@@ -1,0 +1,6 @@
+{
+	"name": "file-logs",
+	"version": "0.0.1",
+	"description": "This combined with Node.js will handle the file logs.",
+	"dependencies": {}
+}
