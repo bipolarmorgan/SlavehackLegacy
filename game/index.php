@@ -14,14 +14,6 @@
 			SHL - My Computer
 		</title>
 		<script>
-		    var socket = io.connect('http://localhost:3000');
-	        socket.on('login', function() {
-	            console.log("<?php echo($_SESSION['user'] . ' has signed on to ' . $_SESSION['ip']); ?>");
-	        });
-
-	        socket.on('persist', function() {
-	        	console.log("User is still logged in.");
-	        });
 	        // function showRecaptcha(element) { -- Need a domain before we can use Recaptcha
 	        //    Recaptcha.create("your_public_key", element, {
 	        //    theme: "red",
@@ -125,6 +117,7 @@
                     `rank` INT(10) NOT NULL DEFAULT 0,
                     `num_ip_resets` INT(10) NOT NULL DEFAULT 0,
                     `num_pass_resets` INT(10) NOT NULL DEFAULT 0,
+                    `connected` INT(2) NOT NULL DEFAULT 0,
                     PRIMARY KEY(`uid`),
                     UNIQUE KEY `username_UNIQUE` (`username`),
                     UNIQUE KEY `comp_pass_UNIQUE` (`comp_pass`),
@@ -169,14 +162,7 @@
 			$_SESSION['pass'] = $pass;
 		}
 	}
-	// $ipQry = "SELECT ip FROM players WHERE ip = '$ip'";
-	// while(mysqli_query($link, $ipQry)){
-	// 	if(!mysqli_query($link, $ipQry)){
-	// 		break;
-	// 	} else {
-	// 		$ip = long2ip(rand(0, "4294967295"));
-	// 	}
-	// }
+
 	$tz = $_SESSION['tz'];
 	$plyQry = "SELECT * FROM `players` WHERE username = '$user'";
 	$result = mysqli_query($link, $plyQry);
@@ -230,5 +216,16 @@
 		$("#timedate").html("<?php echo ($curTime); ?>");
 		$("#ip").html("<?php echo $ip; ?><a href='index.php?reset=1'> Reset</a>");
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
+
+		var socket = io.connect('http://localhost:3000');
+		socket.emit('currConn', { name: "<?php echo($user); ?>" });
+		socket.on('log', function () {
+			<?php
+				$userLog = fopen("logs/" . $user . ".txt", 'a') or die("Can't open file.");
+				$str = "\r\n" . $user . " accessed their computer at " . $curTime;
+				fwrite($userLog, $str);
+				fclose($userLog);
+			?>
+		});
 	</script><?php
 ?>

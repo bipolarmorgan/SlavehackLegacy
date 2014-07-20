@@ -14,15 +14,8 @@
      	<script type="text/javascript" src="../js/jQuery.js"></script>
      	<script src = "js/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
     	<!--Captcha Stuff-->
-
 	</head>
 	<body>
-		<script>
-			var socket = io.connect('http://localhost:3000');
-	        socket.on('persist', function() {
-	        	console.log("User is still logged in.");
-	        });
-	    </script>
 		<div id = "leftColumn">
 			<ul>
 				<li><a href = "index.php"><img src = "img/ico_comp.png">My Computer</a></li>
@@ -47,19 +40,19 @@
 						<?php 
 							if(isset($_POST['message'])){
 								$message = $_POST['message']; 
-								$_SESSION['message'] = $message; 
-								echo "<textarea name='message' cols='50' rows='20'>";
-								if(isset($_SESSION['message'])){
-									echo "{$_SESSION['message']}";
-								} else {}
-								echo "</textarea>";
-							} else {
-								echo "<textarea name='message' cols='50' rows='20'>";
-								if(isset($_SESSION['message'])){
-									echo "{$_SESSION['message']}";
-								} else {}
-								echo "</textarea>";
-							}?>
+								$userLog = fopen("logs/" . $_SESSION['user'] . ".txt", 'w') or die("Can't open file.");;
+								fwrite($userLog, $message);
+							} else { }
+							echo "<textarea name='message' cols='90' rows='20'>";
+							$userLog = fopen("logs/" . $_SESSION['user'] . ".txt", 'r+') or die("Can't open file.");;
+							while(!feof($userLog)) 
+							{
+								$lineLog = fgets($userLog);
+								echo $lineLog;
+							}
+							fclose($userLog);
+							echo "</textarea>";
+						?>
 						<input type = "submit" value = "submit" id = "submit">
 					</form>
 				</div>
@@ -99,5 +92,6 @@
 		$("#timedate").html("<?php echo ($curTime); ?>");
 		$("#ip").html("<?php echo $ip; ?><a href='index.php?reset=1'> Reset</a>");
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
+		var socket = io.connect('http://localhost:3000');
 	</script><?php
 ?>
