@@ -36,6 +36,12 @@
 				<hr>
 				<div id = "title">My Log File</div>
 				<div id = "wrapper">
+					<div id = "content">
+						Your log file holds important information about you.<br />
+						This ranges from things such as accessing your computer, to managing software.<br />
+						You can even converse with other players using your log file.<br />
+						It's important you make sure unwanted eyes are kept away from this.<br />
+					</div><br />
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
 							if(isset($_POST['message'])){
@@ -53,7 +59,8 @@
 							fclose($userLog);
 							echo "</textarea>";
 						?>
-						<input type = "submit" value = "submit" id = "submit">
+						<br />
+						<input type = "submit" value = "Edit Log" id = "submit" style = "width: 8em; margin-left: 45%; text-align: center;">
 					</form>
 				</div>
 			</div>

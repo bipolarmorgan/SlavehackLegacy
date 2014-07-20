@@ -1,3 +1,4 @@
 127.0.0.1 @ localhost
 132.45.86.1 @ registerHost
 116.96.54.52 @ loginServer
+30.12.129.47 @ "The Hidden Portal" (a knock to "The Hidden Wiki", default home for users)

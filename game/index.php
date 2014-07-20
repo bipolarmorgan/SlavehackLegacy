@@ -118,6 +118,7 @@
                     `num_ip_resets` INT(10) NOT NULL DEFAULT 0,
                     `num_pass_resets` INT(10) NOT NULL DEFAULT 0,
                     `connected` INT(2) NOT NULL DEFAULT 0,
+                    `homepage` VARCHAR(15) NOT NULL DEFAULT '30.12.129.47',
                     PRIMARY KEY(`uid`),
                     UNIQUE KEY `username_UNIQUE` (`username`),
                     UNIQUE KEY `comp_pass_UNIQUE` (`comp_pass`),
