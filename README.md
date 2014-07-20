@@ -71,4 +71,4 @@ http://i.gyazo.com/4211b2c5140c5bc1af7d9143045c65c8.png
 http://i.gyazo.com/61201c8683127d1ca231b074615bc7ae.png
 
 #### Logs page
-http://i.gyazo.com/c95b6d138a34797df7d121c0db8d16cf.png
+http://i.gyazo.com/5faa6d5614632bd76216a4977631d869.png
