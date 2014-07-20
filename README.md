@@ -5,7 +5,7 @@ Slavehack: Legacy
 
 ### What is this?
 
-Slavehack: Legacy is an open-source continuation of the popular online game "Slavehack". For emphasis, **_this is not Slavehack 2_** nor is it being developed by the same people who are working on Slavehack 2 (as of yet, anyway). Think of this as a spiritual successor to the original Slavehack.
+Slavehack: Legacy is an open-source continuation of the popular online game "Slavehack". For emphasis, **_this is not Slavehack 2_** nor is it being developed by the same people who are working on Slavehack 2 (as of now, anyway). Think of this as a spiritual successor to the original Slavehack.
 
 ### Who are you?
 
