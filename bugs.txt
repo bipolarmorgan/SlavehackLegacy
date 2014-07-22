@@ -1,3 +1,4 @@
 - Firefox's text area in logs.php is way too big
 - Login displays "activation" error when using an incorrect password (but correct username? Needs more testing)
 - Socket.IO displaying connection errors from Node.JS, need to remove it from areas it's no longer needed
+- No checks for users accessing the game without logging in, causes MySQL errors

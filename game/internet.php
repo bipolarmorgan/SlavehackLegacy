@@ -39,27 +39,26 @@
 				<hr>
 				<div id = "title">Connect to the Internet</div>
 				<div id = "wrapper">
-				<div id = "content">
-
-				</div>
-
-				<?php
-					$user = $_SESSION['user'];
-					$result = mysqli_query($link, "SELECT * FROM players WHERE username = '$user'");
-					$row = mysqli_fetch_array($result);
-					$homepage = $row['homepage']
-				?>
-
-				<form method = "GET" action = "<?php echo($_SERVER['PHP_SELF']);?>" method="post" id = "interform">
 					<?php
-						if(isset($_GET['ip']) && $_GET['ip'] == true){
-							echo "<input type=\"text\" name=\"ip\" size=\"60\" value=\"" . $_GET['ip'] . "\">";
-						} else {
-							echo "<input type=\"text\" name=\"ip\" size=\"60\" value=\"" . $homepage . "\">";
-						}
+						$user = $_SESSION['user'];
+						$result = mysqli_query($link, "SELECT * FROM players WHERE username = '$user'");
+						$row = mysqli_fetch_array($result);
+						$homepage = $row['homepage']
 					?>
-					<input type="submit" id = "connect" value="Connect">
-				</form>
+
+					<form method = "GET" action = "<?php echo($_SERVER['PHP_SELF']);?>" method="post" id = "interform">
+						<?php
+							if(isset($_GET['ip']) && $_GET['ip'] == true){
+								echo "<input type=\"text\" name=\"ip\" size=\"60\" value=\"" . $_GET['ip'] . "\">";
+							} else {
+								echo "<input type=\"text\" name=\"ip\" size=\"60\" value=\"" . $homepage . "\">";
+							}
+						?>
+						<input type="submit" id = "connect" value="Connect">
+					</form>
+
+					<div id = "content"></div>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -94,4 +93,20 @@
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
 		var socket = io.connect('http://localhost:3000');
 	</script><?php
+
+	$targetIP = isset($_GET['ip']) ? $_GET['ip'] : $row['homepage'];
+	$usrChk = "SELECT * FROM players
+				WHERE ip = '$targetIP'";
+	$result2 = mysqli_query($link, $usrChk);
+	$row2 = mysqli_fetch_array($result2);
+	echo $targetIP;
+	if(!mysqli_query($link, $usrChk) || $row2['username'] == ""){
+		?><script>
+			$("#content").html("No user with that IP could be located.");
+		</script><?php
+	} else {
+		?><script>
+			$("#content").html("You were able to ping the IP address.");
+		</script><?php
+	}
 ?>
