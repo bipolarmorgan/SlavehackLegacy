@@ -9,7 +9,6 @@
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
     	<script type="text/javascript" src="../js/jQuery.js"></script>
     	<link rel="stylesheet" type="text/css" href="backgrounds/desktop.css">
-        <script src = "js/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 		<title>
 			SHL - My Computer
 		</title>
@@ -171,8 +170,9 @@
 	if(!mysqli_query($link, $plyQry) || $r2['username'] == ""){
     	$ip = "".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255);
     	$ipQry = "SELECT ip FROM players WHERE ip = '$ip'";
+    	$npcIPQry = "SELECT ip FROM npcs WHERE ip = '$ip'";
     	$_SESSION['ip'] = $ip;
-    	while(mysqli_num_rows(mysqli_query($link, $ipQry)) >= 1) {
+    	while(mysqli_num_rows(mysqli_query($link, $ipQry)) >= 1 && mysqli_num_rows(mysqli_query($link, $npcIPQry)) >= 1) {
     		$ip = "".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255).".".mt_rand(0,255);
     		if(mysqli_num_rows(mysqli_query($link, $ipQry)) <= 0){
     			$_SESSION['ip'] = $ip;
@@ -217,16 +217,11 @@
 		$("#timedate").html("<?php echo ($curTime); ?>");
 		$("#ip").html("<?php echo $ip; ?><a href='index.php?reset=1'> Reset</a>");
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
-
-		var socket = io.connect('http://localhost:3000');
-		socket.emit('currConn', { name: "<?php echo($user); ?>" });
-		socket.on('log', function () {
-			<?php
-				$userLog = fopen("logs/" . $user . ".txt", 'a') or die("Can't open file.");
-				$str = "\r\n" . $user . " accessed their computer at " . $curTime;
-				fwrite($userLog, $str);
-				fclose($userLog);
-			?>
-		});
+		<?php
+			$userLog = fopen("logs/" . $user . ".txt", 'a') or die("Can't open file.");
+			$str = "\r\n" . $user . " accessed their computer at " . $curTime;
+			fwrite($userLog, $str);
+			fclose($userLog);
+		?>
 	</script><?php
 ?>

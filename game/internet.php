@@ -86,6 +86,53 @@
 
 	$curTime = $dtime->format('g:i A m/d/y');
 
+    $npcQry = "CREATE TABLE IF NOT EXISTS `npcs` (
+                    `uid` INT(128) unsigned NOT NULL AUTO_INCREMENT,
+                    `name` VARCHAR(64) NOT NULL,
+                    `ip` VARCHAR(64) NOT NULL,
+                    `pass` VARCHAR(16) NOT NULL,
+                    PRIMARY KEY(`uid`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+	if(!mysqli_query($link, $npcQry)){
+		echo mysqli_error($link);
+	}
+
+	function randomPassword() { // Courtesy of Neil from StackOverflow
+	    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ";
+	    $pass = array();
+	    $alphaLength = strlen($alphabet) - 1;
+	    for ($i = 0; $i < 8; $i++) {
+	        $n = rand(0, $alphaLength);
+	        $pass[] = $alphabet[$n];
+	    }
+
+	    return implode($pass);
+	}
+
+	// Lots of NPCS going into the table for the first time here.
+	// Prepare for massive copy-pasta.
+	// As soon as the game is published this section can be removed.
+	// This is to prevent any cheating by skipping NPC riddles, etc.
+	// This code also only needs to run once. It's just to prevent MySQL errors for when I drop
+	// tables or it's run for the first time.
+
+	//The Hidden Portal//
+
+	$curIP = "30.12.129.47";
+	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
+	if(!mysqli_query($link, $npcChk)){
+		$newPass = randomPassword();
+		mysqli_query($link, "INSERT INTO npcs(name, ip, pass)
+		    						VALUES('The Hidden Portal', '$curIP', '$newPass')");
+	} else { 
+		$npcRes = mysqli_query($link, $npcChk);
+		$r = mysqli_fetch_array($npcRes);
+	}
+
+	/////////////////////
+
+	// End NPC declarations //
+	
 	?><script>
 		$("#ipuser").html("<?php echo $ip;?>@<?php echo $user;?>");
 		$("#timedate").html("<?php echo ($curTime); ?>");
@@ -97,16 +144,33 @@
 	$targetIP = isset($_GET['ip']) ? $_GET['ip'] : $row['homepage'];
 	$usrChk = "SELECT * FROM players
 				WHERE ip = '$targetIP'";
-	$result2 = mysqli_query($link, $usrChk);
-	$row2 = mysqli_fetch_array($result2);
+	$npcChk = "SELECT * FROM npcs
+				WHERE ip = '$targetIP'";
+	if(!mysqli_query($link, $npcChk)){		
+	} else {
+		$npcRes = mysqli_query($link, $npcChk);
+		$npcRow = mysqli_fetch_array($npcRes);
+	}
+
+	if(!mysqli_query($link, $usrChk)){
+	} else {
+		$result2 = mysqli_query($link, $usrChk);
+		$row2 = mysqli_fetch_array($result2);
+	}
 	echo $targetIP;
-	if(!mysqli_query($link, $usrChk) || $row2['username'] == ""){
+	if(mysqli_query($link, $usrChk) && $row2['username'] != ""){
 		?><script>
-			$("#content").html("No user with that IP could be located.");
+			$("#content").html("<img src='img/ico_check.png'> You were able to ping this address.");
+		</script><?php
+	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
+		?><script>
+			$("#content").html("You were able to ping this address.");
+			$("#interform").append("<img src='img/ico_check.png'>");
 		</script><?php
 	} else {
 		?><script>
-			$("#content").html("You were able to ping the IP address.");
+			$("#content").html("Nothing located at this address.");
+			$("#interform").append("<img src='img/ico_err.png'>");
 		</script><?php
 	}
 ?>
