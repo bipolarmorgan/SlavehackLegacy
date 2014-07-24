@@ -47,7 +47,17 @@ textarea{
 }
 
 #interform{
+	margin: 0;
 	text-align: center;
+}
+
+#msgForm{
+	margin: 0;
+	padding-top: 16%;
+	float: center;
+	text-align: center;
+	margin-left: 1%;
+	width: 100%;
 }
 
 #content{
@@ -59,6 +69,11 @@ textarea{
 	background-color: black;
 	height: 28em;
 	width: 61em;
+	position: fixed;
+}
+
+.chat_wrapper{
+	overflow: auto;
 }
 
 #contentHolder{
@@ -261,17 +276,24 @@ textarea{
 }
 
 #messages {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	font-family: 'Titillium Web', sans-serif;
+	height: 200px; 
+	width: 700px;
+	overflow-x: hidden; 
+	overflow-y: auto; 
+	display: block;
+	color: white;
 }
 
-#messages li {
-	padding: 5px 10px;
+#messages td{
+	max-width: inherit;
+	margin-right: 3%;
 }
 
-#messages li:nth-child(odd) {
-	background: #eee;
+#messages tr{
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
 }
 
 #chatForm {
