@@ -39,12 +39,16 @@ As of right now, the following features have been implemented into the game:
 ### Features that will for sure be coming
 
 * Finishing the statistics side of the My Computer page
+* "E-mail" system for users to PM other users. May also be used for randomized missions/riddle trails.
 * Processes tab to manage different types of processes ongoing in your computer
 * Fleshing out the internet tab (right now it's a placeholder)
 * Files tab where you will manage not only your files for hacking, but your wallpaper as well.
 * In tandem with the above, I am debating on whether or not to add BG music that is uploadable as well. This will most likely be coming as well. It won't be until down the road quite a ways, however.
 * Slaves tab to access all of your current slaved computers as well as managing them for DDoS, managing what software they can host for others to download, as well as potentially other features.
 * Forums for users to post in. This won't be until a long ways down the line as this will likely take me the longest to actually implement into the game itself.
+* Embedded chat channels utilizing Socket.IO. Connect to a specific IP and it will be host to a page that will hold
+  a chat room for all those connected to that IP.
+* Randomized missions / riddletrails. Further explained below.
 
 ### Optional features you may see in the future
 
@@ -53,6 +57,17 @@ As of right now, the following features have been implemented into the game:
 * The above AJAX managed logs system may not be replaced, but instead a chat system at hubs located around certain IPs on the internet can be accessed for users to talk and discuss.
 * Potential team effort hacking (more users hacking at once = less time to hack for everyone?)
 * And more...
+
+### New missions / riddle trail system?
+
+Yes, and I have a fairly good idea of how I plan on implementing this system as well so I might as well write it down here for safe keeping. I plan to have a timer tick every (x amount of time) which does the following things:
+
+  1. Generates a single (maybe multiple in the future, though that gets complicated) IP address host to an NPC
+  2. Generates thirty different numbers, and pulls these from the players table, where the numbers correspond with the         player's unique ID. For example, if I were player 25, and one of the numbers generated was 25, I would receive an         in-game e-mail about it. If one of the numbers does not match the generator will re-pick this number until it finds a      corresponding player to give it to. No player will receive a duplicate e-mail.
+  3. The game sends out this e-mail to the players with the lead on the riddle trail / mission, who can then share it or        keep it to themselves.
+  4. Players will hack into the NPC in an attempt to grab whatever software is hosted on that NPC.
+
+Right now this is just a proof of concept (if you can even call it that), but it's how I'm envisioning this new system will work. In addition there will be a similar primary riddletrail that players can follow. However I want to implement this randomized design so that players are incapable of uploading the entire riddle trail for other players to cheat off of, and instead allows more variety into the game.
 
 ### Ok enough with the words, where's the pictures
 
