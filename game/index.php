@@ -217,11 +217,22 @@
 		$("#timedate").html("<?php echo ($curTime); ?>");
 		$("#ip").html("<?php echo $ip; ?><a href='index.php?reset=1'> Reset</a>");
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
-		<?php
+	</script><?php
+
+	//One-time login log, prevents auto-logging when accessing My Computer.
+	//Future proofs any annoyances from people accessing their computer
+	//and getting instantly logged.
+	//Just handled through GET data.
+
+	if(isset($_GET['login'])){
+		if($_GET['login'] == 'success'){
 			$userLog = fopen("logs/" . $user . ".txt", 'a') or die("Can't open file.");
 			$str = "\r\n" . $user . " accessed their computer at " . $curTime;
 			fwrite($userLog, $str);
 			fclose($userLog);
-		?>
-	</script><?php
+			header("refresh:0;url=index.php");
+		}
+	} else {
+		echo "";
+	}
 ?>
