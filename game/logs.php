@@ -36,7 +36,7 @@
 				<hr>
 				<div id = "title">My Log File</div>
 				<div id = "wrapper">
-					<div id = "content">
+					<div id = "contentHolder">
 						Your log file holds important information about you.<br />
 						This ranges from things such as accessing your computer, to managing software.<br />
 						You can even converse with other players using your log file.<br />
