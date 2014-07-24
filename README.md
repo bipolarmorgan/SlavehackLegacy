@@ -72,3 +72,7 @@ http://i.gyazo.com/61201c8683127d1ca231b074615bc7ae.png
 
 #### Logs page
 http://i.gyazo.com/5faa6d5614632bd76216a4977631d869.png
+
+### Internet page
+http://i.gyazo.com/99778a0c2b5025f7ad2ea4d94c0d2d9f.png
+http://i.gyazo.com/d77e8347b17329fe1008b3d8f2636d4d.png
