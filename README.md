@@ -89,5 +89,5 @@ http://i.gyazo.com/61201c8683127d1ca231b074615bc7ae.png
 http://i.gyazo.com/5faa6d5614632bd76216a4977631d869.png
 
 #### Internet page
-http://i.gyazo.com/ce7e2947cbbc4fa6395c302a733a4eca.png
+http://i.gyazo.com/4ed7247e809b8de9cc88a5fd15507364.png
 http://i.gyazo.com/60f7735f536321ea08afba4c8dabe9ad.png
