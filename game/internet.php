@@ -213,26 +213,68 @@
 		var socket = io.connect('http://localhost:3000', {'force new connection' : true});
 
 		socket.on('update messages', function (data){
-			$('#messages').append('<b>' + data.name + ':</b> ' + data.msg + '<br>');
+			$('#messages').append('<?php echo($curTime); ?> - <b>' + data.name + ':</b> ' + data.msg + '<br>');
 		});
 
 		$(function() {
 			$("#name").val("<?php echo($user); ?>");
 			$('#msg').click( function() {
-				console.log('working');
-				var message = $('#m').val();
-				socket.emit('chat message', { name: "<?php echo($user); ?>", msg: message });
-				$('#m').val('');
-				$('#m').focus().click();
+				if($('#m').val() == ''){
+					$('#messages').append("[Error]: Enter a message before submitting. <br />");
+					$('#msg').prop('disabled', true);
+					$('#msg').val('Send (5)');
+					$('#m').attr("disabled", true);
+					$('#m').blur();
+
+					var i = 5
+					var interval = setInterval(function() {
+						if (--i === 1){
+							window.clearInterval(interval);
+						}
+						$('#msg').val('Send (' + i + ')');
+					}, 1000);
+
+					setTimeout(function() {
+						$('#msg').prop('disabled', false);
+						$('#msg').val('Send');
+						$('#m').attr("disabled", false);
+					}, 5000);
+				} else {
+					var message = $('#m').val();
+					socket.emit('chat message', { name: "<?php echo($user); ?>", msg: message });
+					$('#m').val('');
+					$('#m').focus().click();
+				}
 			});
 
 			$('#m').keypress(function(e) {
-				console.log("test2");
 				if(e.which == 13){
-					$(this).blur();
-					$('#msg').focus().click();
-					$('#m').val('');
-					$('#m').focus().click();
+					if($('#m').val() == ''){
+						$('#messages').append("[Error]: Enter a message before submitting. <br />");
+						$('#msg').prop('disabled', true);
+						$('#msg').val('Send (5)');
+						$('#m').attr("disabled", true);
+						$('#m').blur();
+
+						var i = 5
+						var interval = setInterval(function() {
+							if (--i === 1){
+								window.clearInterval(interval);
+							}
+							$('#msg').val('Send (' + i + ')');
+						}, 1000);
+
+						setTimeout(function() {
+							$('#msg').prop('disabled', false);
+							$('#msg').val('Send');
+							$('#m').attr("disabled", false);
+						}, 5000);
+					} else {
+						$('#m').blur();
+						$('#msg').focus().click();
+						$('#m').val('');
+						$('#m').focus().click();
+					}
 				}
 			});
 		});
