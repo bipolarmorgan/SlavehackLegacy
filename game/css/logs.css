@@ -73,7 +73,7 @@ textarea{
 }
 
 .chat_wrapper{
-	overflow: auto;
+	overflow: hidden;
 }
 
 #contentHolder{
@@ -277,23 +277,19 @@ textarea{
 
 #messages {
 	font-family: 'Titillium Web', sans-serif;
-	height: 200px; 
+	height: 250px; 
 	width: 700px;
 	overflow-x: hidden; 
 	overflow-y: auto; 
 	display: block;
 	color: white;
+	text-align: left;
+	padding-left: 16px;
+	font-size: 12px;
 }
 
-#messages td{
-	max-width: inherit;
-	margin-right: 3%;
-}
-
-#messages tr{
-	display: table-row;
-	vertical-align: inherit;
-	border-color: inherit;
+#msg{
+	margin-top: 5%;
 }
 
 #chatForm {

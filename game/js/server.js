@@ -8,6 +8,7 @@ app.use(express.static(__dirname + '/'));
 io.sockets.on('connection', function (socket) {
 
 	socket.on('chat message', function (data) {
-		io.emit('chat message', { name: data.name, msg: data.msg});
+		console.log("Received.");
+		io.emit('update messages', { name: data.name, msg: data.msg});
 	});
 });

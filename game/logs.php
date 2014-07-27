@@ -45,8 +45,8 @@
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
 							if(isset($_POST['message'])){
-								$message = $_POST['message']; 
-								$userLog = fopen("logs/" . $_SESSION['user'] . ".txt", 'w') or die("Can't open file.");;
+								$message = mysqli_real_escape_string($link, $_POST['message']); 
+								$userLog = fopen("logs/" . $_SESSION['user'] . ".txt", 'w') or die("Can't open file.");
 								fwrite($userLog, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";

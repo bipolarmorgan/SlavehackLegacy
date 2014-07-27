@@ -2,3 +2,4 @@
 - Login displays "activation" error when using an incorrect password (but correct username? Needs more testing)
 - Socket.IO displaying connection errors from Node.JS, need to remove it from areas it's no longer needed
 - No checks for users accessing the game without logging in, causes MySQL errors
+- (IMPORTANT) Need to sanitize user input during registration and logs editing. Currently vulnerable to SQL injection.

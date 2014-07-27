@@ -62,7 +62,7 @@
 					?>
 
 					<div id = "result"></div>
-					<form method = "GET" action = "<?php echo($_SERVER['PHP_SELF']);?>" method="post" id = "interform">
+					<form method = "GET" action = "<?php echo($_SERVER['PHP_SELF']);?>" id = "interform">
 						<?php
 							if(isset($_GET['ip']) && $_GET['ip'] == true){
 								echo "<input type=\"text\" name=\"ip\" size=\"60\" value=\"" . $_GET['ip'] . "\">";
@@ -122,6 +122,8 @@
 	// This code also only needs to run once. It's just to prevent MySQL errors for when I drop
 	// tables or it's run for the first time.
 
+    ///////////////////////////
+
 	//The Hidden Portal//
 
 	$curIP = "30.12.129.47";
@@ -145,14 +147,11 @@
 		}
 	}
 
-	/////////////////////
-
 	//Free Chat Online//
-
 	$curIP = "5.195.112.80";
 	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
 	$user = $_SESSION['user'];																																																																																																					
-	$content = addslashes("<div id='content'><b>Welcome to Free Chat Online!</b><br />The best chat program out there!<div class='chat_wrapper' style='display: block'><table style='width: 700px'><tbody id='messages'></tbody></table></div><form method='POST' action='internet.php?ip=5.195.112.80' id='msgForm' name='msgForm'><input type='text' name='name' id='name' value='' style='width: 20%' readonly><input id='m' name = 'm' placeholder='Message' style='width:60%' autocomplete='off'><input type='submit' value='Send' name='msg' id='msg'></form></div>");
+	$content = addslashes("<div id='content'><b>Welcome to Free Chat Online!</b><br />The best chat program out there!<div class='chat_wrapper' style='display: block'><div id = 'messages'></div><input type='text' name='name' id='name' value='' style='width: 20%' readonly><input id='m' name = 'm' placeholder='Message' style='width:60%' autocomplete='off'><input type='button' value='Send' id='msg'></div>");
 	if(!mysqli_query($link, $npcChk)){																																																																																																										
 		$newPass = randomPassword();
 		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
@@ -211,27 +210,32 @@
 	if($npcRow['ip'] == "5.195.112.80"){
 		$user = $_SESSION['user']
 		?><script>
-		$(document).ready(function() {
-			$("#name").val("<?php echo($user); ?>");
-		});
 		var socket = io.connect('http://localhost:3000', {'force new connection' : true});
-		</script><?php
-		if(isset($_POST['msg'])){
-			if($_POST['m'] != '' && isset($_POST['m'])){
-				?><script>
-					$(document).ready(function() {
-						socket.emit('chat message', { name: "<?php echo($_SESSION['user']); ?>", msg: "<?php echo($_POST['m']); ?>" });
-						$('#m').val('');
-					});
-				</script><?php
-			} else {
-				//err - empty msg
-			}
-		}
-		?><script>
-			socket.on('chat message', function (data){
-				$('#messages').append($('<tr>').html("<td><strong>" + data.name + "</td></strong><td>" + data.msg + "</td>"));
+
+		socket.on('update messages', function (data){
+			$('#messages').append('<b>' + data.name + ':</b> ' + data.msg + '<br>');
+		});
+
+		$(function() {
+			$("#name").val("<?php echo($user); ?>");
+			$('#msg').click( function() {
+				console.log('working');
+				var message = $('#m').val();
+				socket.emit('chat message', { name: "<?php echo($user); ?>", msg: message });
+				$('#m').val('');
+				$('#m').focus().click();
 			});
+
+			$('#m').keypress(function(e) {
+				console.log("test2");
+				if(e.which == 13){
+					$(this).blur();
+					$('#msg').focus().click();
+					$('#m').val('');
+					$('#m').focus().click();
+				}
+			});
+		});
 		</script><?php
 	}
 
