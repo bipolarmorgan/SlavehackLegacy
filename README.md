@@ -35,6 +35,9 @@ As of right now, the following features have been implemented into the game:
 * Randomly generated IPs/Passwords for new users
 * Logs that can be edited / accessed by other users or yourself
 * Dynamic wallpaper function to allow for changing of wallpapers
+* Connecting to different IP addresses
+* Embedded chat channels utilizing Socket.IO. Connect to a specific IP and it will be host to a page that will hold
+  a chat room for all those connected to that IP.
 
 ### Features that will for sure be coming
 
@@ -46,8 +49,6 @@ As of right now, the following features have been implemented into the game:
 * In tandem with the above, I am debating on whether or not to add BG music that is uploadable as well. This will most likely be coming as well. It won't be until down the road quite a ways, however.
 * Slaves tab to access all of your current slaved computers as well as managing them for DDoS, managing what software they can host for others to download, as well as potentially other features.
 * Forums for users to post in. This won't be until a long ways down the line as this will likely take me the longest to actually implement into the game itself.
-* Embedded chat channels utilizing Socket.IO. Connect to a specific IP and it will be host to a page that will hold
-  a chat room for all those connected to that IP.
 * Randomized missions / riddletrails. Further explained below.
 
 ### Optional features you may see in the future
@@ -91,6 +92,9 @@ http://i.gyazo.com/5faa6d5614632bd76216a4977631d869.png
 #### Internet page
 http://i.gyazo.com/4ed7247e809b8de9cc88a5fd15507364.png
 http://i.gyazo.com/60f7735f536321ea08afba4c8dabe9ad.png
+
+### Sample chat channel
+http://puu.sh/asCaf/9745960c29.png
 
 ##### Note
 
