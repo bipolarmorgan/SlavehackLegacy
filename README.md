@@ -93,7 +93,7 @@ http://i.gyazo.com/5faa6d5614632bd76216a4977631d869.png
 http://i.gyazo.com/4ed7247e809b8de9cc88a5fd15507364.png
 http://i.gyazo.com/60f7735f536321ea08afba4c8dabe9ad.png
 
-### Sample chat channel
+#### Sample chat channel
 http://puu.sh/asCaf/9745960c29.png
 
 ##### Note
