@@ -275,7 +275,8 @@
         }
 
         $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-        $query  = "CREATE DATABASE IF NOT EXISTS `sh_db` DEFAULT CHARACTER SET utf8";
+        mysqli_select_db(DB_NAME) or die("Cannot connect to database.");
+
         $query2 = "CREATE TABLE IF NOT EXISTS `users` (
                         `uid` INT(10) unsigned NOT NULL AUTO_INCREMENT,
                         `login` VARCHAR(50) NOT NULL,
@@ -292,10 +293,7 @@
                         UNIQUE KEY `email_UNIQUE` (`email`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
         
-        mysqli_query($link, $query);
-        mysqli_select_db($link, DB_NAME) or die("Cannot connect to database.");
         mysqli_query($link, $query2);
-        $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
         $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
