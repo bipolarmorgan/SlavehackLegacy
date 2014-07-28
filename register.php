@@ -293,7 +293,9 @@
                         UNIQUE KEY `email_UNIQUE` (`email`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
         
-        mysqli_query($link, $query2);
+        if(!mysqli_query($link, $query2)){
+        	echo mysqli_error($link);
+        }
 
         $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
         $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
