@@ -362,11 +362,6 @@
         	?><script>
         		$("#error").append("Error: Username must under 30 characters long.<br />");
         	</script><?php
-        }
-        else if(strlen($user) < 8){
-        	?><script>
-        		$("#error").append("Error: Username must be at least 8 characters long.<br />");
-        	</script><?php
         } else {
         	$userChk = true;
         }
