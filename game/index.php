@@ -19,42 +19,42 @@
 	        //    callback: Recaptcha.focus_response_field});
 	        // }
 
-	        function captchaPlaceholder() {
-	        	var confirm = prompt("Did you complete the captcha?", "");
-	        	if (confirm == "yes" || confirm == "Yes") {
-	        		$("#captcha_block").css("opacity", "1");
-	        		$("#captcha_block").css("width", "0");
-	        		$("#captcha_block").css("height", "0");
-	        		$("#captcha_block").css("z-index", "0");
-	        	}
-	        }
+// 	        function captchaPlaceholder() {
+// 	        	var confirm = prompt("Did you complete the captcha?", "");
+// 	        	if (confirm == "yes" || confirm == "Yes") {
+// 	        		$("#captcha_block").css("opacity", "1");
+// 	        		$("#captcha_block").css("width", "0");
+// 	        		$("#captcha_block").css("height", "0");
+// 	        		$("#captcha_block").css("z-index", "0");
+// 	        	}
+// 	        }
 
-	        window.onload = function(){
-	        	var n = 5;
-	        	var number = Math.floor(Math.random()*n)+1;
-//				showRecaptcha('recaptcha_div');
-	        	if(number > 3) {
-	        		$("#captcha_block").css("opacity", "0.5");
-	        		$("#captcha_block").css("width", "100%");
-	        		$("#captcha_block").css("height", "100%");
-	        		$("#captcha_block").css("z-index", "6000");
-	        		captchaPlaceholder();
-//	        		Recaptcha.reload();
-//	        		Recaptcha.focus_response_field();
-	        	} else {
-	        		$("#captcha_block").css("opacity", "1");
-	        		$("#captcha_block").css("width", "0");
-	        		$("#captcha_block").css("height", "0");
-	        		$("#captcha_block").css("z-index", "0");
-	        	}
-	        }
+// 	        window.onload = function(){
+// 	        	var n = 5;
+// 	        	var number = Math.floor(Math.random()*n)+1;
+// //				showRecaptcha('recaptcha_div');
+// 	        	if(number > 3) {
+// 	        		$("#captcha_block").css("opacity", "0.5");
+// 	        		$("#captcha_block").css("width", "100%");
+// 	        		$("#captcha_block").css("height", "100%");
+// 	        		$("#captcha_block").css("z-index", "6000");
+// 	        		captchaPlaceholder();
+// //	        		Recaptcha.reload();
+// //	        		Recaptcha.focus_response_field();
+// 	        	} else {
+// 	        		$("#captcha_block").css("opacity", "1");
+// 	        		$("#captcha_block").css("width", "0");
+// 	        		$("#captcha_block").css("height", "0");
+// 	        		$("#captcha_block").css("z-index", "0");
+// 	        	}
+// 	        }
       	</script>
 	</head>
 	<body>
 		<div id = "userinfo">
-		<div id = "recaptcha_div">
+<!-- 		<div id = "recaptcha_div">
 			<div id = "captcha_block"></div>
-		</div>
+		</div> -->
 		<div id = "leftColumn">
 			<ul>
 				<li><a href = "index.php"><img src = "img/ico_comp.png">My Computer</a></li>
