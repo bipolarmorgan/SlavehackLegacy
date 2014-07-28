@@ -274,8 +274,12 @@
             return crypt($input, sprintf('$2a$%02d$', $rounds) . $salt);
         }
 
+        echo("Made it here.");
+
         $link = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
         mysqli_select_db(DB_NAME) or die("Cannot connect to database.");
+
+        echo("Made it here 2.");
 
         $query2 = "CREATE TABLE IF NOT EXISTS `users` (
                         `uid` INT(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -291,13 +295,17 @@
                         PRIMARY KEY(`uid`),
                         UNIQUE KEY `login_UNIQUE` (`login`),
                         UNIQUE KEY `email_UNIQUE` (`email`)
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+                    ) DEFAULT CHARSET=utf8";
         
+        echo("Made it here 3.");
         if(!mysqli_query($link, $query2)){
+        	echo "Failure";
         	echo mysqli_error($link);
         } else {
         	echo "Success!";
         }
+
+        echo("Made it here 4.");
 
         $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
         $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
