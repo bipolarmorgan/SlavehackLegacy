@@ -261,7 +261,10 @@
 			'Pacific/Auckland' => '(GMT+12:00) Auckland',
 			'Pacific/Tongatapu' => '(GMT+13:00) Nukualofa');
 
+	echo("Echo test.");
+
     if (isset($_POST['register'])) {
+    	echo("Made it here 0.");
     	require_once 'config.php';
 
 		// Blowfish Password Encryption Algorithm courtesy of The-Art-of-Web
