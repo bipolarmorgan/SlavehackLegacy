@@ -274,7 +274,7 @@
             return crypt($input, sprintf('$2a$%02d$', $rounds) . $salt);
         }
 
-        $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
+        $link = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
         mysqli_select_db(DB_NAME) or die("Cannot connect to database.");
 
         $query2 = "CREATE TABLE IF NOT EXISTS `users` (
@@ -295,6 +295,8 @@
         
         if(!mysqli_query($link, $query2)){
         	echo mysqli_error($link);
+        } else {
+        	echo "Success!";
         }
 
         $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
