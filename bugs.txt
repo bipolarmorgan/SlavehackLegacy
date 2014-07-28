@@ -3,3 +3,5 @@
 - Socket.IO displaying connection errors from Node.JS, need to remove it from areas it's no longer needed
 - No checks for users accessing the game without logging in, causes MySQL errors
 - (IMPORTANT) Need to sanitize user input during registration and logs editing. Currently vulnerable to SQL injection.
+- (IMPORTANT) Use this http://www.ibm.com/developerworks/xml/library/x-ajaxxml8/ type of implementation to completely replace
+  Socket.IO and Node.JS to simplify the game's stack. This will allow a live deployment on Heroku.
