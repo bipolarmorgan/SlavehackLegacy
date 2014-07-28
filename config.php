@@ -4,5 +4,4 @@
     define ('DB_PASS', $url["pass"]);
     define ('DB_NAME', substr($url["path"], 1);
     define ('DB_HOST', $url["host"]);
-	$base_url='http://slavehack-legacy.herokuapp.com/';
 ?>

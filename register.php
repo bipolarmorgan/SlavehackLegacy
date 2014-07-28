@@ -422,8 +422,8 @@
 	}
 
 	if(isset($_GET['resend']) && $_GET['resend'] == true){
-	 	include 'smtp/Send_Mail.php';
-	 	include 'config.php';
+	 	require_once 'smtp/Send_Mail.php';
+	 	require_once 'config.php';
 
         $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
         mysqli_select_db($link, DB_NAME) or die("Cannot connect to database.");
@@ -439,7 +439,7 @@
 	 	$body = $user.', <br /><br />Thanks for signing up for Slavehack: Legacy.
 	 	    	<br /><br />To make sure you are a human, please
 	 	    	verify your email by using the link below. <br /><br /><a 
-	 	    	href="'.$base_url.'/SlavehackLegacy/activation.php?code='.$activation.'">'.$base_url.'/SlavehackLegacy/activation.php?code='.
+	 	    	href="http://slavehack-legacy.herokuapp.com/SlavehackLegacy/activation.php?code='.$activation.'">http://slavehack-legacy.herokuapp.com/SlavehackLegacy/activation.php?code='.
 	 	    	$activation.'</a>';
 
 	 	Send_Mail($to, $subject, $body);
