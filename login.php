@@ -144,7 +144,7 @@
 					$("#logswitch").html("<a href='logout.php'>Logout</a>");
 					$("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
 				</script><?php 
-				header("refresh:3;url=/game/index.php?login=success");
+				header("refresh:3;url=http://slavehack-legacy.herokuapp.com/game/index.php?login=success");
 			} else {
 				?><script>
 					$("#error").html("Invalid username or password.");

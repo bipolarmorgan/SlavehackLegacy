@@ -101,10 +101,15 @@
 </html>
 
 <?php
-	include_once('../config.php');
-	$link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-    mysqli_select_db($link, DB_NAME) or die("Cannot connect to database.");
-    $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+	$server = $url["host"];
+	$username = $url["user"];
+	$password = $url["pass"];
+	$db = substr($url["path"],1);
+
+	$link = mysqli_connect($server, $username, $password);
+	mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
     $query2 = "CREATE TABLE IF NOT EXISTS `players` (
                     `uid` INT(10) unsigned NOT NULL AUTO_INCREMENT,
