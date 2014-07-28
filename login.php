@@ -60,7 +60,7 @@
 </html>
 
 <?php
-	include_once('config.php');
+	echo("Config test.");
 
 	$timestamp = $_SERVER['REQUEST_TIME'];
 	date_default_timezone_set('UTC');
