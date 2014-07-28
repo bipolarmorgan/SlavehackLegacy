@@ -261,8 +261,6 @@
 			'Pacific/Auckland' => '(GMT+12:00) Auckland',
 			'Pacific/Tongatapu' => '(GMT+13:00) Nukualofa');
 
-	echo("Echo test.");
-
     if (isset($_POST['register'])) {
     	echo("Made it here 0.");
 		// Blowfish Password Encryption Algorithm courtesy of The-Art-of-Web
@@ -275,8 +273,6 @@
             return crypt($input, sprintf('$2a$%02d$', $rounds) . $salt);
         }
 
-        echo("Made it here.");
-
 	    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 	    $server = $url["host"];
@@ -286,8 +282,6 @@
 
 	    $link = mysqli_connect($server, $username, $password);
 	    mysqli_select_db($link, $db) or die("Cannot connect to database.");
-
-        echo("Made it here 2.");
 
         $query2 = "CREATE TABLE IF NOT EXISTS `users` (
                         `uid` INT(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -305,15 +299,9 @@
                         UNIQUE KEY `email_UNIQUE` (`email`)
                     ) DEFAULT CHARSET=utf8";
         
-        echo("Made it here 3.");
         if(!mysqli_query($link, $query2)){
-        	echo "Failure";
         	echo mysqli_error($link);
-        } else {
-        	echo "Success!";
         }
-
-        echo("Made it here 4.");
 
         $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
         $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
