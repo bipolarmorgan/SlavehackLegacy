@@ -387,7 +387,7 @@
 		    			$body = $user.', <br /><br />Thanks for signing up for Slavehack: Legacy.
 		    					<br /><br />To make sure you are a human, please
 		    					verify your email by using the link below. <br /><br /><a 
-		    					href="'.$base_url.'/SlavehackLegacy/activation.php?code='.$activation.'">'.$base_url.'/SlavehackLegacy/activation.php?code='.
+		    					href="'.$base_url.'/activation.php?code='.$activation.'">'.$base_url.'/SlavehackLegacy/activation.php?code='.
 		    					$activation.'</a>';
 
 		    			Send_Mail($to, $subject, $body);
@@ -426,7 +426,7 @@
 	 	$body = $user.', <br /><br />Thanks for signing up for Slavehack: Legacy.
 	 	    	<br /><br />To make sure you are a human, please
 	 	    	verify your email by using the link below. <br /><br /><a 
-	 	    	href="http://slavehack-legacy.herokuapp.com/SlavehackLegacy/activation.php?code='.$activation.'">http://slavehack-legacy.herokuapp.com/SlavehackLegacy/activation.php?code='.
+	 	    	href="http://slavehack-legacy.herokuapp.com/activation.php?code='.$activation.'">http://slavehack-legacy.herokuapp.com/SlavehackLegacy/activation.php?code='.
 	 	    	$activation.'</a>';
 
 	 	Send_Mail($to, $subject, $body);
