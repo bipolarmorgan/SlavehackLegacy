@@ -1,7 +1,8 @@
 <?php
-    define ('DB_USER', "root");
-    define ('DB_PASS', "");
-    define ('DB_NAME', "sh_db");
-    define ('DB_HOST', "localhost");
-	$base_url='localhost';
+	$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    define ('DB_USER', $url["user"]);
+    define ('DB_PASS', $url["pass"]);
+    define ('DB_NAME', substr($url["path"], 1);
+    define ('DB_HOST', $url["host"]);
+	$base_url='http://slavehack-legacy.herokuapp.com/';
 ?>

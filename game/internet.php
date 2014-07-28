@@ -32,7 +32,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
      	<script type="text/javascript" src="../js/jQuery.js"></script>
-     	<script src = "js/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 	</head>
 	<body>
 		<div id = "leftColumn">
@@ -151,7 +150,7 @@
 	$curIP = "5.195.112.80";
 	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
 	$user = $_SESSION['user'];																																																																																																					
-	$content = addslashes("<div id='content'><b>Welcome to Free Chat Online!</b><br />The best chat program out there!<div class='chat_wrapper' style='display: block'><div id = 'messages'></div><input type='text' name='name' id='name' value='' style='width: 20%' readonly><input id='m' name = 'm' placeholder='Message' style='width:60%' autocomplete='off'><input type='button' value='Send' id='msg'></div>");
+	$content = addslashes("<div id='content'><b>Welcome to Free Chat Online!</b><br />The best chat program out there!<div class='chat_wrapper' style='display: block'><div id = 'messages'></div><form id='chatmessage'><input type='text' name='name' id='name' value='' style='width: 20%' readonly><input id='m' name = 'm' placeholder='Message' style='width:60%' autocomplete='off'></form><input type='button' id='msg' value='Send'></div>");
 	if(!mysqli_query($link, $npcChk)){																																																																																																										
 		$newPass = randomPassword();
 		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
@@ -206,78 +205,26 @@
 		</script><?php
 	}
 
-	//Socket creation for chat areas
+	//Massive W.I.P. for phasing out Socket.IO and Node.JS to simplify
+	//game's stack. Instead of using Node.JS and Socket.IO,
+	//the game will now use the Prototype.js framework to handle
+	//realtime messaging.
+
 	if($npcRow['ip'] == "5.195.112.80"){
+
+		$dropQry = "DROP TABLE IF EXISTS fcomessages";
+		mysqli_query($link);
+		$messagesTblQry = "CREATE TABLE `fcomessages` (
+							message_id INTEGER NOT NULL AUTO_INCREMENT,
+							username VARCHAR(255) NOT NULL,
+							message TEXT,
+							PRIMARY KEY ( message_id )
+						   )";
+		if(!mysqli_query($messagesTblQry)){
+			echo mysqli_error($link);
+		}
 		$user = $_SESSION['user']
 		?><script>
-		var socket = io.connect('http://localhost:3000', {'force new connection' : true});
-
-		socket.on('update messages', function (data){
-			$('#messages').append('<?php echo($curTime); ?> - <b>' + data.name + ':</b> ' + data.msg + '<br>');
-		});
-
-		$(function() {
-			$("#name").val("<?php echo($user); ?>");
-			$('#msg').click( function() {
-				if($('#m').val() == ''){
-					$('#messages').append("[Error]: Enter a message before submitting. <br />");
-					$('#msg').prop('disabled', true);
-					$('#msg').val('Send (5)');
-					$('#m').attr("disabled", true);
-					$('#m').blur();
-
-					var i = 5
-					var interval = setInterval(function() {
-						if (--i === 1){
-							window.clearInterval(interval);
-						}
-						$('#msg').val('Send (' + i + ')');
-					}, 1000);
-
-					setTimeout(function() {
-						$('#msg').prop('disabled', false);
-						$('#msg').val('Send');
-						$('#m').attr("disabled", false);
-					}, 5000);
-				} else {
-					var message = $('#m').val();
-					socket.emit('chat message', { name: "<?php echo($user); ?>", msg: message });
-					$('#m').val('');
-					$('#m').focus().click();
-				}
-			});
-
-			$('#m').keypress(function(e) {
-				if(e.which == 13){
-					if($('#m').val() == ''){
-						$('#messages').append("[Error]: Enter a message before submitting. <br />");
-						$('#msg').prop('disabled', true);
-						$('#msg').val('Send (5)');
-						$('#m').attr("disabled", true);
-						$('#m').blur();
-
-						var i = 5
-						var interval = setInterval(function() {
-							if (--i === 1){
-								window.clearInterval(interval);
-							}
-							$('#msg').val('Send (' + i + ')');
-						}, 1000);
-
-						setTimeout(function() {
-							$('#msg').prop('disabled', false);
-							$('#msg').val('Send');
-							$('#m').attr("disabled", false);
-						}, 5000);
-					} else {
-						$('#m').blur();
-						$('#msg').focus().click();
-						$('#m').val('');
-						$('#m').focus().click();
-					}
-				}
-			});
-		});
 		</script><?php
 	}
 
