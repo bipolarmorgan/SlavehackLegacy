@@ -265,8 +265,6 @@
 
     if (isset($_POST['register'])) {
     	echo("Made it here 0.");
-    	require_once 'config.php';
-
 		// Blowfish Password Encryption Algorithm courtesy of The-Art-of-Web
     	function bf_crypt($input, $rounds = 7) { 
             $salt       = "";
@@ -279,8 +277,15 @@
 
         echo("Made it here.");
 
-        $link = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-        mysqli_select_db(DB_NAME) or die("Cannot connect to database.");
+	    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+	    $server = $url["host"];
+	    $username = $url["user"];
+	    $password = $url["pass"];
+	    $db = substr($url["path"],1);
+
+	    $link = mysqli_connect($server, $username, $password);
+	    mysqli_select_db($db) or die("Cannot connect to database.");
 
         echo("Made it here 2.");
 
