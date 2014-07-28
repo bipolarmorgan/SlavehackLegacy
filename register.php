@@ -405,11 +405,15 @@
 	}
 
 	if(isset($_GET['resend']) && $_GET['resend'] == true){
-	 	require_once 'smtp/Send_Mail.php';
+		$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-        $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
-        mysqli_select_db($link, DB_NAME) or die("Cannot connect to database.");
-        $db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		$server = $url["host"];
+		$username = $url["user"];
+		$password = $url["pass"];
+		$db = substr($url["path"],1);
+
+		$link = mysqli_connect($server, $username, $password);
+		mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
 	 	$user = mysqli_real_escape_string($link, $_GET['user']);
 	 	$result = mysqli_query($link, "SELECT * FROM users WHERE login = '$user'");
