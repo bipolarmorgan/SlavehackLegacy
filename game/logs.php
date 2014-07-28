@@ -46,11 +46,11 @@
 						<?php 
 							if(isset($_POST['message'])){
 								$message = mysqli_real_escape_string($link, $_POST['message']); 
-								$userLog = fopen("/logs/" . $_SESSION['user'] . ".txt", 'w') or die("Can't open file.");
+								$userLog = fopen("/logs/" . $_SESSION['user'] . ".txt", 'w+') or die("Can't open file.");
 								fwrite($userLog, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
-							$userLog = fopen("/logs/" . $_SESSION['user'] . ".txt", 'r+') or die("Can't open file.");;
+							$userLog = fopen("/logs/" . $_SESSION['user'] . ".txt", 'r+') or die("Can't open file.");
 							while(!feof($userLog)) 
 							{
 								$lineLog = fgets($userLog);
