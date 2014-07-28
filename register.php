@@ -405,6 +405,7 @@
 	}
 
 	if(isset($_GET['resend']) && $_GET['resend'] == true){
+		include 'smtp/Send_Mail.php';
 		$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 		$server = $url["host"];
