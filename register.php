@@ -406,7 +406,6 @@
 
 	if(isset($_GET['resend']) && $_GET['resend'] == true){
 	 	require_once 'smtp/Send_Mail.php';
-	 	require_once 'config.php';
 
         $link   = mysqli_connect(DB_HOST, DB_USER, DB_PASS);
         mysqli_select_db($link, DB_NAME) or die("Cannot connect to database.");
