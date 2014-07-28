@@ -285,7 +285,7 @@
 	    $db = substr($url["path"],1);
 
 	    $link = mysqli_connect($server, $username, $password);
-	    mysqli_select_db($db) or die("Cannot connect to database.");
+	    mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
         echo("Made it here 2.");
 
