@@ -1,7 +1,7 @@
 <?php
-	// require('../vendor/autoload.php');
-	// use Aws\S3\S3Client;
-	// use Aws\S3\StreamWrapper;
+	require('../vendor/autoload.php');
+	use Aws\S3\S3Client;
+	use Aws\S3\StreamWrapper;
 
 	session_start();
 
@@ -9,10 +9,10 @@
 	$s3key = getenv('AWS_ACCESS_KEY_ID');
 	$s3auth = getenv('AWS_SECRET_ACCESS_KEY');
 
-	 $client = S3Client::factory(array(
-	 	'key'	 => $s3key;
-	 	'secret' => $s3auth;
-	 ));
+	//$client = S3Client::factory(array(
+	// 	'key'	 => $s3key;
+	// 	'secret' => $s3auth;
+	//));
 
 	// $bucket = $s3path;
 	// $key = $_SESSION['user'] . ".txt";
