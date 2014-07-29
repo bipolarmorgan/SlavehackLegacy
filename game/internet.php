@@ -203,18 +203,18 @@
 	if(!mysqli_query($link, $npcChk)){																																																																																																										
 		$newPass = randomPassword();
 		$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
-		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
-		    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content')")){
+		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content, trojan, spamware, firewall, waterwall)
+			    					VALUES('Free Chat Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
 			echo mysqli_error($link);
-		}
+		}	
 	} else { 
 		$npcRes = mysqli_query($link, $npcChk);
 		$r = mysqli_fetch_array($npcRes);
 		if($r['name'] == ""){
 			$newPass = randomPassword();
-			$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
-			if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
-			    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content')")){
+			$content = addslashes("<div id='content'><br /><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
+			if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content, trojan, spamware, firewall, waterwall)
+			    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
 				echo mysqli_error($link);
 			}			
 		}
