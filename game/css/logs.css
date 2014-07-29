@@ -386,6 +386,8 @@ textarea{
 	border-bottom-color: #D0D0D0;
 	border-style: solid;
 	border-spacing: 0px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 .termBody {
 	background: #FFFFFF;
@@ -407,6 +409,8 @@ textarea{
 	border-right-color: #0B0B55;
 	border-bottom-color: #0B0B55;
 	border-style: solid;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 .termHeaderInactive {
 	font-family: arial,helvetica,sans-serif;
