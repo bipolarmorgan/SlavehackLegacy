@@ -321,6 +321,36 @@
 						<input type="submit" id = "connect" value="Connect">
 					</form>
 					<br />
+
+					<div id="terminal1" style="position:absolute; visibility: hidden; z-index:1" class="termHidden"><table class="termOuterChrome" onmouseup="termBringToFront(1)" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0">
+						<tr><td class="termHeaderActive" onmousedown="dragTerm(1); return false" id="termHeader1">Terminal 1</td></tr>
+						<tr><td class="termMenuPane"><a href="javascript:termClose(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Close</a><a href="javascript:termConfigure(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Settings</a></td></tr>
+						<tr><td class="termBody"><div id="termDiv1" style="position:relative;"></div></td></tr>
+					</table></td></tr>
+					</table></div>
+
+					<div id="settingsdialog" style="position:absolute; visibility: hidden; z-index:3" class="termHidden"><table class="termOuterChrome" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0" width="300">
+						<tr><td align="center" class="termMenuPane">
+							<table borrder="0" cellspacing="0" cellpadding="4" width="260">
+							<tr><td align="center" class="settings">Terminal Settings</td></tr>
+							<form name="settingvalues" onsubmit="return false">
+							<tr><td class="settings">&nbsp;<br><b>Size</b></td></tr>
+							<tr><td><table borrder="0" cellspacing="0" cellpadding="2">
+								<tr valign="middle"><td class="settings">Rows:</td><td><input name="rows" type="text" value="" size="4" class="settings"></tr>
+								<tr valign="middle"><td class="settings">Cols:</td><td><input name="cols" type="text" value="" size="4" class="settings"></tr>
+							</table></td></tr>
+							<tr><td class="settings">&nbsp;<br><b>Color</b></td></tr>
+							<tr><td><table borrder="0" cellspacing="0" cellpadding="2">
+								<tr valign="middle"><td><input type="radio" name="color" value="1"></td><td class="settings"><a href="javascript:settingsSetColor(1)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on white</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="2"></td><td class="settings"><a href="javascript:settingsSetColor(2)" onfocus="if (this.blur) this.blur();" class="settingsLabel">white on black</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="3"></td><td class="settings"><a href="javascript:settingsSetColor(3)" onfocus="if (this.blur) this.blur();" class="settingsLabel">green on black</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="4"></td><td class="settings"><a href="javascript:settingsSetColor(4)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on green</a></td></tr>
+							</table></td></tr>
+							</form>
+							<tr><td class="settings" align="right" nowrap>&nbsp;<br><a href="javascript:closeSettings(0)" onfocus="if(this.blur)this.blur();" class="uiButton">Cancel</a>&nbsp;<a href="javascript:closeSettings(1)" onfocus="if(this.blur)this.blur();" class="uiButton">Configure</a><br>&nbsp;</td></tr>
+							</table>
+						</table></td></tr>
+					</table></div>
 				</div>
 			</div>
 		</div>
