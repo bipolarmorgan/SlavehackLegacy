@@ -551,7 +551,7 @@ textarea{
 	font-size: 12px;
 	color: #000000;
 }
-.settingsLabel,.settingsLabel:link,settingsLabel:active,.settingsLabel:visited,.settingsLabel:hover {
+.settingsLabel,.settingsLabel:link,.settingsLabel:active,.settingsLabel:visited,.settingsLabel:hover {
 	font-family: arial,helvetica,sans-serif;
 	font-size: 12px;
 	color: #000000;
