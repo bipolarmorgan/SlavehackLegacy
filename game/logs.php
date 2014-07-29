@@ -74,9 +74,8 @@
 								fwrite($stream, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
-							if (!($stream = fopen("s3://".$bucket."/".$key, 'r'))) {
-								die('Could not open stream for reading.');
-							}
+							$stream = fopen("s3://".$bucket."/".$key, 'r');
+
 							while(!feof($stream)) 
 							{
 								$lineLog = fgets($stream);
