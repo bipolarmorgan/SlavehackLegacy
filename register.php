@@ -1,138 +1,5 @@
 <?php
 	session_start();
-?>
-
-<html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
-	    <link rel="stylesheet" type="text/css" href="css/main.css">
-		<link rel="shortcut icon" href="img/icon.ico" />
-    	<script type="text/javascript" src="js/jQuery.js"></script>
-		<title>
-			Register
-		</title>
-	</head>
-	<body>
-		<div id = "bgMenuBar">
-			<div class = "logo">Slavehack: Legacy</div>
-			<ul id = "homeMenu">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="register.php">Register</a></li>
-				<li><a href="terms.html">Terms of Use</a></li>
-				<li><span id = "logswitch"></span></li>
-			</ul>
-		</div>
-
-		<div id = "wrapper">
-			<div id = "entryBlock">
-				<div id="ipLog">
-					132.45.86.1@registerHost
-					<div id="date"></div>
-				</div>
-				<div id="container">
-					<div id="message">
-						<div id="title">
-							<b>Register</b><br /><br />
-						</div>
-						<div id="error"></div><div id="success"></div>
-						<form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-							<label><b>Username: </b></label><input type = "text" name = "user">
-							<label><b>Password: </b></label><input type = "password" name = "pass" autocomplete = "off">
-							<label><b>E-mail: </b></label><input type = "text" name = "email" autocomplete = "off">
-							<label><b>Timezone: </b></label>
-							<select name="tz">
-								<option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
-								<option value="America/Anchorage">(GMT-09:00) Alaska</option>
-								<option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-								<option value="America/Phoenix">(GMT-07:00) Arizona</option>
-								<option value="America/Denver">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-								<option value="America/Chicago">(GMT-06:00) Central Time (US &amp; Canada)</option>
-								<option value="America/New_York">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-								<option value="America/Indiana/Indianapolis">(GMT-05:00) Indiana (East)</option>
-								<option disabled="disabled">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</option>
-								<?php
-									foreach($zonelist as $key => $value) {
-										echo '		<option value="' . $key . '">' . $value . '</option>' . "\n";
-									}
-								?>
-							</select>
-							<label><b>I understand I can potentially lose 
-							everything I've worked for in the matter of a few minutes.</b></label>
-							<input type = "checkbox" name = "ustand">
-							<label><b>I've read and agree to the terms and conditions.
-									I also agree to the use of cookies on this website
-									for the sole purpose of this game alone.</b></label>
-							<input type = "checkbox" name = "agree">
-							<label><b>Subscribe to the mailing list? You'll receive updates
-									about the development of the game.</b></label>
-							<input type = "checkbox" name = "mlist"><br /><br /><br />
-							<input type = "submit" value = "Submit" name = "register" id = "register">
-						</form>
-						<br />
-						Passwords must contain one capital and lowercase letter, one number, and be at least 8 characters long.
-						<br />
-						Usernames must be at least 8 characters long and no longer than 30 characters in length.
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id = "footer">
-			Copyright (C) "Slavehack: Legacy" 2014 -
-			An open-source project founded by Trizzle, developed by WitheredGryphon
-		</div>
-	</body>
-</html>
-
-<?php
-    $passChk = false;
-    $userChk = false;
-    $emailChk = false;
-    $ustandChk = false;
-    $agrChk = false;
-    $listChk = false;
-
-	$timestamp = $_SERVER['REQUEST_TIME'];
-	date_default_timezone_set('UTC');
-
-	if(isset($_POST['tz']) && $userChk && $passChk && $emailChk && $ustandChk && $agrChk) {
-		$_SESSION['tz'] = $_POST['tz'];
-	}
-
-	if(isset($_SESSION['tz'])){
-		$tz = $_SESSION['tz'];		
-	} else {
-		$tz = "America/Chicago";
-	}
-
-	if(isset($_POST['mlist'])){
-		$listChk = true;
-	}
-
-	if(isset($_SESSION['user'])){
-		?><script>
-			$("#logswitch").html("<a href='logout.php'>Logout</a>");
-		</script><?php 
-	} else {
-		?><script>
-			$("#logswitch").html("<a href='login.php'>Login</a>");
-		</script><?php 
-	}
-
-	$dtzone = new DateTimeZone($tz);
-	$dtime = new DateTime();
-
-	$dtime->setTimestamp($timestamp);
-	$dtime->setTimeZone($dtzone);
-	$time = $dtime->format('g:i A m/d/y');
-
-	?>
-    <script>
-        $("#date").html('<?php echo $time; ?>');
-    </script>
-    <?php
 
 	$zonelist = array('Kwajalein' => '(GMT-12:00) International Date Line West',
 			'Pacific/Midway' => '(GMT-11:00) Midway Island',
@@ -260,6 +127,139 @@
 			'Asia/Kamchatka' => '(GMT+12:00) Kamchatka',
 			'Pacific/Auckland' => '(GMT+12:00) Auckland',
 			'Pacific/Tongatapu' => '(GMT+13:00) Nukualofa');
+?>
+
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
+	    <link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="shortcut icon" href="img/icon.ico" />
+    	<script type="text/javascript" src="js/jQuery.js"></script>
+		<title>
+			Register
+		</title>
+	</head>
+	<body>
+		<div id = "bgMenuBar">
+			<div class = "logo">Slavehack: Legacy</div>
+			<ul id = "homeMenu">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="about.php">About</a></li>
+				<li><a href="register.php">Register</a></li>
+				<li><a href="terms.html">Terms of Use</a></li>
+				<li><span id = "logswitch"></span></li>
+			</ul>
+		</div>
+
+		<div id = "wrapper">
+			<div id = "entryBlock">
+				<div id="ipLog">
+					132.45.86.1@registerHost
+					<div id="date"></div>
+				</div>
+				<div id="container">
+					<div id="message">
+						<div id="title">
+							<b>Register</b><br /><br />
+						</div>
+						<div id="error"></div><div id="success"></div>
+						<form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+							<label><b>Username: </b></label><input type = "text" name = "user">
+							<label><b>Password: </b></label><input type = "password" name = "pass" autocomplete = "off">
+							<label><b>E-mail: </b></label><input type = "text" name = "email" autocomplete = "off">
+							<label><b>Timezone: </b></label>
+							<select name="tz">
+								<option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
+								<option value="America/Anchorage">(GMT-09:00) Alaska</option>
+								<option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+								<option value="America/Phoenix">(GMT-07:00) Arizona</option>
+								<option value="America/Denver">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+								<option value="America/Chicago">(GMT-06:00) Central Time (US &amp; Canada)</option>
+								<option value="America/New_York">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+								<option value="America/Indiana/Indianapolis">(GMT-05:00) Indiana (East)</option>
+								<?php
+									foreach($zonelist as $key => $value) {
+										echo '<option value="' . $key . '">' . $value . '</option>' . "\n";
+									}
+								?>
+							<option disabled="disabled">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</option>
+							</select>
+							<label><b>I understand I can potentially lose 
+							everything I've worked for in the matter of a few minutes.</b></label>
+							<input type = "checkbox" name = "ustand">
+							<label><b>I've read and agree to the terms and conditions.
+									I also agree to the use of cookies on this website
+									for the sole purpose of this game alone.</b></label>
+							<input type = "checkbox" name = "agree">
+							<label><b>Subscribe to the mailing list? You'll receive updates
+									about the development of the game.</b></label>
+							<input type = "checkbox" name = "mlist"><br /><br /><br />
+							<input type = "submit" value = "Submit" name = "register" id = "register">
+						</form>
+						<br />
+						Passwords must contain one capital and lowercase letter, one number, and be at least 8 characters long.
+						<br />
+						Usernames must be at least 8 characters long and no longer than 30 characters in length.
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id = "footer">
+			Copyright (C) "Slavehack: Legacy" 2014 -
+			An open-source project founded by Trizzle, developed by WitheredGryphon
+		</div>
+	</body>
+</html>
+
+<?php
+    $passChk = false;
+    $userChk = false;
+    $emailChk = false;
+    $ustandChk = false;
+    $agrChk = false;
+    $listChk = false;
+
+	$timestamp = $_SERVER['REQUEST_TIME'];
+	date_default_timezone_set('UTC');
+
+	if(isset($_POST['tz']) && $userChk && $passChk && $emailChk && $ustandChk && $agrChk) {
+		$_SESSION['tz'] = $_POST['tz'];
+	}
+
+	if(isset($_SESSION['tz'])){
+		$tz = $_SESSION['tz'];		
+	} else {
+		$tz = "America/Chicago";
+	}
+
+	if(isset($_POST['mlist'])){
+		$listChk = true;
+	}
+
+	if(isset($_SESSION['user'])){
+		?><script>
+			$("#logswitch").html("<a href='logout.php'>Logout</a>");
+		</script><?php 
+	} else {
+		?><script>
+			$("#logswitch").html("<a href='login.php'>Login</a>");
+		</script><?php 
+	}
+
+	$dtzone = new DateTimeZone($tz);
+	$dtime = new DateTime();
+
+	$dtime->setTimestamp($timestamp);
+	$dtime->setTimeZone($dtzone);
+	$time = $dtime->format('g:i A m/d/y');
+
+	?>
+    <script>
+        $("#date").html('<?php echo $time; ?>');
+    </script>
+    <?php
 
     if (isset($_POST['register'])) {
     	echo("Made it here 0.");
