@@ -169,9 +169,9 @@
 			var t=term[termToSet];
 			if (state) {
 				var f=document.forms.settingvalues;
-				var color = 1
-				if (f.color[1].checked) color=2
-				else if (f.color[2].checked) color=3
+				color = 3;
+				if (f.color[0].checked) color = 1
+				else if (f.color[1].checked) color=2
 				else if (f.color[3].checked) color=4;
 				var rows = parseInt(f.rows.value);
 				var cols = parseInt(f.cols.value);
