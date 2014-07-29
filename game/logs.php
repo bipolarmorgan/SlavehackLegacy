@@ -9,13 +9,17 @@
 	private $s3key = getenv('AWS_ACCESS_KEY_ID');
 	private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
 
+	echo $s3path;
+	echo $s3key;
+	echo $s3auth;
+
 	// $client = S3Client::factory(array(
 	// 	'key'	 => $s3key;
 	// 	'secret' => $s3auth;
 	// ));
 
-	$bucket = $s3path;
-	$key = $_SESSION['user'] . ".txt";
+	// $bucket = $s3path;
+	// $key = $_SESSION['user'] . ".txt";
 
 	// $client -> registerStreamWrapper();
 ?>
