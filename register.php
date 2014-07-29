@@ -170,14 +170,6 @@
 							<label><b>E-mail: </b></label><input type = "text" name = "email" autocomplete = "off">
 							<label><b>Timezone: </b></label>
 							<select name="tz">
-								<option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
-								<option value="America/Anchorage">(GMT-09:00) Alaska</option>
-								<option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-								<option value="America/Phoenix">(GMT-07:00) Arizona</option>
-								<option value="America/Denver">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-								<option value="America/Chicago">(GMT-06:00) Central Time (US &amp; Canada)</option>
-								<option value="America/New_York">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-								<option value="America/Indiana/Indianapolis">(GMT-05:00) Indiana (East)</option>
 								<?php
 									foreach($zonelist as $key => $value) {
 										echo '<option value="' . $key . '">' . $value . '</option>' . "\n";
