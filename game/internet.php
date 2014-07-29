@@ -200,9 +200,9 @@
 	$curIP = "1.216.20.96";
 	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
 	$user = $_SESSION['user'];
-	$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . )
 	if(!mysqli_query($link, $npcChk)){																																																																																																										
 		$newPass = randomPassword();
+		$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
 		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
 		    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content')")){
 			echo mysqli_error($link);
@@ -212,6 +212,7 @@
 		$r = mysqli_fetch_array($npcRes);
 		if($r['name'] == ""){
 			$newPass = randomPassword();
+			$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
 			if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
 			    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content')")){
 				echo mysqli_error($link);
