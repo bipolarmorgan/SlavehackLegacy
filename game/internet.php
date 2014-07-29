@@ -204,7 +204,7 @@
 		$newPass = randomPassword();
 		$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
 		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content, trojan, spamware, firewall, waterwall)
-			    					VALUES('Free Chat Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
+			    					VALUES('Free Warez Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
 			echo mysqli_error($link);
 		}	
 	} else { 
@@ -214,7 +214,7 @@
 			$newPass = randomPassword();
 			$content = addslashes("<div id='content'><br /><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
 			if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content, trojan, spamware, firewall, waterwall)
-			    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
+			    						VALUES('Free Warez Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
 				echo mysqli_error($link);
 			}			
 		}
@@ -243,11 +243,11 @@
 	}
 	if(mysqli_query($link, $usrChk) && $row2['username'] != ""){
 		?><script>
-			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address.");
+			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0><img src='img/ico_key.png'></a>");
 		</script><?php
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
-			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address.");
+			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0><img src='img/ico_key.png'></a>");
 		</script><?php
 		$grabContent = "true";
 	} else {
