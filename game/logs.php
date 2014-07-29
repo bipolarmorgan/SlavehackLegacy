@@ -64,6 +64,7 @@
 								$message = mysqli_real_escape_string($link, $_POST['message']);
 								$stream = fopen("s3://".$bucket."/".$key, 'w');
 								fwrite($stream, $message);
+								fclose($stream);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
 							$stream = fopen("s3://".$bucket."/".$key, 'r');
