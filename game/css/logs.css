@@ -320,12 +320,12 @@ textarea{
 .term {
 	font-family: courier,fixed,swiss,sans-serif;
 	font-size: 12px;
-	color: #181818;
+	color: #000000;
 	background: none;
 }
 .termReverse {
-	color: #eeeeee;
-	background: #222222;
+	color: #FFFFFF;
+	background: #000000;
 }
 
 
@@ -336,30 +336,30 @@ textarea{
 	background: none;
 }
 .term2 .termReverse {
-	color: #181818;
-	background: #eeeeee;
+	color: #000000;
+	background: #FFFFFF;
 }
 
 .term3 {
 	font-family: courier,fixed,swiss,sans-serif;
 	font-size: 12px;
-	color: #44bb33;
+	color: #00ff00;
 	background: none;
 }
 .term3 .termReverse {
-	color: #111111;
-	background: #44bb33;
+	color: #000000;
+	background: #00ff00;
 }
 
 .term4 {
 	font-family: courier,fixed,swiss,sans-serif;
 	font-size: 12px;
-	color: #111111;
+	color: #000000;
 	background: none;
 }
 .term4 .termReverse {
-	color: #779977;
-	background: #111111;
+	color: #00ff00;
+	background: #000000;
 }
 
 .termOuterChrome {
