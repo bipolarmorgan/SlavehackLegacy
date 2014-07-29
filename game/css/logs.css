@@ -372,6 +372,8 @@ textarea{
 	border-bottom-color: #747474;
 	border-style: solid;
 	border-spacing: 0px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 
 .termInnerChrome {

@@ -426,7 +426,7 @@
 
 	//The Hidden Portal//
 
-	$curIP = "30.12.129.47";
+	$curIP = "1.1.1.1";
 	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
 	$content = addslashes("<div id = 'content'><b><br />Welcome to The Hidden Portal!</b><br /><br />Check out some of the links below to get started browsing. Or chat with online strangers you will probably never meet using our chat client.<br /><br /><a href='internet.php?ip=1.216.20.96'>FTP Warez</a><br /><br /><a href='internet.php?ip=5.195.112.80'>Free Chat Online</a><br /><br /><a href='internet.php?ip=19.38.42.12'>U-Choose Banking</a><br /><br /><a href='internet.php?ip=101.49.37.86'>My Money My Bank</a></div>");
 	if(!mysqli_query($link, $npcChk)){
