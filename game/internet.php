@@ -323,11 +323,10 @@
 					</form>
 					<br />
 
-					<div id="terminal1" style="position:absolute; visibility: hidden; z-index:1" class="termHidden"><table class="termOuterChrome" onmouseup="termBringToFront(1)" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0">
+					<div id="terminal1" style="position:absolute; visibility: hidden; z-index:1" class="termHidden"><table class="termOuterChrome" onmouseup="termBringToFront(1)" cellpadding="1" cellspacing="0"><tr><td>
 						<tr><td class="termHeaderActive" onmousedown="dragTerm(1); return false" id="termHeader1">Pulsar Terminal</td></tr>
 						<tr><td class="termMenuPane"><a href="javascript:termClose(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Close</a><a href="javascript:termConfigure(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Settings</a></td></tr>
-						<tr><td class="termBody"><div id="termDiv1" style="position:relative;"></div></td></tr>
-					</table></td></tr>
+						<tr><td class="termBody"><div id="termDiv1" style="position:relative;"></div></td></tr></td></tr>
 					</table></div>
 
 					<div id="settingsdialog" style="position:absolute; visibility: hidden; z-index:3" class="termHidden"><table class="termOuterChrome" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0" width="300">
