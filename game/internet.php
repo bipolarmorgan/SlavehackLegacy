@@ -47,7 +47,7 @@
 						exitHandler: termChromeHide
 					}
 				);
-				term[n].colorsetting=3;
+				term[n].colorsetting=1;
 				if (term[n]) {
 					termChromeShow(n);
 					term[n].open();
