@@ -1,5 +1,22 @@
 <?php
+	require('../vendor/autoload.php');
+	use Aws\S3\S3Client;
+	use Aws\S3\StreamWrapper;
+
 	session_start();
+
+	private $s3path = getenv('S3_BUCKET_NAME');
+	private $s3key = getenv('AWS_ACCESS_KEY_ID');
+	private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
+
+	$client = S3Client::factory(array(
+		'key'	 => $s3key;
+		'secret' => $s3auth;
+	));
+
+	$bucket = getenv('S3_BUCKET_NAME');
+
+	$client -> registerStreamWrapper();
 ?>
 
 <html>
@@ -45,18 +62,24 @@
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
 							if(isset($_POST['message'])){
-								$message = mysqli_real_escape_string($link, $_POST['message']); 
-								$userLog = fopen("../game/logs/" . $_SESSION['user'] . ".txt", 'w+') or die("Can't open file.");
-								fwrite($userLog, $message);
+								$message = mysqli_real_escape_string($link, $_POST['message']);
+								$key = $_SESSION['user'] . ".txt";
+								$stream = fopen("s3://".$bucket."/".$key, 'w');
+								if (!$stream){
+									die('Unable to open stream for writing.');
+								}
+								fwrite($stream, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
-							$userLog = fopen("../game/logs/" . $_SESSION['user'] . ".txt", 'r+') or die("Can't open file.");
-							while(!feof($userLog)) 
+							if (!($stream = fopen("s3://".$bucket."/".$key, 'r'))) {
+								die('Could not open stream for reading.');
+							}
+							while(!feof($stream)) 
 							{
-								$lineLog = fgets($userLog);
+								$lineLog = fgets($stream);
 								echo $lineLog;
 							}
-							fclose($userLog);
+							fclose($stream);
 							echo "</textarea>";
 						?>
 						<br />
