@@ -67,6 +67,7 @@
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
 							$stream = fopen("s3://".$bucket."/".$key, 'r');
+							echo("s3://".$bucket."/".$key);
 							if (!$stream) {
 								die('Could not open stream for reading.');
 							}
