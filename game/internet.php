@@ -27,6 +27,7 @@
 
 	?><script>
 		var term = new Array();
+
 		function termOpen(n) {
 			if (termToSet) return; // do not open while there is modal dialog
 			n = parseInt(n);
@@ -40,14 +41,14 @@
 						id: n,
 						termDiv: 'termDiv'+n,
 						frameWidth: 1,
-						frameColor: '#FFFFFF',
+						frameColor: '#ffffff',
 						bgColor: '#000000',
-						greeting: 'Welcome to the Pulsar Terminal. If this is your first time using this terminal, type \'help\'',
+						greeting: 'Pulsar Terminal ready.\r\nIf this is your first time using this terminal, type \'help\' to get started\r\n',
 						handler: termHandler,
 						exitHandler: termChromeHide
 					}
 				);
-				term[n].colorsetting=2;
+				term[n].colorsetting=1;
 				if (term[n]) {
 					termChromeShow(n);
 					term[n].open();
@@ -147,6 +148,7 @@
 			var f=document.forms.settingvalues;
 			f.rows.value=t.conf.rows;
 			f.cols.value=t.conf.cols;
+			f.color[color-1].checked=true;
 			var div='settingsdialog';
 			TermGlobals.setVisible(div,1);
 			if (document.getElementById) {
@@ -167,6 +169,10 @@
 			var t=term[termToSet];
 			if (state) {
 				var f=document.forms.settingvalues;
+				var color = 2
+				if (f.color[0].checked) color = 1
+				else if (f.color[2].checked) color=3
+				else if (f.color[3].checked) color=4;
 				var rows = parseInt(f.rows.value);
 				var cols = parseInt(f.cols.value);
 				if ((isNaN(rows)) || (rows<2) || (isNaN(cols)) || (cols<4)) {
@@ -174,7 +180,28 @@
 					cols=t.conf.cols;
 				}
 				var changed=((rows==t.conf.rows) && (cols==t.conf.cols) && (color==t.colorsetting))? false:true;
+				t.colorsetting=color;
 				var rstring= 'New Settings: Terminal set to '+rows+' rows, '+cols+' cols, ';
+				if (color==1) {
+					t.conf.bgColor='#eeeeee';
+					t.conf.fontClass='term';
+					rstring+='black on white.';
+				}
+				else if (color==2) {
+					t.conf.bgColor='#000000';
+					t.conf.fontClass='term2';
+					rstring+='white on black.';
+				}
+				else if (color==3) {
+					t.conf.bgColor='#181818';
+					t.conf.fontClass='term3';
+					rstring+='green on black.';
+				}
+				else if (color==4) {
+					t.conf.bgColor='#779977';
+					t.conf.fontClass='term4';
+					rstring+='black on green.';
+				}
 				if (changed) {
 					t.cursorOff();
 					t.conf.rows=t.maxLines=rows;
