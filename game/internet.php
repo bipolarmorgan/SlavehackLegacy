@@ -148,7 +148,7 @@
 			var f=document.forms.settingvalues;
 			f.rows.value=t.conf.rows;
 			f.cols.value=t.conf.cols;
-			f.color[color].checked=true;
+			f.color[color-1].checked=true;
 			var div='settingsdialog';
 			TermGlobals.setVisible(div,1);
 			if (document.getElementById) {
@@ -340,12 +340,18 @@
 								<tr valign="middle"><td class="settings">Rows:</td><td><input name="rows" type="text" value="" size="4" class="settings"></tr>
 								<tr valign="middle"><td class="settings">Cols:</td><td><input name="cols" type="text" value="" size="4" class="settings"></tr>
 							</table></td></tr>
+							<tr><td class="settings">&nbsp;<br><b>Color</b></td></tr>
+							<tr><td><table borrder="0" cellspacing="0" cellpadding="2">
+								<tr valign="middle"><td><input type="radio" name="color" value="1"></td><td class="settings"><a href="javascript:settingsSetColor(1)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on white</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="2"></td><td class="settings"><a href="javascript:settingsSetColor(2)" onfocus="if (this.blur) this.blur();" class="settingsLabel">white on black</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="3"></td><td class="settings"><a href="javascript:settingsSetColor(3)" onfocus="if (this.blur) this.blur();" class="settingsLabel">green on black</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="4"></td><td class="settings"><a href="javascript:settingsSetColor(4)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on green</a></td></tr>
+							</table></td></tr>
 							</form>
 							<tr><td class="settings" align="right" nowrap>&nbsp;<br><a href="javascript:closeSettings(0)" onfocus="if(this.blur)this.blur();" class="uiButton">Cancel</a>&nbsp;<a href="javascript:closeSettings(1)" onfocus="if(this.blur)this.blur();" class="uiButton">Configure</a><br>&nbsp;</td></tr>
 							</table>
-						</table></td></tr>
+					</table></td></tr>
 					</table></div>
-				</div>
 			</div>
 		</div>
 	</body>
