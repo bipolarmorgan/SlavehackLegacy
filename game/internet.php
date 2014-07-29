@@ -291,7 +291,7 @@
 	if($confirmIP == "true" && $_GET['hack'] == "0"){
 		?><script>
 			var term = new Array();
-			$(document).ready(function {
+			$(document).ready(function() {
 				termOpen(1);
 
 				function termOpen(n) {
