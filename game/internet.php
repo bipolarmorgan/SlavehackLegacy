@@ -37,7 +37,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
      	<script type="text/javascript" src="../js/jQuery.js"></script>
-     	<script type="text/javascript" src="js/termlib.js"></script>
+     	<script type="text/javascript" src="js/termlib/termlib.js"></script>
 	</head>
 	<body>
 		<div id = "leftColumn">
