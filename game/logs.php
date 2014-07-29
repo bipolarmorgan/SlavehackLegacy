@@ -1,9 +1,13 @@
 <?php
+	echo("test");
+
 	require('../vendor/autoload.php');
 	use Aws\S3\S3Client;
 	use Aws\S3\StreamWrapper;
 
 	session_start();
+
+	echo("test 2");
 
 	private $s3path = getenv('S3_BUCKET_NAME');
 	private $s3key = getenv('AWS_ACCESS_KEY_ID');
@@ -17,6 +21,8 @@
 	$bucket = getenv('S3_BUCKET_NAME');
 
 	$client -> registerStreamWrapper();
+
+	echo("test 3");
 ?>
 
 <html>
