@@ -101,6 +101,28 @@
                     `ip` VARCHAR(64) NOT NULL,
                     `pass` VARCHAR(16) NOT NULL,
                     `content` VARCHAR(512) NOT NULL,
+                    `trojan` VARCHAR(32) NOT NULL,
+                    `worm` VARCHAR(32) NOT NULL,
+                    `adware` VARCHAR(32) NOT NULL,
+                    `virus` VARCHAR(32) NOT NULL,
+                    `rootkit` VARCHAR(32) NOT NULL,
+                    `backdoor` VARCHAR(32) NOT NULL,
+                    `keylogger` VARCHAR(32) NOT NULL,
+                    `ransomware` VARCHAR(32) NOT NULL,
+                    `spyware` VARCHAR(32) NOT NULL,
+                    `spamware` VARCHAR(32) NOT NULL,
+                    `firewall` VARCHAR(32) NOT NULL,
+                    `waterwall` VARCHAR(32) NOT NULL,
+                    `trojan_inf` VARCHAR(32) NOT NULL,
+                    `worm_inf` VARCHAR(32) NOT NULL,
+                    `adware_inf` VARCHAR(32) NOT NULL,
+                    `virus_inf` VARCHAR(32) NOT NULL,
+                    `rootkit_inf` VARCHAR(32) NOT NULL,
+                    `backdoor_inf` VARCHAR(32) NOT NULL,
+                    `keylogger_inf` VARCHAR(32) NOT NULL,
+                    `ransomware_inf` VARCHAR(32) NOT NULL,
+                    `spyware_inf` VARCHAR(32) NOT NULL,
+                    `spamware_inf` VARCHAR(32) NOT NULL,
                     PRIMARY KEY(`uid`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
 	if(!mysqli_query($link, $npcQry)){
@@ -156,6 +178,29 @@
 	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
 	$user = $_SESSION['user'];																																																																																																					
 	$content = addslashes("<div id='content'><b>Welcome to Free Chat Online!</b><br />The best chat program out there!<div class='chat_wrapper' style='display: block'><div id = 'messages'></div><form id='chatmessage'><input type='text' name='name' id='name' value='' style='width: 20%' readonly><input id='m' name = 'm' placeholder='Message' style='width:60%' autocomplete='off'></form><input type='button' id='msg' value='Send'></div>");
+	if(!mysqli_query($link, $npcChk)){																																																																																																										
+		$newPass = randomPassword();
+		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
+		    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content')")){
+			echo mysqli_error($link);
+		}
+	} else { 
+		$npcRes = mysqli_query($link, $npcChk);
+		$r = mysqli_fetch_array($npcRes);
+		if($r['name'] == ""){
+			$newPass = randomPassword();
+			if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)
+			    						VALUES('Free Chat Online', '$curIP', '$newPass', '$content')")){
+				echo mysqli_error($link);
+			}			
+		}
+	}	
+
+	//Free Warez Online//
+	$curIP = "1.216.20.96";
+	$npcChk = "SELECT * FROM npcs WHERE ip = '$curIP'";
+	$user = $_SESSION['user'];
+	$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . )
 	if(!mysqli_query($link, $npcChk)){																																																																																																										
 		$newPass = randomPassword();
 		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content)

@@ -212,21 +212,21 @@
     $ustandChk = false;
     $agrChk = false;
     $listChk = false;
-
-	$timestamp = $_SERVER['REQUEST_TIME'];
 	date_default_timezone_set('UTC');
 
 	if(isset($_POST['tz']) && $userChk && $passChk && $emailChk && $ustandChk && $agrChk) {
 		$_SESSION['tz'] = $_POST['tz'];
 	}
-
-	if(isset($_SESSION['tz'])){
 		$tz = $_SESSION['tz'];		
 	} else {
+
+	$timestamp = $_SERVER['REQUEST_TIME'];
 		$tz = "America/Chicago";
-	}
 
 	if(isset($_POST['mlist'])){
+	}
+
+	if(isset($_SESSION['tz'])){
 		$listChk = true;
 	}
 
