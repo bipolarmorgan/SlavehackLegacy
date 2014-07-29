@@ -314,10 +314,14 @@ textarea{
 	padding: 5px;
 }
 
-.term{
-	font-family: logsFont;
+.term {
+	font-family: courier,fixed,swiss,sans-serif;
+	font-size: 12px;
+	color: #33d011;
+	background: none;
 }
 
-.termReverse{
-	font-family: logsFont;
+.termReverse {
+	color: #111111;
+	background: #33d011;
 }
