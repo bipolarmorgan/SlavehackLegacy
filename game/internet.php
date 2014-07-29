@@ -289,6 +289,7 @@
 	} else { }
 
 	if($confirmIP == "true" && $_GET['hack'] == "0"){
+		echo ("start");
 		?><script>
 			var term = new Array();
 
