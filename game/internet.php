@@ -292,6 +292,8 @@
 		?><script>
 			var term = new Array();
 			$(document).ready(function {
+				termOpen(1);
+
 				function termOpen(n) {
 					if (termToSet) return; // do not open while there is modal dialog
 					n = parseInt(n);
