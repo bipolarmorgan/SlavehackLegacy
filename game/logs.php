@@ -1,6 +1,7 @@
 <?php
 	echo("test");
 
+	require('../vendor/autoload.php');
 	use Aws\S3\S3Client;
 	use Aws\S3\StreamWrapper;
 
@@ -70,9 +71,6 @@
 								$message = mysqli_real_escape_string($link, $_POST['message']);
 								$key = $_SESSION['user'] . ".txt";
 								$stream = fopen("s3://".$bucket."/".$key, 'w');
-								if (!$stream){
-									die('Unable to open stream for writing.');
-								}
 								fwrite($stream, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
