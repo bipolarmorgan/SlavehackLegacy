@@ -148,7 +148,7 @@
 			var f=document.forms.settingvalues;
 			f.rows.value=t.conf.rows;
 			f.cols.value=t.conf.cols;
-			f.color[color-1].checked=true;
+			f.color[color].checked=true;
 			var div='settingsdialog';
 			TermGlobals.setVisible(div,1);
 			if (document.getElementById) {
