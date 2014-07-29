@@ -34,7 +34,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
      	<script type="text/javascript" src="../js/jQuery.js"></script>
-     	<script src = "js/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
     	<!--Captcha Stuff-->
 	</head>
 	<body>
@@ -76,11 +75,11 @@
 							if (!$stream) {
 								die('Could not open stream for reading.');
 							}
-							while(!feof($stream)) 
+/*							while(!feof($stream)) 
 							{
 								$lineLog = fgets($stream);
 								echo $lineLog;
-							}
+							}*/
 							fclose($stream);
 							echo "</textarea>";
 						?>
