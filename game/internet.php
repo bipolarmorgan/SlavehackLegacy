@@ -40,9 +40,9 @@
 						id: n,
 						termDiv: 'termDiv'+n,
 						frameWidth: 1,
-						frameColor: '#333333',
+						frameColor: '#FFFFFF',
 						bgColor: '#000000',
-						greeting: 'Terminal ready.',
+						greeting: 'Welcome to the Pulsar Terminal. If this is your first time using this terminal, type \'help\'',
 						handler: termHandler,
 						exitHandler: termChromeHide
 					}
@@ -297,7 +297,7 @@
 					<br />
 
 					<div id="terminal1" style="position:absolute; visibility: hidden; z-index:1" class="termHidden"><table class="termOuterChrome" onmouseup="termBringToFront(1)" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0">
-						<tr><td class="termHeaderActive" onmousedown="dragTerm(1); return false" id="termHeader1">Slavehack Legacy Terminal</td></tr>
+						<tr><td class="termHeaderActive" onmousedown="dragTerm(1); return false" id="termHeader1">Pulsar Terminal</td></tr>
 						<tr><td class="termMenuPane"><a href="javascript:termClose(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Close</a><a href="javascript:termConfigure(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Settings</a></td></tr>
 						<tr><td class="termBody"><div id="termDiv1" style="position:relative;"></div></td></tr>
 					</table></td></tr>
@@ -313,7 +313,6 @@
 								<tr valign="middle"><td class="settings">Rows:</td><td><input name="rows" type="text" value="" size="4" class="settings"></tr>
 								<tr valign="middle"><td class="settings">Cols:</td><td><input name="cols" type="text" value="" size="4" class="settings"></tr>
 							</table></td></tr>
-							<tr><td class="settings">&nbsp;<br><b>Color</b></td></tr>
 							</form>
 							<tr><td class="settings" align="right" nowrap>&nbsp;<br><a href="javascript:closeSettings(0)" onfocus="if(this.blur)this.blur();" class="uiButton">Cancel</a>&nbsp;<a href="javascript:closeSettings(1)" onfocus="if(this.blur)this.blur();" class="uiButton">Configure</a><br>&nbsp;</td></tr>
 							</table>
