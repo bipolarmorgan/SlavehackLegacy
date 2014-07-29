@@ -383,6 +383,7 @@ textarea{
 	border-style: none;
 }
 .termHeaderActive {
+	border: 0;
 	font-family: arial,helvetica,sans-serif;
 	font-size: 12px;
 	letter-spacing: 1px;
@@ -391,9 +392,8 @@ textarea{
   	background: -o-linear-gradient(#444444, #666666, #444444); /* For Opera 11.1 to 12.0 */
  	background: -moz-linear-gradient(#444444, #666666, #444444); /* For Firefox 3.6 to 15 */
   	background: linear-gradient(#444444, #666666, #444444); /* Standard syntax */
-	padding: 1px;
+	padding: 4px;
 	padding-left: 6px;
-	border-width: 2px;
 	border-style: solid;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
