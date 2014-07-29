@@ -10,14 +10,14 @@
 	$s3auth = getenv('AWS_SECRET_ACCESS_KEY');
 
 	$client = S3Client::factory(array(
-	 	'key'	 => '{$s3key}';
-	 	'secret' => '{$s3auth}';
+	 	'key'	 => '{$s3key}',
+	 	'secret' => '{$s3auth}'
 	));
+	$client -> registerStreamWrapper();
 
 	// $bucket = $s3path;
 	// $key = $_SESSION['user'] . ".txt";
 
-	// $client -> registerStreamWrapper();
 ?>
 
 <html>
