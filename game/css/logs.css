@@ -313,3 +313,11 @@ textarea{
 	border: none;
 	padding: 5px;
 }
+
+.term{
+	font-family: logsFont;
+}
+
+.termReverse{
+	font-family: logsFont;
+}

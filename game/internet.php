@@ -37,6 +37,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
      	<script type="text/javascript" src="../js/jQuery.js"></script>
+     	<script type="text/javascript" src="js/termlib.js"></script>
 	</head>
 	<body>
 		<div id = "leftColumn">
@@ -224,12 +225,13 @@
 
 	// End NPC declarations //
 
-	$targetIP = isset($_GET['ip']) ? $_GET['ip'] : $row['homepage'];
+	$targetIP = isset($_GET['ip']) ? mysqli_real_escape_string($link,$_GET['ip']) : mysqli_real_escape_string($link,$row['homepage']);
 	$usrChk = "SELECT * FROM players
 				WHERE ip = '$targetIP'";
 	$npcChk = "SELECT * FROM npcs
 				WHERE ip = '$targetIP'";
 	$grabContent = "false";
+	$confirmIP = false;
 	if(!mysqli_query($link, $npcChk)){		
 	} else {
 		$npcRes = mysqli_query($link, $npcChk);
@@ -245,11 +247,13 @@
 		?><script>
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0'><img src='img/ico_key.png'></a>");
 		</script><?php
+		$confirmIP = true;
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0'><img src='img/ico_key.png'></a>");
 		</script><?php
 		$grabContent = "true";
+		$confirmIP = true;
 	} else {
 		?><script>
 			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
@@ -288,4 +292,37 @@
 			$("#wrapper").append("<?php echo(stripslashes($contentRow['content'])); ?>");
 		</script><?php
 	} else { }
+
+	if($confirmIP == true && $_GET['hack'] == 0){
+		?><script>
+			$("#wrapper").html("");
+			  var term = new Terminal( {handler: termHandler} );
+			  term.open();
+
+			  function termHandler() {
+			    var line = this.lineBuffer;
+			    this.newLine();
+			    if (line == "help") {
+			      this.write(helpPage)
+			    }
+			    else if (line == "exit") {
+			      this.close();
+			      return;
+			    }
+			    else if (line != "") {
+			      this.write("You typed: "+line);
+			    }
+			    this.prompt();
+			  }
+
+			  var helpPage = [
+			    "This is the monstrous help page for my groovy terminal.",
+			    "Commands available:",
+			    "   help ... print this monstrous help page",
+			    "   exit ... leave this groovy terminal",
+			    " ",
+			    "Have fun!"
+			  ];
+		</script><?php
+	}
 ?>
