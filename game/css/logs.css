@@ -376,19 +376,7 @@ textarea{
 	border-top-right-radius: 8px;
 }
 
-.termInnerChrome {
-	background: #A2A2A2;
-	padding: 0px;
-	border-width: 1px;
-	border-top-color: #747474;
-	border-left-color: #747474;
-	border-right-color: #D0D0D0;
-	border-bottom-color: #D0D0D0;
-	border-style: solid;
-	border-spacing: 0px;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-}
+
 .termBody {
 	background: #FFFFFF;
 	padding: 0px;
