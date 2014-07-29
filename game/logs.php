@@ -5,9 +5,9 @@
 
 	session_start();
 
-	private $s3path = getenv('S3_BUCKET_NAME');
-	private $s3key = getenv('AWS_ACCESS_KEY_ID');
-	private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
+	$s3path = getenv('S3_BUCKET_NAME');
+	$s3key = getenv('AWS_ACCESS_KEY_ID');
+	$s3auth = getenv('AWS_SECRET_ACCESS_KEY');
 
 	echo $s3path;
 	echo $s3key;
@@ -71,16 +71,16 @@
 								fwrite($stream, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
-							$stream = fopen("s3://".$bucket."/".$key, 'r');
+/*							$stream = fopen("s3://".$bucket."/".$key, 'r');
 							if (!$stream) {
 								die('Could not open stream for reading.');
 							}
-/*							while(!feof($stream)) 
+							while(!feof($stream)) 
 							{
 								$lineLog = fgets($stream);
 								echo $lineLog;
-							}*/
-							fclose($stream);
+							}
+							fclose($stream);*/
 							echo "</textarea>";
 						?>
 						<br />
