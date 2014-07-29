@@ -1,28 +1,23 @@
 <?php
-	echo("test");
+	require('../vendor/autoload.php');
+	use Aws\S3\S3Client;
+	use Aws\S3\StreamWrapper;
 
-	// require('../vendor/autoload.php');
-	// use Aws\S3\S3Client;
-	// use Aws\S3\StreamWrapper;
+	session_start();
 
-	// session_start();
+	private $s3path = getenv('S3_BUCKET_NAME');
+	private $s3key = getenv('AWS_ACCESS_KEY_ID');
+	private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
 
-	// echo("test 2");
+	$client = S3Client::factory(array(
+		'key'	 => $s3key;
+		'secret' => $s3auth;
+	));
 
-	// private $s3path = getenv('S3_BUCKET_NAME');
-	// private $s3key = getenv('AWS_ACCESS_KEY_ID');
-	// private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
+	$bucket = $s3path;
+	$key = $_SESSION['user'] . ".txt";
 
-	// $client = S3Client::factory(array(
-	// 	'key'	 => $s3key;
-	// 	'secret' => $s3auth;
-	// ));
-
-	// $bucket = $s3path;
-
-	// $client -> registerStreamWrapper();
-
-	echo("test 3");
+	$client -> registerStreamWrapper();
 ?>
 
 <html>
@@ -69,7 +64,6 @@
 						<?php 
 							if(isset($_POST['message'])){
 								$message = mysqli_real_escape_string($link, $_POST['message']);
-								$key = $_SESSION['user'] . ".txt";
 								$stream = fopen("s3://".$bucket."/".$key, 'w');
 								fwrite($stream, $message);
 							} else { }
