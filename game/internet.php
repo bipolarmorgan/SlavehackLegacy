@@ -41,9 +41,9 @@
 						id: n,
 						termDiv: 'termDiv'+n,
 						frameWidth: 1,
-						frameColor: '#ffffff',
-						bgColor: '#000000',
-						greeting: 'Pulsar Terminal ready.\r\nIf this is your first time using this terminal, type \'help\' to get started\r\n',
+						frameColor: '#aaaaaa',
+						bgColor: '#eeeeee',
+						greeting: 'Terminal ready.',
 						handler: termHandler,
 						exitHandler: termChromeHide
 					}
@@ -183,22 +183,22 @@
 				t.colorsetting=color;
 				var rstring= 'New Settings: Terminal set to '+rows+' rows, '+cols+' cols, ';
 				if (color==1) {
-					t.conf.bgColor='#FFFFFF';
+					t.conf.bgColor='#eeeeee';
 					t.conf.fontClass='term';
 					rstring+='black on white.';
 				}
 				else if (color==2) {
-					t.conf.bgColor='#000000';
+					t.conf.bgColor='#181818';
 					t.conf.fontClass='term2';
 					rstring+='white on black.';
 				}
 				else if (color==3) {
-					t.conf.bgColor='#000000';
+					t.conf.bgColor='#181818';
 					t.conf.fontClass='term3';
 					rstring+='green on black.';
 				}
 				else if (color==4) {
-					t.conf.bgColor='#00ff00';
+					t.conf.bgColor='#779977';
 					t.conf.fontClass='term4';
 					rstring+='black on green.';
 				}
