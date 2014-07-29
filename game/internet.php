@@ -290,7 +290,6 @@
 
 	if($confirmIP == "true" && $_GET['hack'] == "0"){
 		?><script>
-			$("#wrapper").html("");
 			  var term = new Terminal( {handler: termHandler} );
 			  term.open();
 
