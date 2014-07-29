@@ -231,7 +231,7 @@
 	$npcChk = "SELECT * FROM npcs
 				WHERE ip = '$targetIP'";
 	$grabContent = "false";
-	$confirmIP = false;
+	$confirmIP = "false";
 	if(!mysqli_query($link, $npcChk)){		
 	} else {
 		$npcRes = mysqli_query($link, $npcChk);
@@ -247,23 +247,18 @@
 		?><script>
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0'><img src='img/ico_key.png'></a>");
 		</script><?php
-		$confirmIP = true;
+		$confirmIP = "true";
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0'><img src='img/ico_key.png'></a>");
 		</script><?php
 		$grabContent = "true";
-		$confirmIP = true;
+		$confirmIP = "true";
 	} else {
 		?><script>
 			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
 		</script><?php
 	}
-
-	//Massive W.I.P. for phasing out Socket.IO and Node.JS to simplify
-	//game's stack. Instead of using Node.JS and Socket.IO,
-	//the game will now use the Prototype.js framework to handle
-	//realtime messaging.
 
 	if($npcRow['ip'] == "5.195.112.80"){
 
@@ -293,7 +288,7 @@
 		</script><?php
 	} else { }
 
-	if($confirmIP == true && $_GET['hack'] == 0){
+	if($confirmIP == "true" && $_GET['hack'] == "0"){
 		?><script>
 			$("#wrapper").html("");
 			  var term = new Terminal( {handler: termHandler} );
