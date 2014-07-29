@@ -15,9 +15,8 @@
 	));
 	$client -> registerStreamWrapper();
 
-	// $bucket = $s3path;
-	// $key = $_SESSION['user'] . ".txt";
-
+	$bucket = $s3path;
+	$key = $_SESSION['user'] . ".txt";
 ?>
 
 <html>
@@ -67,7 +66,7 @@
 								fwrite($stream, $message);
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
-/*							$stream = fopen("s3://".$bucket."/".$key, 'r');
+							$stream = fopen("s3://".$bucket."/".$key, 'r');
 							if (!$stream) {
 								die('Could not open stream for reading.');
 							}
@@ -76,7 +75,7 @@
 								$lineLog = fgets($stream);
 								echo $lineLog;
 							}
-							fclose($stream);*/
+							fclose($stream);
 							echo "</textarea>";
 						?>
 						<br />
