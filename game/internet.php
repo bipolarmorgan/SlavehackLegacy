@@ -40,14 +40,14 @@
 						id: n,
 						termDiv: 'termDiv'+n,
 						frameWidth: 1,
-						frameColor: '#aaaaaa',
-						bgColor: '#eeeeee',
+						frameColor: '#333333',
+						bgColor: '#000000',
 						greeting: 'Terminal ready.',
 						handler: termHandler,
 						exitHandler: termChromeHide
 					}
 				);
-				term[n].colorsetting=1;
+				term[n].colorsetting=3;
 				if (term[n]) {
 					termChromeShow(n);
 					term[n].open();
@@ -147,7 +147,6 @@
 			var f=document.forms.settingvalues;
 			f.rows.value=t.conf.rows;
 			f.cols.value=t.conf.cols;
-			f.color[color-1].checked=true;
 			var div='settingsdialog';
 			TermGlobals.setVisible(div,1);
 			if (document.getElementById) {
@@ -168,10 +167,6 @@
 			var t=term[termToSet];
 			if (state) {
 				var f=document.forms.settingvalues;
-				var color = 1
-				if (f.color[1].checked) color=2
-				else if (f.color[2].checked) color=3
-				else if (f.color[3].checked) color=4;
 				var rows = parseInt(f.rows.value);
 				var cols = parseInt(f.cols.value);
 				if ((isNaN(rows)) || (rows<2) || (isNaN(cols)) || (cols<4)) {
@@ -179,28 +174,7 @@
 					cols=t.conf.cols;
 				}
 				var changed=((rows==t.conf.rows) && (cols==t.conf.cols) && (color==t.colorsetting))? false:true;
-				t.colorsetting=color;
 				var rstring= 'New Settings: Terminal set to '+rows+' rows, '+cols+' cols, ';
-				if (color==1) {
-					t.conf.bgColor='#eeeeee';
-					t.conf.fontClass='term';
-					rstring+='black on white.';
-				}
-				else if (color==2) {
-					t.conf.bgColor='#181818';
-					t.conf.fontClass='term2';
-					rstring+='white on black.';
-				}
-				else if (color==3) {
-					t.conf.bgColor='#181818';
-					t.conf.fontClass='term3';
-					rstring+='green on black.';
-				}
-				else if (color==4) {
-					t.conf.bgColor='#779977';
-					t.conf.fontClass='term4';
-					rstring+='black on green.';
-				}
 				if (changed) {
 					t.cursorOff();
 					t.conf.rows=t.maxLines=rows;
@@ -323,7 +297,7 @@
 					<br />
 
 					<div id="terminal1" style="position:absolute; visibility: hidden; z-index:1" class="termHidden"><table class="termOuterChrome" onmouseup="termBringToFront(1)" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0">
-						<tr><td class="termHeaderActive" onmousedown="dragTerm(1); return false" id="termHeader1">Terminal 1</td></tr>
+						<tr><td class="termHeaderActive" onmousedown="dragTerm(1); return false" id="termHeader1">Slavehack Legacy Terminal</td></tr>
 						<tr><td class="termMenuPane"><a href="javascript:termClose(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Close</a><a href="javascript:termConfigure(1)" onfocus="if(this.blur)this.blur();" class="termMenu">Settings</a></td></tr>
 						<tr><td class="termBody"><div id="termDiv1" style="position:relative;"></div></td></tr>
 					</table></td></tr>
@@ -340,12 +314,6 @@
 								<tr valign="middle"><td class="settings">Cols:</td><td><input name="cols" type="text" value="" size="4" class="settings"></tr>
 							</table></td></tr>
 							<tr><td class="settings">&nbsp;<br><b>Color</b></td></tr>
-							<tr><td><table borrder="0" cellspacing="0" cellpadding="2">
-								<tr valign="middle"><td><input type="radio" name="color" value="1"></td><td class="settings"><a href="javascript:settingsSetColor(1)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on white</a></td></tr>
-								<tr valign="middle"><td><input type="radio" name="color" value="2"></td><td class="settings"><a href="javascript:settingsSetColor(2)" onfocus="if (this.blur) this.blur();" class="settingsLabel">white on black</a></td></tr>
-								<tr valign="middle"><td><input type="radio" name="color" value="3"></td><td class="settings"><a href="javascript:settingsSetColor(3)" onfocus="if (this.blur) this.blur();" class="settingsLabel">green on black</a></td></tr>
-								<tr valign="middle"><td><input type="radio" name="color" value="4"></td><td class="settings"><a href="javascript:settingsSetColor(4)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on green</a></td></tr>
-							</table></td></tr>
 							</form>
 							<tr><td class="settings" align="right" nowrap>&nbsp;<br><a href="javascript:closeSettings(0)" onfocus="if(this.blur)this.blur();" class="uiButton">Cancel</a>&nbsp;<a href="javascript:closeSettings(1)" onfocus="if(this.blur)this.blur();" class="uiButton">Configure</a><br>&nbsp;</td></tr>
 							</table>
@@ -476,7 +444,7 @@
 	$user = $_SESSION['user'];
 	if(!mysqli_query($link, $npcChk)){																																																																																																										
 		$newPass = randomPassword();
-		$content = addslashes("<div id='content'><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
+		$content = addslashes("<div id='content'><br /><b>Hey there script kiddie.</b><br /><br />Need some warez?<br />Then hop into our server. The password is " . $newPass . "</div>");
 		if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content, trojan, spamware, firewall, waterwall)
 			    					VALUES('Free Warez Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
 			echo mysqli_error($link);
@@ -486,7 +454,7 @@
 		$r = mysqli_fetch_array($npcRes);
 		if($r['name'] == ""){
 			$newPass = randomPassword();
-			$content = addslashes("<div id='content'><br /><b>Hey there script kiddie.</b>Need some warez?<br /><br />Then hop into our server. The password is " . $newPass . "</div>");
+			$content = addslashes("<div id='content'><br /><b>Hey there script kiddie.</b><br /><br />Need some warez?<br />Then hop into our server. The password is " . $newPass . "</div>");
 			if(!mysqli_query($link, "INSERT INTO npcs(name, ip, pass, content, trojan, spamware, firewall, waterwall)
 			    						VALUES('Free Warez Online', '$curIP', '$newPass', '$content', '0.1', '0.1', '0.1', '0.1')")){
 				echo mysqli_error($link);
