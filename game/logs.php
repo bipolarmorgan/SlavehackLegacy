@@ -1,26 +1,26 @@
 <?php
 	echo("test");
 
-	require('../vendor/autoload.php');
-	use Aws\S3\S3Client;
-	use Aws\S3\StreamWrapper;
+	// require('../vendor/autoload.php');
+	// use Aws\S3\S3Client;
+	// use Aws\S3\StreamWrapper;
 
-	session_start();
+	// session_start();
 
-	echo("test 2");
+	// echo("test 2");
 
-	private $s3path = getenv('S3_BUCKET_NAME');
-	private $s3key = getenv('AWS_ACCESS_KEY_ID');
-	private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
+	// private $s3path = getenv('S3_BUCKET_NAME');
+	// private $s3key = getenv('AWS_ACCESS_KEY_ID');
+	// private $s3auth = getenv('AWS_SECRET_ACCESS_KEY');
 
-	$client = S3Client::factory(array(
-		'key'	 => $s3key;
-		'secret' => $s3auth;
-	));
+	// $client = S3Client::factory(array(
+	// 	'key'	 => $s3key;
+	// 	'secret' => $s3auth;
+	// ));
 
-	$bucket = getenv('S3_BUCKET_NAME');
+	// $bucket = $s3path;
 
-	$client -> registerStreamWrapper();
+	// $client -> registerStreamWrapper();
 
 	echo("test 3");
 ?>
@@ -75,7 +75,9 @@
 							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
 							$stream = fopen("s3://".$bucket."/".$key, 'r');
-
+							if (!$stream) {
+								die('Could not open stream for reading.');
+							}
 							while(!feof($stream)) 
 							{
 								$lineLog = fgets($stream);
