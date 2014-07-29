@@ -245,12 +245,12 @@
 	}
 	if(mysqli_query($link, $usrChk) && $row2['username'] != ""){
 		?><script>
-			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0'><img src='img/ico_key.png'></a>");
+			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='a href=\"javascript:termOpen(1)\" onfocus=\"if(this.blur)this.blur();\" onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"'><img src='img/ico_key.png'></a>");
 		</script><?php
 		$confirmIP = "true";
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
-			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&hack=0'><img src='img/ico_key.png'></a>");
+			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='a href=\"javascript:termOpen(1)\" onfocus=\"if(this.blur)this.blur();\" onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"'><img src='img/ico_key.png'></a>");
 		</script><?php
 		$grabContent = "true";
 		$confirmIP = "true";
@@ -292,8 +292,6 @@
 		?><script>
 			var term = new Array();
 			$(document).ready(function() {
-				termOpen(1);
-
 				function termOpen(n) {
 					if (termToSet) return; // do not open while there is modal dialog
 					n = parseInt(n);
