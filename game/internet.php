@@ -89,13 +89,16 @@
 					this.newLine();
 				}
 				else if (line.substr(0, 7) == "bin2hex"){
-					if (line.substr(7, 8) == " "){
-						this.type('bin2hex command detected.');
-						this.newLine();
-					} else if (line.substr(7,8 == null)) {
-						this.type('Error, parameter [STRING] required.');
+					if (line.substr(7, 8) != " "){
+						if (!line.substr(7,8)){
+							this.type("Error, parameter [STRING] required.");
+							this.newLine();
+						} else {
+							this.type("Error, unrecognized command: " + line);
+						}
 					} else {
-						this.type('Error, unrecognized command: ' + line);
+						this.type("bin2hex command detected.");
+						this.newLine();
 					}
 				}
 				else if (line.substr(0, 7) == "hex2bin"){
