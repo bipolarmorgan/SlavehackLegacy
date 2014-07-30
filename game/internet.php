@@ -88,30 +88,26 @@
 					this.newLine();
 					this.newLine();
 				}
-			}
-			else if (line.substr(0, 6) == "bin2hex"){
-				this.type('bin2hex command detected.');
-				this.newLine();
-			}
-			else if (line.substr(0, 6) == "hex2bin"){
-				this.type('hex2bin command detected.');
-				this.newLine();
-			}
-			else if (line.substr(0, 4) == "pulse"){
-				this.type('pulse command detected.');
-				this.newLine();
-			}
-			else if (line.substr(0, 12) == "base64_decode"){
-				this.type('base64_decode command detected.');
-				this.newLine();
-			}
-			else if (line.substr(0, 7) == "mutilate"){
-				this.type('mutilate command detected.');
-				this.newLine();
-			}
-			else {
-				this.type('You typed: ' + line.substr(0, 6));
-				this.newLine();
+				else if (line.substr(0, 6) == "bin2hex"){
+					this.type('bin2hex command detected.');
+					this.newLine();
+				}
+				else if (line.substr(0, 6) == "hex2bin"){
+					this.type('hex2bin command detected.');
+					this.newLine();
+				}
+				else if (line.substr(0, 4) == "pulse"){
+					this.type('pulse command detected.');
+					this.newLine();
+				}
+				else if (line.substr(0, 12) == "base64_decode"){
+					this.type('base64_decode command detected.');
+					this.newLine();
+				}
+				else if (line.substr(0, 7) == "mutilate"){
+					this.type('mutilate command detected.');
+					this.newLine();
+				}
 			}
 			this.prompt();
 		}
