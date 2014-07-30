@@ -115,7 +115,7 @@
 					}
 				}
 				else if (line.substr(0, 5) == "pulse"){
-					if (!line.substr(6, 7) && line.substr(6,7) != " "){
+					if (!line.substr(5, 6) && line.substr(5,6) != " "){
 						this.type('pulse command detected.');
 						this.newLine();					
 					} else {
