@@ -78,11 +78,11 @@
 					this.newLine();
 					this.type('hex2bin       [STRING]    Converts a hexadecimal string to binary.');
 					this.newLine();
-					this.type('pulse                     Dumps an amount of data containing an encrypted password.');
+					this.type('pulse                     Dumps encrypted data containing a password.');
 					this.newLine();
 					this.type('base64_decode [STRING]    Decodes a string encoded with MIME base64.');
 					this.newLine();
-					this.type('mutilate      [STRING]    Utilizes WaterWall software to crack a CHA-encrypted string.');
+					this.type('mutilate      [STRING]    Uses WaterWall software to crack CHA-encryption.');
 					this.newLine();
 					this.type('exit                      Exits the terminal.');
 					this.newLine();
