@@ -131,7 +131,7 @@
 							this.type("Error, unrecognized command: " + line);
 						}
 					} else {
-						this.type("bin2hex command detected.");
+						this.type("base64_decode command detected.");
 						this.newLine();
 					}
 				}
@@ -144,7 +144,7 @@
 							this.type("Error, unrecognized command: " + line);
 						}
 					} else {
-						this.type("bin2hex command detected.");
+						this.type("mutilate command detected.");
 						this.newLine();
 					}
 				}
