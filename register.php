@@ -175,7 +175,7 @@
 										echo '<option value="' . $key . '">' . $value . '</option>' . "\n";
 									}
 								?>
-							<option disabled="disabled">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</option>
+								<option disabled="disabled">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</option>
 							</select>
 							<label><b>I understand I can potentially lose 
 							everything I've worked for in the matter of a few minutes.</b></label>
