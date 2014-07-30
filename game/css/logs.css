@@ -363,13 +363,13 @@ textarea{
 }
 
 .termOuterChrome {
-	background: #A2A2A2;
+	background: #444444;
 	padding: 0px;
 	border-width: 2px;
-	border-top-color: #D0D0D0;
-	border-left-color: #D0D0D0;
-	border-right-color: #747474;
-	border-bottom-color: #747474;
+	border-top-color: #444444;
+	border-left-color: #444444;
+	border-right-color: #444444;
+	border-bottom-color: #444444;
 	border-style: solid;
 	border-spacing: 0px;
 	border-top-left-radius: 8px;
