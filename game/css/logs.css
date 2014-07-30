@@ -388,10 +388,10 @@ textarea{
 	font-size: 12px;
 	letter-spacing: 1px;
 	color: #ffffff;
-  	background: -webkit-linear-gradient(#444444, #666666, #444444); /* For Safari 5.1 to 6.0 */
-  	background: -o-linear-gradient(#444444, #666666, #444444); /* For Opera 11.1 to 12.0 */
- 	background: -moz-linear-gradient(#444444, #666666, #444444); /* For Firefox 3.6 to 15 */
-  	background: linear-gradient(#444444, #666666, #444444); /* Standard syntax */
+  	background: -webkit-linear-gradient(#666666, #444444, #666666); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(#666666, #444444, #666666); /* For Opera 11.1 to 12.0 */
+ 	background: -moz-linear-gradient(#666666, #444444, #666666); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(#666666, #444444, #666666); /* Standard syntax */
 	padding: 4px;
 	padding-left: 6px;
 	border-style: solid;
