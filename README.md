@@ -23,6 +23,18 @@ For these reasons it was ultimately easier and better for me to scrap the projec
 
 If you want a full answer, you should contact one of the three developers that worked on it, as I did not. I contacted Trizzel over e-mail who gave me all the explanation I needed, which is that they all became too busy to devote enough time to developing the project. Like I said, if you want a full answer you should contact Trizzel, Rummik, or Pengi.
 
+### Ok, so how do I contribute?
+
+Contributing to the project is very easy and takes little time to get setup. First you're going to need Git. I recommend using Git Bash (the terminal) for GitHub as it's easier to explain believe it or not.
+
+Next you'll want to Fork the project. For info on how to do that, follow this tutorial step-by-step and you'll be fine: https://help.github.com/articles/fork-a-repo
+
+After you've forked the project and created a fix you'd like to submit, you'll create a pull request for your fork which I'll review and push to the project.
+
+### Where can I test the game out?
+
+There's currently a live build at http://slavehack-legacy.herokuapp.com/
+
 ## The Game
 
 ### Currently implemented features
