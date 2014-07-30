@@ -102,13 +102,16 @@
 					}
 				}
 				else if (line.substr(0, 7) == "hex2bin"){
-					if (line.substr(7, 8) == " "){
-						this.type('hex2bin command detected.');
-						this.newLine();
-					} else if (line.substr(7,8 == "")) {
-						this.type('Error, parameter [STRING] required.');
+					if (line.substr(7, 8) != " "){
+						if (!line.substr(7,8)){
+							this.type("Error, parameter [STRING] required.");
+							this.newLine();
+						} else {
+							this.type("Error, unrecognized command: " + line);
+						}
 					} else {
-						this.type('Error, unrecognized command: ' + line);
+						this.type("hex2bin command detected.");
+						this.newLine();
 					}
 				}
 				else if (line.substr(0, 5) == "pulse"){
@@ -120,23 +123,29 @@
 					}
 				}
 				else if (line.substr(0, 13) == "base64_decode"){
-					if (line.substr(14, 15) == " "){
-						this.type('base64_decode command detected.');
-						this.newLine();
-					} else if (line.substr(14,15 == "")) {
-						this.type('Error, parameter [STRING] required.');
+					if (line.substr(13, 14) != " "){
+						if (!line.substr(13,14)){
+							this.type("Error, parameter [STRING] required.");
+							this.newLine();
+						} else {
+							this.type("Error, unrecognized command: " + line);
+						}
 					} else {
-						this.type('Error, unrecognized command: ' + line);
+						this.type("bin2hex command detected.");
+						this.newLine();
 					}
 				}
 				else if (line.substr(0, 8) == "mutilate"){
-					if (line.substr(8, 9) == " "){
-						this.type('mutilate command detected.');
-						this.newLine();
-					} else if (line.substr(8,9 == "")) {
-						this.type('Error, parameter [STRING] required.');
+					if (line.substr(8, 9) != " "){
+						if (!line.substr(8,9)){
+							this.type("Error, parameter [STRING] required.");
+							this.newLine();
+						} else {
+							this.type("Error, unrecognized command: " + line);
+						}
 					} else {
-						this.type('Error, unrecognized command: ' + line);
+						this.type("bin2hex command detected.");
+						this.newLine();
 					}
 				}
 				else {
