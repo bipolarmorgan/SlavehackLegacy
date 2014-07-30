@@ -184,23 +184,23 @@
 				var rstring= 'New Settings: Terminal set to '+rows+' rows, '+cols+' cols, ';
 				if (color==1) {
 					t.conf.bgColor='#000000';
-					t.conf.fontClass='term3';
+					t.conf.fontClass='term';
 					rstring+='green on black.';
 				}
 				else if (color==2) {
-					t.conf.bgColor='#00FF00';
-					t.conf.fontClass='term4';
-					rstring+='black on green.';
-				}
-				else if (color==3) {
 					t.conf.bgColor='#000000';
 					t.conf.fontClass='term2';
 					rstring+='white on black.';
 				}
-				else if (color==4) {
+				else if (color==3) {
 					t.conf.bgColor='#FFFFFF';
-					t.conf.fontClass='term';
+					t.conf.fontClass='term3';
 					rstring+='black on white.';
+				}
+				else if (color==4) {
+					t.conf.bgColor='#00FF00';
+					t.conf.fontClass='term4';
+					rstring+='black on green.';
 				}
 				if (changed) {
 					t.cursorOff();

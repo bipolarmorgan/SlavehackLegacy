@@ -320,12 +320,12 @@ textarea{
 .term {
 	font-family: courier,fixed,swiss,sans-serif;
 	font-size: 12px;
-	color: #000000;
+	color: #00ff00;
 	background: none;
 }
 .termReverse {
-	color: #FFFFFF;
-	background: #000000;
+	color: #000000;
+	background: #00ff00;
 }
 
 
@@ -343,12 +343,12 @@ textarea{
 .term3 {
 	font-family: courier,fixed,swiss,sans-serif;
 	font-size: 12px;
-	color: #00ff00;
+	color: #000000;
 	background: none;
 }
 .term3 .termReverse {
-	color: #000000;
-	background: #00ff00;
+	color: #FFFFFF;
+	background: #000000;
 }
 
 .term4 {
