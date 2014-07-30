@@ -331,19 +331,19 @@
 
 					<div id="settingsdialog" style="position:absolute; visibility: hidden; z-index:3" class="termHidden"><table class="termOuterChrome" cellpadding="1" cellspacing="0"><tr><td><table class="termInnerChrome" cellpadding="0" cellspacing="0" width="300">
 						<tr><td align="center" class="termMenuPane">
-							<table borrder="0" cellspacing="0" cellpadding="4" width="260">
+							<table border="0" cellspacing="0" cellpadding="4" width="260">
 							<tr><td align="center" class="settings">Terminal Settings</td></tr>
 							<form name="settingvalues" onsubmit="return false">
 							<tr><td class="settings">&nbsp;<br><b>Size</b></td></tr>
-							<tr><td><table borrder="0" cellspacing="0" cellpadding="2">
+							<tr><td><table border="0" cellspacing="0" cellpadding="2">
 								<tr valign="middle"><td class="settings">Rows:</td><td><input name="rows" type="text" value="" size="4" class="settings"></tr>
 								<tr valign="middle"><td class="settings">Cols:</td><td><input name="cols" type="text" value="" size="4" class="settings"></tr>
 							</table></td></tr>
 							<tr><td class="settings">&nbsp;<br><b>Color</b></td></tr>
-							<tr><td><table borrder="0" cellspacing="0" cellpadding="2">
-								<tr valign="middle"><td><input type="radio" name="color" value="1"></td><td class="settings"><a href="javascript:settingsSetColor(1)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on white</a></td></tr>
+							<tr><td><table border="0" cellspacing="0" cellpadding="2">
+								<tr valign="middle"><td><input type="radio" name="color" value="1"></td><td class="settings"><a href="javascript:settingsSetColor(1)" onfocus="if (this.blur) this.blur();" class="settingsLabel">green on black</a></td></tr>
 								<tr valign="middle"><td><input type="radio" name="color" value="2"></td><td class="settings"><a href="javascript:settingsSetColor(2)" onfocus="if (this.blur) this.blur();" class="settingsLabel">white on black</a></td></tr>
-								<tr valign="middle"><td><input type="radio" name="color" value="3"></td><td class="settings"><a href="javascript:settingsSetColor(3)" onfocus="if (this.blur) this.blur();" class="settingsLabel">green on black</a></td></tr>
+								<tr valign="middle"><td><input type="radio" name="color" value="3"></td><td class="settings"><a href="javascript:settingsSetColor(3)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on white</a></td></tr>
 								<tr valign="middle"><td><input type="radio" name="color" value="4"></td><td class="settings"><a href="javascript:settingsSetColor(4)" onfocus="if (this.blur) this.blur();" class="settingsLabel">black on green</a></td></tr>
 							</table></td></tr>
 							</form>

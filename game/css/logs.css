@@ -386,6 +386,7 @@ textarea{
 	border: 0;
 	font-family: arial,helvetica,sans-serif;
 	font-size: 12px;
+	font-weight: bold;
 	letter-spacing: 1px;
 	color: #ffffff;
   	background: -webkit-linear-gradient(#666666, #444444, #666666); /* For Safari 5.1 to 6.0 */
