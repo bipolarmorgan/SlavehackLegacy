@@ -115,11 +115,11 @@
 					}
 				}
 				else if (line.substr(0, 5) == "pulse"){
-					if (line.substr(6, 7) != ""){
-						this.type('Error, unrecognized command: ' + line);
-					} else {
+					if (!line.substr(6, 7)){
 						this.type('pulse command detected.');
-						this.newLine();
+						this.newLine();					
+					} else {
+						this.type("Error, unrecognized command: " + line);
 					}
 				}
 				else if (line.substr(0, 13) == "base64_decode"){
