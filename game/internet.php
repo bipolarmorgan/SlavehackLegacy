@@ -86,7 +86,12 @@
 					this.newLine();
 					this.type('exit                      Exits the terminal.');
 					this.newLine();
+					this.newLine();
 				}
+			}
+			else if (line.substring(0, 7) == "bin2hex"){
+				this.type('bin2hex command detected.');
+				this.newLine();
 			}
 			this.prompt();
 		}
