@@ -42,7 +42,7 @@
 						termDiv: 'termDiv'+n,
 						frameWidth: 1,
 						frameColor: '#aaaaaa',
-						bgColor: '#eeeeee',
+						bgColor: '#000000',
 						greeting: 'Terminal ready.',
 						handler: termHandler,
 						exitHandler: termChromeHide
