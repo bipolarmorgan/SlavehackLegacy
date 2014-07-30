@@ -72,7 +72,7 @@
 				if (line == 'exit') this.close()
 				//else this.type('You typed: '+line);
 				else if (line == 'help') {
-					this.type('For info on a specific command, type: help [COMMAND].');
+					this.type('For info on a specific command, type: help [COMMAND].<br />');
 					this.type('bin2hex [STRING] \t Converts a binary string to hexadecimal.');
 					this.type('hex2bin [STRING] \t Converts a hexadecimal string to binary.');
 					this.type('pulse \t Dumps an amount of data containing an encrypted password.');
