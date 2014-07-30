@@ -92,7 +92,7 @@
 					if (line.substr(7, 8) == " "){
 						this.type('bin2hex command detected.');
 						this.newLine();
-					} else if (line.substr(7,8 == "")) {
+					} else if (line.substr(7,8 == null)) {
 						this.type('Error, parameter [STRING] required.');
 					} else {
 						this.type('Error, unrecognized command: ' + line);
