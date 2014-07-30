@@ -109,6 +109,10 @@
 				this.type('mutilate command detected.');
 				this.newLine();
 			}
+			else {
+				this.type('You typed: ' + line.substr(0, 6));
+				this.newLine();
+			}
 			this.prompt();
 		}
 
