@@ -72,13 +72,13 @@
 				if (line == 'exit') this.close()
 				//else this.type('You typed: '+line);
 				else if (line == 'help') {
-					this.type('For info on a specific command, type: help [COMMAND].\r\n
-						bin2hex [STRING] \t Converts a binary string to hexadecimal.\r\n
-						hex2bin [STRING] \t Converts a hexadecimal string to binary.\r\n
-						pulse \t Dumps an amount of data containing an encrypted password. \r\n
-						base64_decode [STRING] \t Decodes a string encoded with MIME base64. \r\n
-						mutilate [STRING] \t Utilizes WaterWall software to crack a CHA-encrypted string. \r\n
-						exit \t Exits the terminal.');
+					this.type('For info on a specific command, type: help [COMMAND].\r\n' +
+						'bin2hex [STRING] \t Converts a binary string to hexadecimal.\r\n' +
+						'hex2bin [STRING] \t Converts a hexadecimal string to binary.\r\n' +
+						'pulse \t Dumps an amount of data containing an encrypted password.\r\n' +
+						'base64_decode [STRING] \t Decodes a string encoded with MIME base64.\r\n' +
+						'mutilate [STRING] \t Utilizes WaterWall software to crack a CHA-encrypted string.\r\n' +
+						'exit \t Exits the terminal.');
 				}
 			}
 			this.prompt();
