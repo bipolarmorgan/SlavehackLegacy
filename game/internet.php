@@ -88,28 +88,28 @@
 					this.newLine();
 					this.newLine();
 				}
-				else if (line.substr(0, 7) == "bin2hex"){
+				else if (line.substr(0, 8) == "bin2hex "){
 					this.type('bin2hex command detected.');
 					this.newLine();
 				}
-				else if (line.substr(0, 7) == "hex2bin"){
+				else if (line.substr(0, 8) == "hex2bin "){
 					this.type('hex2bin command detected.');
 					this.newLine();
 				}
-				else if (line.substr(0, 5) == "pulse"){
+				else if (line.substr(0, 6) == "pulse "){
 					this.type('pulse command detected.');
 					this.newLine();
 				}
-				else if (line.substr(0, 13) == "base64_decode"){
+				else if (line.substr(0, 14) == "base64_decode "){
 					this.type('base64_decode command detected.');
 					this.newLine();
 				}
-				else if (line.substr(0, 8) == "mutilate"){
+				else if (line.substr(0, 9) == "mutilate "){
 					this.type('mutilate command detected.');
 					this.newLine();
 				}
 				else {
-					this.type('Error, unrecognized command: ' + line.substr(0, 6));
+					this.type('Error, unrecognized command: ' + line);
 					this.newLine();
 				}
 			}
