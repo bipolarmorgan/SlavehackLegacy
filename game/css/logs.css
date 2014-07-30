@@ -323,7 +323,7 @@ textarea{
 	color: #00ff00;
 	background: none;
 }
-.termReverse {
+.term .termReverse {
 	color: #000000;
 	background: #00ff00;
 }
