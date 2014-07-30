@@ -585,6 +585,8 @@
 				WHERE ip = '$targetIP'";
 	$grabContent = "false";
 	$confirmIP = "false";
+	$isNPC = "false";
+	$isPly = "false";
 	if(!mysqli_query($link, $npcChk)){		
 	} else {
 		$npcRes = mysqli_query($link, $npcChk);
@@ -601,12 +603,14 @@
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
 		</script><?php
 		$confirmIP = "true";
+		$isPly = "true";
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
 		</script><?php
 		$grabContent = "true";
 		$confirmIP = "true";
+		$isNPC = "true";
 	} else {
 		?><script>
 			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
@@ -614,7 +618,6 @@
 	}
 
 	if($npcRow['ip'] == "5.195.112.80"){
-
 		$dropQry = "DROP TABLE IF EXISTS fcomessages";
 		mysqli_query($link);
 		$messagesTblQry = "CREATE TABLE `fcomessages` (
