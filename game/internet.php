@@ -88,25 +88,53 @@
 					this.newLine();
 					this.newLine();
 				}
-				else if (line.substr(0, 8) == "bin2hex "){
-					this.type('bin2hex command detected.');
-					this.newLine();
+				else if (line.substr(0, 7) == "bin2hex"){
+					if (line.substr(7, 8) == " "){
+						this.type('bin2hex command detected.');
+						this.newLine();
+					} else if (line.substr(7,8 == "")) {
+						this.type('Error, parameter [STRING] required.');
+					} else {
+						this.type('Error, unrecognized command: ' + line);
+					}
 				}
-				else if (line.substr(0, 8) == "hex2bin "){
-					this.type('hex2bin command detected.');
-					this.newLine();
+				else if (line.substr(0, 7) == "hex2bin"){
+					if (line.substr(7, 8) == " "){
+						this.type('hex2bin command detected.');
+						this.newLine();
+					} else if (line.substr(7,8 == "")) {
+						this.type('Error, parameter [STRING] required.');
+					} else {
+						this.type('Error, unrecognized command: ' + line);
+					}
 				}
-				else if (line.substr(0, 6) == "pulse "){
-					this.type('pulse command detected.');
-					this.newLine();
+				else if (line.substr(0, 5) == "pulse"){
+					if (line.substr(6, 7) != ""){
+						this.type('Error, unrecognized command: ' + line);
+					} else {
+						this.type('pulse command detected.');
+						this.newLine();
+					}
 				}
-				else if (line.substr(0, 14) == "base64_decode "){
-					this.type('base64_decode command detected.');
-					this.newLine();
+				else if (line.substr(0, 13) == "base64_decode"){
+					if (line.substr(14, 15) == " "){
+						this.type('base64_decode command detected.');
+						this.newLine();
+					} else if (line.substr(14,15 == "")) {
+						this.type('Error, parameter [STRING] required.');
+					} else {
+						this.type('Error, unrecognized command: ' + line);
+					}
 				}
-				else if (line.substr(0, 9) == "mutilate "){
-					this.type('mutilate command detected.');
-					this.newLine();
+				else if (line.substr(0, 8) == "mutilate"){
+					if (line.substr(8, 9) == " "){
+						this.type('mutilate command detected.');
+						this.newLine();
+					} else if (line.substr(8,9 == "")) {
+						this.type('Error, parameter [STRING] required.');
+					} else {
+						this.type('Error, unrecognized command: ' + line);
+					}
 				}
 				else {
 					this.type('Error, unrecognized command: ' + line);
