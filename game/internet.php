@@ -70,7 +70,10 @@
 			var line = this.lineBuffer;
 			if (line != '') {
 				if (line == 'exit') this.close()
-				else this.type('You typed: '+line);
+				//else this.type('You typed: '+line);
+				else if (line == 'help') {
+					
+				}
 			}
 			this.prompt();
 		}
