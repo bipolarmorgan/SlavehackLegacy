@@ -453,31 +453,18 @@
 						if("<?php echo($isPly); ?>" == "true"){
 							this.type("Extracting CHA-encrypted data.");
 							this.newLine();
-							var x = 0;
-							var progress = setInterval(function () {
-								this.type(". ");
-							   	if (++x === 5) {
-							   		this.type("Done.");
-							   		this.newLine();
-							   		this.newLine();
-							   		this.type("CHA-Encrypted password: <?php echo($chaPass); ?>");
-							   		this.newLine();
-							    	window.clearInterval(progress);
-							   	}
-							}, 1000);
+							var pass = "<?php echo($chaPass); ?>";
+							this.type("Done.");
+							this.newLine();
+							this.type("Extracted CHA-encrypted password: " + pass);
 						}
 						else if("<?php echo($isNPC); ?>" == "true"){
 							this.type("Extracting CHA-encrypted data.");
 							this.newLine();
-							var pass;
-							setTimeout(function () {
-							   		this.type("Done.");
-							   		this.newLine();
-							   		this.newLine();
-							   		pass = "<?php echo($chaPass); ?>";
-							   		this.newLine();
-							}, 1000);
-							this.type("Pass: " + pass);
+							var pass = "<?php echo($chaPass); ?>";
+							this.type("Done.");
+							this.newLine();
+							this.type("Extracted CHA-encrypted password: " + pass);
 						}
 						else {
 							this.type("If you are seeing this report it immediately.");
