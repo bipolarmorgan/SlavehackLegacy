@@ -469,25 +469,17 @@
 						else if("<?php echo($isNPC); ?>" == "true"){
 							this.type("Extracting CHA-encrypted data.");
 							this.newLine();
-							var x = 0;
 							this.newLine();
-							this.type("test1");
-							var progress = setInterval(function () {
-								this.type("test");
-								this.type(". ");
-							   	if (++x == 5) {
+							var progress = setTimeout(function () {
 							   		this.type("Done.");
 							   		this.newLine();
 							   		this.newLine();
 							   		this.type("CHA-Encrypted password: <?php echo($chaPass); ?>");
 							   		this.newLine();
-							    	window.clearInterval(progress);
 							   	}
 							}, 1000);
 						}
 						else {
-							this.type("<?php echo($isPly . 'test'); ?> ");
-							this.type("<?php echo($isNPC . 'test2'); ?> ");
 							this.type("If you are seeing this report it immediately.");
 							this.newLine();
 						}		
