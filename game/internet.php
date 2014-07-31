@@ -469,14 +469,15 @@
 						else if("<?php echo($isNPC); ?>" == "true"){
 							this.type("Extracting CHA-encrypted data.");
 							this.newLine();
-							this.newLine();
+							var pass;
 							setTimeout(function () {
 							   		this.type("Done.");
 							   		this.newLine();
 							   		this.newLine();
-							   		this.type("CHA-Encrypted password: <?php echo($chaPass); ?>");
+							   		pass = "<?php echo($chaPass); ?>";
 							   		this.newLine();
 							}, 1000);
+							this.type("Pass: " + pass);
 						}
 						else {
 							this.type("If you are seeing this report it immediately.");
