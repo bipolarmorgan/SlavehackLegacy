@@ -149,8 +149,8 @@
 							}, 1000);
 						}
 						else {
-							this.type("<?php echo($isPly); ?> ");
-							this.type("<?php echo($isNPC); ?> ");
+							this.type("<?php echo($isPly . 'test'); ?> ");
+							this.type("<?php echo($isNPC . 'test2'); ?> ");
 							this.type("If you are seeing this report it immediately.");
 							this.newLine();
 						}		
