@@ -174,7 +174,7 @@
 	}
 
 	function cryptPassword( $pass ) {
-		$newPass = hash('cr32b', hash('crc32', $pass));
+		$newPass = hash('crc32', $pass);
 		return $newPass;
 	}
 
@@ -502,7 +502,7 @@
 							this.newLine();
 						}
 					} else {
-						if(line.substr(9) == "<?php echo($chaPass); ?>"){
+						if(line.substr(8) == "<?php echo($chaPass); ?>"){
 							if("<?php echo($decryptFlag); ?>" == "true"){
 								this.type("CHA-decryption successful.");
 								this.newLine();
@@ -513,7 +513,7 @@
 								this.type("CHA-decryption failed with error: \'FireWall version is superior to WaterWall\'");
 							}
 						} else {
-							this.type("CHA-decryption failed with error: \'unrecognized string\'");
+							this.type("CHA-decryption failed with error: \'unrecognized data\'");
 						}
 					}
 				}
