@@ -357,6 +357,8 @@
 		</script><?php
 	} else { }
 
+	// TermLib stuff //
+
 	?><script>
 		var term = new Array();
 
@@ -468,9 +470,12 @@
 							this.type("Extracting CHA-encrypted data.");
 							this.newLine();
 							var x = 0;
+							this.newLine();
+							this.type("test1");
 							var progress = setInterval(function () {
+								this.type("test");
 								this.type(". ");
-							   	if (++x === 5) {
+							   	if (++x == 5) {
 							   		this.type("Done.");
 							   		this.newLine();
 							   		this.newLine();
