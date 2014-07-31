@@ -476,7 +476,6 @@
 							   		this.newLine();
 							   		this.type("CHA-Encrypted password: <?php echo($chaPass); ?>");
 							   		this.newLine();
-							   	}
 							}, 1000);
 						}
 						else {
