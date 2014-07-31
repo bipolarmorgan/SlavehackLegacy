@@ -174,7 +174,7 @@
 	}
 
 	function cryptPassword( $pass ) {
-		$newPass = hash('crc32', $pass);
+		$newPass = hash('cr32b', hash('crc32', $pass));
 		return $newPass;
 	}
 
@@ -430,6 +430,7 @@
 							this.newLine();
 						} else {
 							this.type("Error, unrecognized command: " + line);
+							this.newLine();
 						}
 					} else {
 						this.type("bin2hex command detected.");
@@ -443,6 +444,7 @@
 							this.newLine();
 						} else {
 							this.type("Error, unrecognized command: " + line);
+							this.newLine();
 						}
 					} else {
 						this.type("hex2bin command detected.");
@@ -473,6 +475,7 @@
 						}		
 					} else {
 						this.type("Error, unrecognized command: " + line);
+						this.newLine();
 					}
 				}
 				else if (line.substr(0, 13) == "base64_decode"){
@@ -482,6 +485,7 @@
 							this.newLine();
 						} else {
 							this.type("Error, unrecognized command: " + line);
+							this.newLine();
 						}
 					} else {
 						this.type("base64_decode command detected.");
@@ -495,10 +499,22 @@
 							this.newLine();
 						} else {
 							this.type("Error, unrecognized command: " + line);
+							this.newLine();
 						}
 					} else {
-						this.type("mutilate command detected.");
-						this.newLine();
+						if(line.substr(9) == "<?php echo($chaPass); ?>"){
+							if("<?php echo($decryptFlag); ?>" == "true"){
+								this.type("CHA-decryption successful.");
+								this.newLine();
+								this.type("User password: <?php echo($pass); ?>");
+								this.newLine();
+								this.newLine();
+							} else {
+								this.type("CHA-decryption failed with error: \'FireWall version is superior to WaterWall\'");
+							}
+						} else {
+							this.type("CHA-decryption failed with error: \'unrecognized string\'");
+						}
 					}
 				}
 				else {
