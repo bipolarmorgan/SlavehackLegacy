@@ -116,8 +116,42 @@
 				}
 				else if (line.substr(0, 5) == "pulse"){
 					if (!line.substr(5, 6) && line.substr(5,6) != " "){
-						this.type('pulse command detected.');
-						this.newLine();					
+						if("<?php echo($isPly); ?>" == "true"){
+							this.type("Extracting CHA-encrypted data.");
+							this.newLine();
+							var x = 0;
+							var progress = setInterval(function () {
+								this.type(". ");
+							   	if (++x === 5) {
+							   		this.type("Done.");
+							   		this.newLine();
+							   		this.newLine();
+							   		this.type("CHA-Encrypted password: <?php echo($chaPass); ?>");
+							   		this.newLine();
+							    	window.clearInterval(progress);
+							   	}
+							}, 1000);
+						}
+						else if("<?php echo($isNPC); ?>" == "true"){
+							this.type("Extracting CHA-encrypted data.");
+							this.newLine();
+							var x = 0;
+							var progress = setInterval(function () {
+								this.type(". ");
+							   	if (++x === 5) {
+							   		this.type("Done.");
+							   		this.newLine();
+							   		this.newLine();
+							   		this.type("CHA-Encrypted password: <?php echo($chaPass); ?>");
+							   		this.newLine();
+							    	window.clearInterval(progress);
+							   	}
+							}, 1000);
+						}
+						else {
+							this.type("If you are seeing this report it immediately.");
+							this.newLine();
+						}		
 					} else {
 						this.type("Error, unrecognized command: " + line);
 					}
@@ -495,6 +529,11 @@
 	    return implode($pass);
 	}
 
+	function cryptPassword( $pass ) {
+		$newPass = hash('tiger128', $pass);
+		return $newPass;
+	}
+
 	// Lots of NPCS going into the table for the first time here.
 	// Prepare for massive copy-pasta.
 	// As soon as the game is published this section can be removed.
@@ -603,14 +642,43 @@
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
 		</script><?php
 		$confirmIP = "true";
+		$grabContent = "true";
+		$getNPCQry = "SELECT * FROM players WHERE ip = '$targetIP'";
+		$result = mysqli_query($link, $getNPCQry);
+		$row = mysqli_fetch_array($result);
+		$pass = $row['pass'];
+		$chaPass = cryptPassword($pass);
+		$fwLevel = $row['firewall'];
+		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
+		$result = mysqli_query($link, $getPlyQry);
+		$row = mysqli_fetch_array($result);
+		$wwLevel = $row['waterwall'];
+		$decryptFlag = "false";
 		$isPly = "true";
+		if($wwLevel > $fwLevel){
+			$decrpytFlag = "true";
+		}
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
 			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
 		</script><?php
 		$grabContent = "true";
 		$confirmIP = "true";
+		$getNPCQry = "SELECT * FROM npcs WHERE ip = '$targetIP'";
+		$result = mysqli_query($link, $getNPCQry);
+		$row = mysqli_fetch_array($result);
+		$pass = $row['pass'];
+		$chaPass = cryptPassword($pass);
+		$fwLevel = $row['firewall'];
+		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
+		$result = mysqli_query($link, $getPlyQry);
+		$row = mysqli_fetch_array($result);
+		$wwLevel = $row['waterwall'];
+		$decryptFlag = "false";
 		$isNPC = "true";
+		if($wwLevel > $fwLevel){
+			$decrpytFlag = "true";
+		}
 	} else {
 		?><script>
 			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
