@@ -657,6 +657,7 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isPly = "true";
+		echo("Player flag: " . $isPly);
 		if($wwLevel > $fwLevel){
 			$decrpytFlag = "true";
 		}
@@ -678,6 +679,7 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isNPC = "true";
+		echo("NPC flag: " . $isNPC);
 		if($wwLevel > $fwLevel){
 			$decrpytFlag = "true";
 		}
