@@ -174,7 +174,7 @@
 	}
 
 	function cryptPassword( $pass ) {
-		$newPass = hash('tiger128', $pass);
+		$newPass = hash('crc32', $pass);
 		return $newPass;
 	}
 
