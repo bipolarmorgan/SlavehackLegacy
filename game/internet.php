@@ -470,7 +470,7 @@
 							this.type("Extracting CHA-encrypted data.");
 							this.newLine();
 							this.newLine();
-							var progress = setTimeout(function () {
+							setTimeout(function () {
 							   		this.type("Done.");
 							   		this.newLine();
 							   		this.newLine();
