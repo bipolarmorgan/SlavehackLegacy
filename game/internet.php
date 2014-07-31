@@ -25,75 +25,8 @@
 
 	$curTime = $dtime->format('g:i A m/d/y');
 
-	$targetIP = isset($_GET['ip']) ? mysqli_real_escape_string($link,$_GET['ip']) : mysqli_real_escape_string($link,$row['homepage']);
-	$usrChk = "SELECT * FROM players
-				WHERE ip = '$targetIP'";
-	$npcChk = "SELECT * FROM npcs
-				WHERE ip = '$targetIP'";
-	$grabContent = "false";
-	$confirmIP = "false";
 	$isNPC = "false";
 	$isPly = "false";
-	if(!mysqli_query($link, $npcChk)){		
-	} else {
-		$npcRes = mysqli_query($link, $npcChk);
-		$npcRow = mysqli_fetch_array($npcRes);
-	}
-
-	if(!mysqli_query($link, $usrChk)){
-	} else {
-		$result2 = mysqli_query($link, $usrChk);
-		$row2 = mysqli_fetch_array($result2);
-	}
-	if(mysqli_query($link, $usrChk) && $row2['username'] != ""){
-		?><script>
-			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
-		</script><?php
-		$confirmIP = "true";
-		$grabContent = "true";
-		$getNPCQry = "SELECT * FROM players WHERE ip = '$targetIP'";
-		$result = mysqli_query($link, $getNPCQry);
-		$row = mysqli_fetch_array($result);
-		$pass = $row['pass'];
-		$chaPass = cryptPassword($pass);
-		$fwLevel = $row['firewall'];
-		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
-		$result = mysqli_query($link, $getPlyQry);
-		$row = mysqli_fetch_array($result);
-		$wwLevel = $row['waterwall'];
-		$decryptFlag = "false";
-		$isPly = "true";
-		echo("Player flag: " . $isPly);
-		if($wwLevel > $fwLevel){
-			$decrpytFlag = "true";
-		}
-	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
-		?><script>
-			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
-		</script><?php
-		$grabContent = "true";
-		$confirmIP = "true";
-		$getNPCQry = "SELECT * FROM npcs WHERE ip = '$targetIP'";
-		$result = mysqli_query($link, $getNPCQry);
-		$row = mysqli_fetch_array($result);
-		$pass = $row['pass'];
-		$chaPass = cryptPassword($pass);
-		$fwLevel = $row['firewall'];
-		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
-		$result = mysqli_query($link, $getPlyQry);
-		$row = mysqli_fetch_array($result);
-		$wwLevel = $row['waterwall'];
-		$decryptFlag = "false";
-		$isNPC = "true";
-		echo("NPC flag: " . $isNPC);
-		if($wwLevel > $fwLevel){
-			$decrpytFlag = "true";
-		}
-	} else {
-		?><script>
-			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
-		</script><?php
-	}
 
 	?><script>
 		var term = new Array();
@@ -688,6 +621,75 @@
 	/////////////////////
 
 	// End NPC declarations //
+
+	$targetIP = isset($_GET['ip']) ? mysqli_real_escape_string($link,$_GET['ip']) : mysqli_real_escape_string($link,$row['homepage']);
+	$usrChk = "SELECT * FROM players
+				WHERE ip = '$targetIP'";
+	$npcChk = "SELECT * FROM npcs
+				WHERE ip = '$targetIP'";
+	$grabContent = "false";
+	$confirmIP = "false";
+
+	if(!mysqli_query($link, $npcChk)){		
+	} else {
+		$npcRes = mysqli_query($link, $npcChk);
+		$npcRow = mysqli_fetch_array($npcRes);
+	}
+
+	if(!mysqli_query($link, $usrChk)){
+	} else {
+		$result2 = mysqli_query($link, $usrChk);
+		$row2 = mysqli_fetch_array($result2);
+	}
+	if(mysqli_query($link, $usrChk) && $row2['username'] != ""){
+		?><script>
+			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
+		</script><?php
+		$confirmIP = "true";
+		$grabContent = "true";
+		$getNPCQry = "SELECT * FROM players WHERE ip = '$targetIP'";
+		$result = mysqli_query($link, $getNPCQry);
+		$row = mysqli_fetch_array($result);
+		$pass = $row['pass'];
+		$chaPass = cryptPassword($pass);
+		$fwLevel = $row['firewall'];
+		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
+		$result = mysqli_query($link, $getPlyQry);
+		$row = mysqli_fetch_array($result);
+		$wwLevel = $row['waterwall'];
+		$decryptFlag = "false";
+		$isPly = "true";
+		echo("Player flag: " . $isPly);
+		if($wwLevel > $fwLevel){
+			$decrpytFlag = "true";
+		}
+	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
+		?><script>
+			$("#result").html("<img src='img/ico_check.png'> You were able to ping this address. <a href='javascript:termOpen(1)' onfocus='if(this.blur)this.blur();' onmouseover=\"window.status='terminal 1'; return true\" onmouseout=\"window.status=''; return true\" class=\"termopen\"><img src='img/ico_key.png'></a>");
+		</script><?php
+		$grabContent = "true";
+		$confirmIP = "true";
+		$getNPCQry = "SELECT * FROM npcs WHERE ip = '$targetIP'";
+		$result = mysqli_query($link, $getNPCQry);
+		$row = mysqli_fetch_array($result);
+		$pass = $row['pass'];
+		$chaPass = cryptPassword($pass);
+		$fwLevel = $row['firewall'];
+		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
+		$result = mysqli_query($link, $getPlyQry);
+		$row = mysqli_fetch_array($result);
+		$wwLevel = $row['waterwall'];
+		$decryptFlag = "false";
+		$isNPC = "true";
+		echo("NPC flag: " . $isNPC);
+		if($wwLevel > $fwLevel){
+			$decrpytFlag = "true";
+		}
+	} else {
+		?><script>
+			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
+		</script><?php
+	}
 
 	if($npcRow['ip'] == "5.195.112.80"){
 		$dropQry = "DROP TABLE IF EXISTS fcomessages";
