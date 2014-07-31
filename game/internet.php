@@ -286,8 +286,8 @@
 		</script><?php
 		$confirmIP = "true";
 		$grabContent = "true";
-		$getNPCQry = "SELECT * FROM players WHERE ip = '$targetIP'";
-		$result = mysqli_query($link, $getNPCQry);
+		$getTgtPlyQry = "SELECT * FROM players WHERE ip = '$targetIP'";
+		$result = mysqli_query($link, $getTgtPlyQry);
 		$row = mysqli_fetch_array($result);
 		$pass = $row['pass'];
 		$chaPass = cryptPassword($pass);
@@ -298,6 +298,7 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isPly = "true";
+		echo $chaPass;
 		echo("Player flag: " . $isPly);
 		if($wwLevel > $fwLevel){
 			$decrpytFlag = "true";
@@ -320,7 +321,7 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isNPC = "true";
-		echo("NPC flag: " . $isNPC);
+		echo $chaPass;
 		if($wwLevel > $fwLevel){
 			$decrpytFlag = "true";
 		}
