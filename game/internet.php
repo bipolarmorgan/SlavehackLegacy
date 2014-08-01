@@ -493,18 +493,18 @@
 					}
 				}
 				else if (line.substr(0, 8) == "mutilate"){
-					if (line.substr(8, 9) != " "){
-						if (!line.substr(8,9)){
+					if (line.substring(8, 9) != " "){
+						if (!line.substring(8,9)){
 							this.type("Error, parameter [STRING] required.");
 							this.newLine();
 						} else {
 							this.type("Error, unrecognized command: " + line);
 							this.newLine();
-							this.type("You typed: " + line + ". line.substr(8,9) was: " + line.substr(8,9));
+							this.type("You typed: " + line + ". line.substring(8,9) was: " + line.substring(8,9));
 							this.newLine();
 						}
 					} else {
-						if(line.substr(9) == "<?php echo($chaPass); ?>"){
+						if(line.substring(9) == "<?php echo($chaPass); ?>"){
 							if("<?php echo($decryptFlag); ?>" == "true"){
 								this.type("CHA-decryption successful.");
 								this.newLine();
