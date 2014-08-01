@@ -315,7 +315,9 @@
 		$fwLevel = $row['firewall'];
 		$user = $_SESSION['user'];
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
-		$result = mysqli_query($link, $getPlyQry);
+		if(!mysqli_query($link, $getPlyQry)){
+			echo mysqli_error($link);
+		}
 		$row = mysqli_fetch_array($result);
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
