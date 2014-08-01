@@ -500,6 +500,8 @@
 						} else {
 							this.type("Error, unrecognized command: " + line);
 							this.newLine();
+							this.type("You typed: " + line + ". line.substr(8,9) was: " + line.substr(8,9));
+							this.newLine();
 						}
 					} else {
 						if(line.substr(8) == "<?php echo($chaPass); ?>"){
