@@ -298,7 +298,7 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isPly = "true";
-		echo "chaPass: " . $chaPass;
+		echo("Firewall level: " + $fwLevel + "; Waterwall level: " + $wwLevel);
 		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
@@ -321,7 +321,7 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isNPC = "true";
-		echo "chaPass: " . $chaPass;
+		echo("Firewall level: " + $fwLevel + "; Waterwall level: " + $wwLevel);
 		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
