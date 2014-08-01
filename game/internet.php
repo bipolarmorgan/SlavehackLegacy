@@ -365,6 +365,7 @@
 
 	?><script>
 		var term = new Array();
+		var loginFlag = false;
 
 		function termOpen(n) {
 			if (termToSet) return; // do not open while there is modal dialog
@@ -530,16 +531,21 @@
 					this.newLine();
 					this.type("Password required: ");
 					this.newLine();
+					loginFlag = true;
+				}
+				else if (loginFlag == true){
 					if(line == "<?php echo($pass); ?>"){
 						this.type("Login successful.");
 						this.newLine();
 						this.type("Redirecting to user computer now.");
+						loginFlag = false;
 						window.location.replace("http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&pass=<?php echo($pass); ?>");
 					} else {
 						this.type("Error, incorrect password detected.");
 						this.newLine();
 						this.type("Closing Blackhole Login System.");
 						this.newLine();
+						loginFlag = false;
 					}
 				}
 				else {
