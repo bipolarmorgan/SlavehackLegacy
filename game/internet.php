@@ -317,6 +317,8 @@
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
 		if(!mysqli_query($link, $getPlyQry)){
 			echo mysqli_error($link);
+		} else {
+			$result = mysqli_query($link, $getPlyQry);
 		}
 		$row = mysqli_fetch_array($result);
 		$wwLevel = $row['waterwall'];
