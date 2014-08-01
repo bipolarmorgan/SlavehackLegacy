@@ -320,7 +320,10 @@
 		}
 		$row = mysqli_fetch_array($result);
 		$wwLevel = $row['waterwall'];
-		echo $wwLevel;
+		echo "Row test: " . $row['username'] . "\n";
+		echo "User test: " . $user . "\n";
+		echo "Firewall check: " . $fwLevel . "\n";
+		echo "Waterwall level: " . $wwLevel;
 		$decryptFlag = "false";
 		$isNPC = "true";
 		if($wwLevel >= $fwLevel){
