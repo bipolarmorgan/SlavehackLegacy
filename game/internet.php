@@ -522,6 +522,26 @@
 						}
 					}
 				}
+				else if (line.substr(0,5) == "login"){
+					this.type("Blackhole Login System loaded.");
+					this.newLine();
+					this.newLine();
+					this.type("User: <?php echo($targetIP); ?>");
+					this.newLine();
+					this.type("Password required: ");
+					this.newLine();
+					if(line == "<?php echo($pass); ?>"){
+						this.type("Login successful.");
+						this.newLine();
+						this.type("Redirecting to user computer now.");
+						window.location.replace("http://slavehack-legacy.herokuapp.com/game/internet.php?ip=<?php echo($targetIP); ?>&pass=<?php echo($pass); ?>");
+					} else {
+						this.type("Error, incorrect password detected.");
+						this.newLine();
+						this.type("Closing Blackhole Login System.");
+						this.newLine();
+					}
+				}
 				else {
 					this.type('Error, unrecognized command: ' + line);
 					this.newLine();
