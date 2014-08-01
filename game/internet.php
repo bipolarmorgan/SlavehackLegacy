@@ -312,7 +312,6 @@
 		$result = mysqli_query($link, $getNPCQry);
 		$row = mysqli_fetch_array($result);
 		$pass = $row['pass'];
-		echo "Actual password: " . $pass . "\n";
 		$chaPass = cryptPassword($pass);
 		$fwLevel = $row['firewall'];
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
