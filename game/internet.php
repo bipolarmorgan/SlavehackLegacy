@@ -322,15 +322,12 @@
 		}
 		$row = mysqli_fetch_array($result);
 		$wwLevel = $row['waterwall'];
-		echo "Row test: " . $row['username'] . "\n";
-		echo "User test: " . $user . "\n";
-		echo "Firewall check: " . $fwLevel . "\n";
-		echo "Waterwall level: " . $wwLevel;
 		$decryptFlag = "false";
 		$isNPC = "true";
 		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
+		echo "dcFlag: " . $decryptFlag;
 	} else {
 		?><script>
 			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
