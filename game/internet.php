@@ -299,7 +299,7 @@
 		$decryptFlag = "false";
 		$isPly = "true";
 		echo "chaPass: " . $chaPass;
-		if($wwLevel > $fwLevel){
+		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
@@ -322,7 +322,7 @@
 		$decryptFlag = "false";
 		$isNPC = "true";
 		echo "chaPass: " . $chaPass;
-		if($wwLevel > $fwLevel){
+		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
 	} else {
