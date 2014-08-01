@@ -504,7 +504,7 @@
 							this.newLine();
 						}
 					} else {
-						if(line.substr(8) == "<?php echo($chaPass); ?>"){
+						if(line.substr(9) == "<?php echo($chaPass); ?>"){
 							if("<?php echo($decryptFlag); ?>" == "true"){
 								this.type("CHA-decryption successful.");
 								this.newLine();
