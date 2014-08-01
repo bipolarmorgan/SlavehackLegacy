@@ -313,10 +313,10 @@
 		$pass = $row['pass'];
 		$chaPass = cryptPassword($pass);
 		$fwLevel = $row['firewall'];
+		$user = $_SESSION['user'];
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
 		$result = mysqli_query($link, $getPlyQry);
 		$row = mysqli_fetch_array($result);
-		echo ("$row test: " . $row['waterwall']);
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isNPC = "true";
