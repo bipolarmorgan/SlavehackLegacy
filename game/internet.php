@@ -325,6 +325,7 @@
 		$decryptFlag = "false";
 		$isNPC = "true";
 		if($wwLevel >= $fwLevel){
+			echo "tripped";
 			$decrpytFlag = "true";
 		}
 		echo "dcFlag: " . $decryptFlag;
