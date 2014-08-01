@@ -320,6 +320,7 @@
 		}
 		$row = mysqli_fetch_array($result);
 		$wwLevel = $row['waterwall'];
+		echo $wwLevel;
 		$decryptFlag = "false";
 		$isNPC = "true";
 		if($wwLevel >= $fwLevel){
