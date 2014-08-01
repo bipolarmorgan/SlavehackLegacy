@@ -299,7 +299,7 @@
 		$decryptFlag = "false";
 		$isPly = "true";
 		if($wwLevel >= $fwLevel){
-			$decrpytFlag = "true";
+			$decryptFlag = "true";
 		}
 	} else if(mysqli_query($link, $npcChk) && $npcRow['name'] != ""){
 		?><script>
@@ -325,8 +325,7 @@
 		$decryptFlag = "false";
 		$isNPC = "true";
 		if($wwLevel >= $fwLevel){
-			$decrpytFlag = "true";
-			echo "dcFlag b4: " . $decryptFlag;
+			$decryptFlag = "true";
 		}
 		echo "dcFlag: " . $decryptFlag;
 	} else {
