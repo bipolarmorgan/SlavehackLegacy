@@ -298,7 +298,6 @@
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isPly = "true";
-		echo("Firewall level: " . $fwLevel . "; Waterwall level: " . $wwLevel);
 		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
@@ -317,10 +316,10 @@
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
 		$result = mysqli_query($link, $getPlyQry);
 		$row = mysqli_fetch_array($result);
+		echo ("$row test: " . $row['waterwall']);
 		$wwLevel = $row['waterwall'];
 		$decryptFlag = "false";
 		$isNPC = "true";
-		echo("Firewall level: " . $fwLevel . "; Waterwall level: " . $wwLevel);
 		if($wwLevel >= $fwLevel){
 			$decrpytFlag = "true";
 		}
