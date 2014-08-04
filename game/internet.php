@@ -756,7 +756,6 @@
 	if(isset($_GET['ip']) && isset($_GET['pass'])){
 		$targetIP = $_GET['ip'];
 		$targetPass = $_GET['pass'];
-		echo $isPly;
 		if($isNPC == "true"){
 			$targetInfo = "SELECT * FROM npcs WHERE ip = '$targetIP'";
 			$targetRes = mysqli_query($link, $targetInfo);
@@ -764,7 +763,7 @@
 
 			if($targetRows['pass'] == $targetPass){
 				?><script>
-					$("#wrapper").html('Test1');
+					$("#wrapper").html("<div id='compContent'>Test1</div>");
 				</script><?php
 			} else { }
 		}
@@ -777,7 +776,7 @@
 			if($targetRows['comp_pass'] == $targetPass){
 				echo("Successfully logged in to player.")
 				?><script>
-					$("#wrapper").html('Test2');
+					$("#wrapper").html("<div id='compContent'>Test1</div>");
 				</script><?php
 			} else { }
 		}

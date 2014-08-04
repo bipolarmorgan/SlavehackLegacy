@@ -554,6 +554,17 @@ textarea{
 .termHidden {
 	display: none;
 }
+
 .termShow {
 	display: block;
+}
+
+#compContent {
+	text-align: center;
+	display: inline;
+	float: left;
+	border: 2px solid #8e8e8e;
+	background-color: #6c6c6c;
+	height: 24em;
+	width: 44em;
 }
