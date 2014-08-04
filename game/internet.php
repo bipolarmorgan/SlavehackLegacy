@@ -756,7 +756,8 @@
 	if(isset($_GET['ip']) && isset($_GET['pass'])){
 		$targetIP = $_GET['ip'];
 		$targetPass = $_GET['pass'];
-		if($isNPC){
+		echo $isPly;
+		if($isNPC == "true"){
 			$targetInfo = "SELECT * FROM npcs WHERE ip = '$targetIP'";
 			$targetRes = mysqli_query($link, $targetInfo);
 			$targetRows = mysqli_fetch_array($targetRes);
@@ -767,8 +768,7 @@
 				</script><?php
 			} else { }
 		}
-		else if($isPly){
-			echo("Testing.");
+		else if($isPly == "true"){
 			$targetInfo = "SELECT * FROM players WHERE ip = '$targetIP'";
 			$targetRes = mysqli_query($link, $targetInfo);
 			$targetRows = mysqli_fetch_array($targetRes);
