@@ -289,7 +289,7 @@
 		$getTgtPlyQry = "SELECT * FROM players WHERE ip = '$targetIP'";
 		$result = mysqli_query($link, $getTgtPlyQry);
 		$row = mysqli_fetch_array($result);
-		$pass = $row['pass'];
+		$pass = $row['comp_pass'];
 		$chaPass = cryptPassword($pass);
 		echo($chaPass);
 		$fwLevel = $row['firewall'];
