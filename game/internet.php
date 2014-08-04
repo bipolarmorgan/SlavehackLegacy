@@ -291,6 +291,7 @@
 		$row = mysqli_fetch_array($result);
 		$pass = $row['pass'];
 		$chaPass = cryptPassword($pass);
+		echo($chaPass);
 		$fwLevel = $row['firewall'];
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
 		$result = mysqli_query($link, $getPlyQry);
