@@ -754,7 +754,6 @@
 	//display user content.
 
 	if(isset($_GET['ip']) && isset($_GET['pass'])){
-		echo $isPly;
 		$targetIP = $_GET['ip'];
 		$targetPass = $_GET['pass'];
 		if($isNPC){
@@ -769,6 +768,7 @@
 			} else { }
 		}
 		else if($isPly){
+			echo("Testing.");
 			$targetInfo = "SELECT * FROM players WHERE ip = '$targetIP'";
 			$targetRes = mysqli_query($link, $targetInfo);
 			$targetRows = mysqli_fetch_array($targetRes);
