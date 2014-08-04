@@ -754,6 +754,7 @@
 	//display user content.
 
 	if(isset($_GET['ip']) && isset($_GET['pass'])){
+		echo $isPly;
 		$targetIP = $_GET['ip'];
 		$targetPass = $_GET['pass'];
 		if($isNPC){
