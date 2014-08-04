@@ -291,7 +291,6 @@
 		$row = mysqli_fetch_array($result);
 		$pass = $row['comp_pass'];
 		$chaPass = cryptPassword($pass);
-		echo($chaPass);
 		$fwLevel = $row['firewall'];
 		$getPlyQry = "SELECT * FROM players WHERE username = '$user'";
 		$result = mysqli_query($link, $getPlyQry);
@@ -773,7 +772,7 @@
 			$targetRes = mysqli_query($link, $targetInfo);
 			$targetRows = mysqli_fetch_array($targetRes);
 
-			if($targetRows['pass'] == $targetPass){
+			if($targetRows['comp_pass'] == $targetPass){
 				?><script>
 					$("#wrapper").html('Test2');
 				</script><?php
