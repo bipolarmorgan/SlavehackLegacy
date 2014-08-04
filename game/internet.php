@@ -749,4 +749,37 @@
 		document.onmouseup=dragRelease;
 		document.onmousedown=dragStart;
 	</script><?php
+
+	//Verify correct password. If correct,
+	//display user content.
+
+	if(isset($_GET['ip']) && isset($_GET['pass'])){
+		$targetIP = $_GET['ip'];
+		$targetPass = $_GET['pass'];
+		if($isNPC){
+			$targetInfo = "SELECT * FROM npcs WHERE ip = '$targetIP'";
+			$targetRes = mysqli_query($link, $targetInfo);
+			$targetRows = mysqli_fetch_array($targetRes);
+
+			if($targetRows['pass'] == $targetPass){
+				?><script>
+					$("#wrapper").html('Test1');
+				</script><?php
+			} else { }
+		}
+		else if($isPly){
+			$targetInfo = "SELECT * FROM players WHERE ip = '$targetIP'";
+			$targetRes = mysqli_query($link, $targetInfo);
+			$targetRows = mysqli_fetch_array($targetRes);
+
+			if($targetRows['pass'] == $targetPass){
+				?><script>
+					$("#wrapper").html('Test2');
+				</script><?php
+			} else { }
+		}
+		else {
+			echo("If you are seeing this, create a bug report.");
+		}
+	}
 ?>

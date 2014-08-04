@@ -60,8 +60,6 @@
 </html>
 
 <?php
-	echo("Config test.");
-
 	$timestamp = $_SERVER['REQUEST_TIME'];
 	date_default_timezone_set('UTC');
 
@@ -76,7 +74,6 @@
 			$("#logswitch").html("<a href='logout.php'>Logout</a>");
 		</script><?php 
 	} else {
-		echo "Not log in detected.";
 		?><script>
 			$("#logswitch").html("<a href='login.php'>Login</a>");
 		</script><?php 
@@ -122,9 +119,7 @@
 			$result = mysqli_query($link, $qry);
 			$row = mysqli_fetch_array($result);
 			$hash = $row['hash'];
-			echo("User located.");
 			if($row['email_confirmed'] == 0){
-				echo("Unconfirmed email detected.");
 				?><script>
 					$("#error").html('<?php echo "Please confirm your email. If you need another e-mail, please click <a href=\"register.php?resend=true&user=$user\">here.</a>"; ?>');
 				</script><?php 
