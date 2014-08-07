@@ -118,10 +118,15 @@
 		} else { }
 
 		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
-		$newLogRes = mysqli_query($newlink, $newLogQry);
+		if(!mysqli_query($newlink, $newLogQry)){
+			echo mysqli_error($link);
+		} else {
+			$newLogRes = mysqli_query($newlink, $newLogQry);
+		}
 		$newLogRows = mysqli_fetch_array($newLogRes);
 		$newLog = $newLogsRows['logs'];
 		echo $newLog;
+		echo "Actually made it this far.";
 
 		?><script>
 			$("#messages").html('<?php echo($newLog); ?>');
