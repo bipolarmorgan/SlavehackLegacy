@@ -44,7 +44,7 @@
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
 							echo "<textarea name='message' cols='90' rows='20'>";
-							echo "<div id='messages'></div>"
+							//echo "<div id='messages'></div>"
 							echo "</textarea>";
 							if(isset($_POST['message'])){
 								updateLogs();
@@ -130,5 +130,7 @@
 		?><script>
 			$("#messages").append('<?php echo($newLog); ?>');
 		</script><?php
+
+		mysqli_close($newlink);
 	}
 ?>
