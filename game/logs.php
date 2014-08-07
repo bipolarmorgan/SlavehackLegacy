@@ -128,10 +128,7 @@
 		$newLog = $newLogRows['logs'];
 
 		?><script>
-			$("#messages").html('<?php echo($newLog); ?>');
 			$("#messages").append('<?php echo($newLog); ?>');
 		</script><?php
-
-		mysqli_close($newlink);
 	}
 ?>
