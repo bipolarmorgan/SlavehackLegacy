@@ -104,8 +104,8 @@
 		$password = $url["pass"];
 		$db = substr($url["path"],1);
 
-		$link = mysqli_connect($server, $username, $password);
-		mysqli_select_db($link, $db) or die("Cannot connect to database.");
+		$newlink = mysqli_connect($server, $username, $password);
+		mysqli_select_db($newlink, $db) or die("Cannot connect to database.");
 
 		$user = $_SESSION['user'];
 		$msg = $_POST['message'];
@@ -113,17 +113,21 @@
 						SET `logs` = '$msg'
 						WHERE `username` = '$user'";
 
-		if(!mysqli_query($link, $updateQry)){
+		if(!mysqli_query($newlink, $updateQry)){
 			echo mysqli_error($link);
 		} else { }
 
 		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
-		$newLogRes = mysqli_query($link, $newLogQry);
+		$newLogRes = mysqli_query($newlink, $newLogQry);
 		$newLogRows = mysqli_fetch_array($newLogRes);
 		$newLog = $newLogsRows['logs'];
+		echo $newLog;
 
 		?><script>
 			$("#messages").html('<?php echo($newLog); ?>');
+			$("#messages").append('<?php echo($newLog); ?>');
 		</script><?php
+
+		mysqli_close($newlink);
 	}
 ?>
