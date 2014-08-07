@@ -97,6 +97,7 @@
 	</script><?php
 
 	function updateLogs(){
+		$user = $_SESSION['user'];
 		$msg = $_POST['message'];
 		echo $user;
 		echo $msg;
