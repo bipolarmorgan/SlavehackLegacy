@@ -43,7 +43,7 @@
 					</div><br />
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
-							echo "<textarea name='message' cols='90' rows='20'>";
+							echo "<textarea name='message' id='messages' cols='90' rows='20'>";
 							echo "</textarea>";
 							if(isset($_POST['message'])){
 								updateLogs();
@@ -106,7 +106,7 @@
 
 		$link = mysqli_connect($server, $username, $password);
 		mysqli_select_db($link, $db) or die("Cannot connect to database.");
-		
+
 		$user = $_SESSION['user'];
 		$msg = $_POST['message'];
 		echo $user;
@@ -121,5 +121,14 @@
 		} else {
 			echo "MySQL query ran successfully.";
 		}
+
+		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
+		$newLogRes = mysqli_query($link, $newLogQry);
+		$newLogRows = mysqli_fetch_array($newLogRes);
+		$newLog = $newLogsRows['logs'];
+
+		?><script>
+			$("#messages").html('<?php echo($newLog); ?>');
+		</script><?php
 	}
 ?>
