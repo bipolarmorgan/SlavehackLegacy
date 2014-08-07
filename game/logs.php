@@ -43,7 +43,8 @@
 					</div><br />
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
-							echo "<textarea name='message' id='messages' cols='90' rows='20'>";
+							echo "<textarea name='message' cols='90' rows='20'>";
+							echo "<div id='messages'></div>"
 							echo "</textarea>";
 							if(isset($_POST['message'])){
 								updateLogs();
@@ -124,9 +125,7 @@
 			$newLogRes = mysqli_query($newlink, $newLogQry);
 		}
 		$newLogRows = mysqli_fetch_array($newLogRes);
-		$newLog = $newLogsRows['logs'];
-		echo $newLog;
-		echo "Actually made it this far.";
+		$newLog = $newLogRows['logs'];
 
 		?><script>
 			$("#messages").html('<?php echo($newLog); ?>');
