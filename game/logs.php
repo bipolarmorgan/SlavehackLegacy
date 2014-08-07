@@ -101,8 +101,9 @@
 		$msg = $_POST['message'];
 		echo $user;
 		echo $msg;
-		$updateQry = "UPDATE players SET logs = '$msg'
-						WHERE username = '$user'";
+		$updateQry = "UPDATE `players` 
+						SET `logs` = '$msg'
+						WHERE `username` = '$user'";
 
 		if(!mysqli_query($link, $updateQry)){
 			echo "Stuff broke.";
