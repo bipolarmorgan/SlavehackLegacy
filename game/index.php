@@ -122,7 +122,7 @@
                     `num_ip_resets` INT(10) NOT NULL DEFAULT 0,
                     `num_pass_resets` INT(10) NOT NULL DEFAULT 0,
                     `connected` INT(2) NOT NULL DEFAULT 0,
-                    `logs`	MEDIUMTEXT(16000000),
+                    `logs`	TEXT(160000),
                     `homepage` VARCHAR(15) NOT NULL DEFAULT '1.1.1.1',
                     `trojan` VARCHAR(32) NOT NULL,
                     `worm` VARCHAR(32) NOT NULL,
