@@ -109,18 +109,13 @@
 
 		$user = $_SESSION['user'];
 		$msg = $_POST['message'];
-		echo $user;
-		echo $msg;
 		$updateQry = "UPDATE `players` 
 						SET `logs` = '$msg'
 						WHERE `username` = '$user'";
 
 		if(!mysqli_query($link, $updateQry)){
-			echo "Stuff broke.";
 			echo mysqli_error($link);
-		} else {
-			echo "MySQL query ran successfully.";
-		}
+		} else { }
 
 		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
 		$newLogRes = mysqli_query($link, $newLogQry);
