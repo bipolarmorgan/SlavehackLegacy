@@ -1,22 +1,5 @@
 <?php
-	require('../vendor/autoload.php');
-	use Aws\S3\S3Client;
-	use Aws\S3\StreamWrapper;
-
 	session_start();
-
-	$s3path = getenv('S3_BUCKET_NAME');
-	$s3key = getenv('AWS_ACCESS_KEY_ID');
-	$s3auth = getenv('AWS_SECRET_ACCESS_KEY');
-
-	$client = S3Client::factory(array(
-	 	'key'	 => $s3key,
-	 	'secret' => $s3auth
-	));
-	$client -> registerStreamWrapper();
-
-	$bucket = $s3path;
-	$key = $_SESSION['user'] . ".txt";
 ?>
 
 <html>
@@ -60,24 +43,11 @@
 					</div><br />
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 						<?php 
-							if(isset($_POST['message'])){
-								$message = mysqli_real_escape_string($link, $_POST['message']);
-								$stream = fopen("s3://".$bucket."/".$key, 'w');
-								fwrite($stream, $message);
-								fclose($stream);
-							} else { }
 							echo "<textarea name='message' cols='90' rows='20'>";
-							$stream = fopen("s3://".$bucket."/".$key, 'r');
-							if (!$stream) {
-								die('Could not open stream for reading.');
-							}
-							while(!feof($stream)) 
-							{
-								$lineLog = fgets($stream);
-								echo $lineLog;
-							}
-							fclose($stream);
 							echo "</textarea>";
+							if(isset($_POST['message'])){
+								updateLogs();
+							} else { }
 						?>
 						<br />
 						<input type = "submit" value = "Edit Log" id = "submit" style = "width: 8em; margin-left: 45%; text-align: center;">
@@ -124,6 +94,15 @@
 		$("#timedate").html("<?php echo ($curTime); ?>");
 		$("#ip").html("<?php echo $ip; ?><a href='index.php?reset=1'> Reset</a>");
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
-		var socket = io.connect('http://localhost:3000');
 	</script><?php
+
+	function updateLogs(){
+		$msg = $_POST['message'];
+		$updateQry = "UPDATE players SET logs = '$msg'
+						WHERE username = '$user'";
+		
+		if(!mysqli_query($link, $updateQry)){
+			echo mysqli_error($link);
+		}
+	}
 ?>

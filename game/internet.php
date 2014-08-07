@@ -327,7 +327,6 @@
 		if($wwLevel >= $fwLevel){
 			$decryptFlag = "true";
 		}
-		echo "dcFlag: " . $decryptFlag;
 	} else {
 		?><script>
 			$("#result").html("<img src='img/ico_err.png'> Nothing located at this address.");
@@ -771,12 +770,10 @@
 			$targetInfo = "SELECT * FROM players WHERE ip = '$targetIP'";
 			$targetRes = mysqli_query($link, $targetInfo);
 			$targetRows = mysqli_fetch_array($targetRes);
-			echo("Success. Player computer detected. User: " . $targetRows['username'] . ", password: " . $targetRows['comp_pass']);
 
 			if($targetRows['comp_pass'] == $targetPass){
-				echo("Successfully logged in to player.")
 				?><script>
-					$("#wrapper").html("<div id='compContent'>Test1</div>");
+					$("#wrapper").html("<div id='compContent'>Test2</div>");
 				</script><?php
 			} else { }
 		}

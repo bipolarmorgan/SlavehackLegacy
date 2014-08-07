@@ -559,6 +559,26 @@ textarea{
 	display: block;
 }
 
+.contentInfo a{
+	color: red;
+}
+
+.contentInfo li{
+	float:left;
+	margin-left: 2em;
+}
+
+
+.contentTitle{
+	font-weight: lighter;
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	font-weight: bold;
+	font-size: 1.25em;
+}
+
 #compContent {
 	text-align: center;
 	display: inline;
