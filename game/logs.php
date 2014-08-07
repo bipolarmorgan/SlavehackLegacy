@@ -47,6 +47,7 @@
 							echo "</textarea>";
 							if(isset($_POST['message'])){
 								updateLogs();
+								echo("Submitted.");
 							} else { }
 						?>
 						<br />
@@ -100,9 +101,12 @@
 		$msg = $_POST['message'];
 		$updateQry = "UPDATE players SET logs = '$msg'
 						WHERE username = '$user'";
-		
+		echo "Function called.";
+
 		if(!mysqli_query($link, $updateQry)){
 			echo mysqli_error($link);
+		} else {
+			echo "MySQL query ran successfully.";
 		}
 	}
 ?>
