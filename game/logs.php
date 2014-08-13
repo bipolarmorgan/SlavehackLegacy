@@ -65,8 +65,13 @@
 
 							$logRows = mysqli_fetch_array($logRes);
 							$log = $logRows['logs'];
-							echo "log: " . $log;
-							echo "<textarea name='message' cols='90' rows='20'>";
+							echo "<textarea id='logs' name='message' cols='90' rows='20'>";
+							?><script>
+							function poll(){
+								location.reload();
+								setTimeout(poll, 5000);
+							}
+							</script><?php
 							echo $log;
 							echo "</textarea>";
 
