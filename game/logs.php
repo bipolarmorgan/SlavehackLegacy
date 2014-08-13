@@ -10,6 +10,40 @@
 
 	$link = mysqli_connect($server, $username, $password);
 	mysqli_select_db($link, $db) or die("Cannot connect to database.");
+
+	function updateLogs(){
+		$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+		$server = $url["host"];
+		$username = $url["user"];
+		$password = $url["pass"];
+		$db = substr($url["path"],1);
+
+		$newlink = mysqli_connect($server, $username, $password);
+		mysqli_select_db($newlink, $db) or die("Cannot connect to database.");
+
+		$user = $_SESSION['user'];
+		$msg = $_POST['message'];
+		$updateQry = "UPDATE `players` 
+						SET `logs` = '$msg'
+						WHERE `username` = '$user'";
+
+		if(!mysqli_query($newlink, $updateQry)){
+			echo mysqli_error($link);
+		} else { }
+
+		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
+		if(!mysqli_query($newlink, $newLogQry)){
+			echo mysqli_error($link);
+		} else {
+			$newLogRes = mysqli_query($newlink, $newLogQry);
+		}
+		$newLogRows = mysqli_fetch_array($newLogRes);
+		$newLog = $newLogRows['logs'];
+		return $newLog;
+
+		mysqli_close($newlink);
+	}
 ?>
 
 <html>
@@ -67,7 +101,7 @@
 							?><script>
 							setTimeout(function() {
 								location.reload();
-							}, 5000);
+							}, 15000);
 							</script><?php
 							$log = $logRows['logs'];
 							echo "<textarea id='logs' name='message' cols='90' rows='20'>";
@@ -75,8 +109,7 @@
 							echo "</textarea>";
 
 							if(isset($_POST['message'])){
-								updateLogs();
-								$log = $newLog;
+								$log = updateLogs();
 							} else { }
 						?>
 						<br />
@@ -116,37 +149,4 @@
 		$("#ip").html("<?php echo $ip; ?><a href='index.php?reset=1'> Reset</a>");
 		$("#pass").html("<?php echo $pass; ?><a href='index.php?reset=2'> Reset</a>");
 	</script><?php
-
-	function updateLogs(){
-		$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-		$server = $url["host"];
-		$username = $url["user"];
-		$password = $url["pass"];
-		$db = substr($url["path"],1);
-
-		$newlink = mysqli_connect($server, $username, $password);
-		mysqli_select_db($newlink, $db) or die("Cannot connect to database.");
-
-		$user = $_SESSION['user'];
-		$msg = $_POST['message'];
-		$updateQry = "UPDATE `players` 
-						SET `logs` = '$msg'
-						WHERE `username` = '$user'";
-
-		if(!mysqli_query($newlink, $updateQry)){
-			echo mysqli_error($link);
-		} else { }
-
-		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
-		if(!mysqli_query($newlink, $newLogQry)){
-			echo mysqli_error($link);
-		} else {
-			$newLogRes = mysqli_query($newlink, $newLogQry);
-		}
-		$newLogRows = mysqli_fetch_array($newLogRes);
-		$newLog = $newLogRows['logs'];
-
-		mysqli_close($newlink);
-	}
 ?>
