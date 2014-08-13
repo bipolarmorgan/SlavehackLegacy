@@ -49,3 +49,35 @@
 		</div>
 	</body>
 </html>
+
+<?php
+	$timestamp = $_SERVER['REQUEST_TIME'];
+
+	if(isset($_SESSION['tz'])){
+		$tz = $_SESSION['tz'];
+	} else {
+		$tz = "America/Chicago";
+	}
+
+	if(isset($_SESSION['user'])){
+		?><script>
+			$("#logswitch").html("<a href='logout.php'>Logout</a>");
+		</script><?php 
+	} else {
+		?><script>
+			$("#logswitch").html("<a href='login.php'>Login</a>");
+		</script><?php 
+	}
+
+	$dtzone = new DateTimeZone($tz);
+	$dtime = new DateTime();
+
+	$dtime->setTimestamp($timestamp);
+	$dtime->setTimeZone($dtzone);
+	$time = $dtime->format('g:i A m/d/y');
+	?>
+    <script>
+        $("#date").html('<?php echo $time; ?>');
+    </script>
+    <?php
+?>
