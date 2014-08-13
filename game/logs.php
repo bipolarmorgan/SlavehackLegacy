@@ -65,10 +65,9 @@
 
 							$logRows = mysqli_fetch_array($logRes);
 							?><script>
-							function poll(){
+							setTimeout(function() {
 								location.reload();
-								setTimeout(poll, 5000);
-							}
+							}, 5000);
 							</script><?php
 							$log = $logRows['logs'];
 							echo "<textarea id='logs' name='message' cols='90' rows='20'>";
