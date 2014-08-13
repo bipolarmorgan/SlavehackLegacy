@@ -40,9 +40,12 @@
 		}
 		$newLogRows = mysqli_fetch_array($newLogRes);
 		$newLog = $newLogRows['logs'];
-		return $newLog;
 
 		mysqli_close($newlink);
+	}
+
+	function fetchLogs(){
+		return $_POST['message'];
 	}
 ?>
 
@@ -105,11 +108,11 @@
 							</script><?php
 							$log = $logRows['logs'];
 							echo "<textarea id='logs' name='message' cols='90' rows='20'>";
-							echo $log;
+							echo fetchLogs();
 							echo "</textarea>";
 
 							if(isset($_POST['message'])){
-								$log = updateLogs();
+								updateLogs();
 							} else { }
 						?>
 						<br />
