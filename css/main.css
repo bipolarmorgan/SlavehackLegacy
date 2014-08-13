@@ -41,8 +41,8 @@ body{
 	color: #ecf0f1;
 	display:inline-block;
 	text-decoration: none;
-	padding-left: 0.16em;
-	padding-right: 0.16em;
+	padding-left: 0.33em;
+	padding-right: 0.33em;
 }
 
 #homeMenu li{
@@ -59,8 +59,8 @@ body{
 	border-top-right-radius: 8px;
 	margin: 0;
 	display: inline;
-	margin-right: 2.5em;
-	margin-left: 2.5em;
+	margin-right: 1.75em;
+	margin-left: 1.75em;
 	padding-left: 1em;
 	padding-right: 1em;
 }
