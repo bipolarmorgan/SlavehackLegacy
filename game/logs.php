@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 	$server = $url["host"];
@@ -64,7 +64,7 @@
 
 							$logRows = mysqli_fetch_array($newLogRes);
 							$log = $logRows['logs'];
-
+							echo "log: " . $log;
 							echo "<textarea name='message' cols='90' rows='20'>";
 							echo $log;
 							echo "</textarea>";
