@@ -1,5 +1,15 @@
 <?php
 	session_start();
+	
+	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+	$server = $url["host"];
+	$username = $url["user"];
+	$password = $url["pass"];
+	$db = substr($url["path"],1);
+
+	$link = mysqli_connect($server, $username, $password);
+	mysqli_select_db($link, $db) or die("Cannot connect to database.");
 ?>
 
 <html>
@@ -42,12 +52,26 @@
 						It's important you make sure unwanted eyes are kept away from this.<br />
 					</div><br />
 					<form method = "POST" action = "<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-						<?php 
+						<?php
+							$user = $_SESSION['user'];
+							$logQry = "SELECT * FROM `players` WHERE username = '$user'";
+
+							if(!mysqli_query($link, $logQry)){
+								echo mysqli_error($link);
+							} else {
+								$logRes = mysqli_query($newlink, $newLogQry);
+							}
+
+							$logRows = mysqli_fetch_array($newLogRes);
+							$log = $logRows['logs'];
+
 							echo "<textarea name='message' cols='90' rows='20'>";
-							//echo "<div id='messages'></div>"
+							echo $log;
 							echo "</textarea>";
+
 							if(isset($_POST['message'])){
 								updateLogs();
+								$log = $newLog;
 							} else { }
 						?>
 						<br />
@@ -60,15 +84,6 @@
 </html>
 
 <?php
-	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-	$server = $url["host"];
-	$username = $url["user"];
-	$password = $url["pass"];
-	$db = substr($url["path"],1);
-
-	$link = mysqli_connect($server, $username, $password);
-	mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
     ?><script>
 		var img = new Image();
@@ -120,19 +135,12 @@
 
 		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
 		if(!mysqli_query($newlink, $newLogQry)){
-			echo "bad stuff happened";
 			echo mysqli_error($link);
 		} else {
-			echo "successfully executed query";
 			$newLogRes = mysqli_query($newlink, $newLogQry);
 		}
 		$newLogRows = mysqli_fetch_array($newLogRes);
 		$newLog = $newLogRows['logs'];
-		echo "new log: " . $newLog;
-
-		?><script>
-			$("#messages").append('<?php echo($newLog); ?>');
-		</script><?php
 
 		mysqli_close($newlink);
 	}
