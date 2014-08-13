@@ -150,8 +150,7 @@ label, input, select, option {
 }
 
 select {
-	margin: 0;
-	padding: 0;
+	display:inline-block;
 }
 
 label {
