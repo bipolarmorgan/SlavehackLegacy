@@ -118,7 +118,7 @@
 			echo mysqli_error($link);
 		} else { }
 
-		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
+		$newLogQry = "SELECT * FROM `players` WHERE username = '$username'";
 		if(!mysqli_query($newlink, $newLogQry)){
 			echo mysqli_error($link);
 		} else {

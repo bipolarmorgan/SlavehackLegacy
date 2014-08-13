@@ -36,6 +36,7 @@
 			<div class = "logo">Slavehack: Legacy</div>
 			<ul id = "homeMenu">
 				<li><a href="index.php">Home</a></li>
+				<li><a href="news.php">News</a></li>
 				<li><a href="about.php">About</a></li>
 				<li><a href="register.php">Register</a></li>
 				<li><a href="terms.html">Terms of Use</a></li>
