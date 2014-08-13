@@ -32,15 +32,6 @@
 			echo mysqli_error($link);
 		} else { }
 
-		$newLogQry = "SELECT * FROM `players` WHERE username = '$user'";
-		if(!mysqli_query($newlink, $newLogQry)){
-			echo mysqli_error($link);
-		} else {
-			$newLogRes = mysqli_query($newlink, $newLogQry);
-		}
-		$newLogRows = mysqli_fetch_array($newLogRes);
-		$newLog = $newLogRows['logs'];
-
 		mysqli_close($newlink);
 	}
 
