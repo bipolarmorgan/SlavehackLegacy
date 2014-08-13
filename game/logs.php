@@ -46,6 +46,8 @@
 		$newlink = mysqli_connect($server, $username, $password);
 		mysqli_select_db($newlink, $db) or die("Cannot connect to database.");
 
+		$user = $_SESSION['user'];
+
 		if(isset($_POST['message'])){
 			return $_POST['message'];
 		} else {
