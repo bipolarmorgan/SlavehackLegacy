@@ -58,12 +58,14 @@
 
 							if(!mysqli_query($link, $logQry)){
 								echo mysqli_error($link);
+								echo "error";
 							} else {
-								$logRes = mysqli_query($newlink, $logQry);
+								$logRes = mysqli_query($link, $logQry);
 							}
 
 							$logRows = mysqli_fetch_array($logRes);
 							$log = $logRows['logs'];
+							echo "log: " . $log;
 							echo "<textarea name='message' cols='90' rows='20'>";
 							echo $log;
 							echo "</textarea>";
