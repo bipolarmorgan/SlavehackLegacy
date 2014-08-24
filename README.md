@@ -1,7 +1,7 @@
 Slavehack: Legacy
 ===============
 
-## Update: Temporary Hiatus
+## Update: Temporary Hiatus (08/24/2014)
 
 I'll be on (and have been on) hiatus for the next week, maybe two. College is starting up again so I have to get situated before returning to work on this. Sorry for the pause in work.
 
