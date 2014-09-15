@@ -2,12 +2,12 @@ All changes below are for the pre-game site only.
 ============================================
 + Added a simple hover effect to the menu, links and footer.
 - Removed some needless/redundant CSS formatting codes throughout.
-+ Added a "page_parts.php" file that allows us to change one file versus changing each page at a time. This file currently includes the menu and footer codes in separate functions.
-TODO: Will add each page's content to the "page_parts.php" file so a one-file-update can be achieved.
++ Added a "page_parts.php" file that enables us to change one file versus each page individually. The "page_parts.php" file currently includes the menu, footer and individual page contents in separate functions. Pages with forms have not beed added yet, but will be added after thorough testing. Eventually one-file-maintenance can be achieved.
 - Removed the difficult background image.
 + Added an easy to manage background that has maintains site relevance.
 + Forced the footer information to the bottom of the screen. Now follows scroll motion.
 + Added a bottom margin to the wrapper to compensate for the footer's area. The bad look only appeared on "long" pages such as "register.php".
-TODO: Changed margins in the wrapper to fix "bunching" on form pages. Should not affect normal content pages.
-TODO: Added a ticking clock versus the static clock that only updated on page refreshes.
-TODO: Changed the look of form components for better site immersion.
+: Changed margins in the wrapper to fix "bunching" on form pages. Should not affect normal content pages.
+TODO: Adding a ticking clock versus the current static clock.
++ Added Pure CSS stylesheet to "register.php" to improve the look of form components. All form pages will have some version of this for flow.
+TODO: Download only the needed components of Pure CSS to be altered for our color scheme. This requires us to add a comment that the stylesheet is from Pure and edited by us.
