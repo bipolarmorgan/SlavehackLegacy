@@ -25,14 +25,14 @@ function newEntry( $text ){
         <link rel="shortcut icon" href="img/icon.ico" />
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <title>
-            News
+            Terms and Conditions
         </title>
     </head>
     <body>
 
     <?php menu() ?>
 
-    <?php content_news() ?>
+    <?php content_terms() ?>
 
     <?php footer() ?>
 

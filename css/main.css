@@ -5,14 +5,29 @@ html{
 }
 
 body{
-	background-image:url('../img/bg-image.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-	margin:0;
-	padding:0;
-	color: #ecf0f1;;
+    /*
+        The next line displays the background correctly
+        on Chrome, IE, Firefox and Opera
+    */
+    background: #000000 url('../img/Binary_Background.png') repeat top center;
+
+    margin:0;
+    padding:0;
+    color: #ecf0f1;
+
+    /*
+        Merged, and omitted.
+
+        background-image:url('../img/bg-image_repeat.png');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    */
+}
+
+body a:hover, a:active {
+    color: #ffff0c;
 }
 
 #bgMenuBar{
@@ -37,12 +52,16 @@ body{
 	text-align:center;
 }
 
-#homeMenu a{
+#homeMenu a:link, a:visited{
 	color: #ecf0f1;
 	display:inline-block;
 	text-decoration: none;
 	padding-left: 0.33em;
 	padding-right: 0.33em;
+}
+
+#homeMenu a:hover, a:active {
+    color: #ffff0c;
 }
 
 #homeMenu li{
@@ -59,10 +78,11 @@ body{
 	border-top-right-radius: 8px;
 	margin: 0;
 	display: inline;
-	margin-right: 1.75em;
-	margin-left: 1.75em;
+	margin-right: 0.25em;  /* changed from 1.75em for a better look in smaller windows */
+	margin-left: 0.25em;
 	padding-left: 1em;
 	padding-right: 1em;
+    background: #00660c;
 }
 
 hr {
@@ -77,9 +97,10 @@ hr {
 
 #wrapper{
 	background-color: black;
-	margin-top: 3em;
+	margin-top: 2em;
 	margin-left:23%;
 	margin-right:23%;
+    margin-bottom: 3em;
 
 }
 
@@ -134,53 +155,24 @@ hr {
 }
 
 #footer{
+    border-top: 1px solid #00ff0c;
 	font-family: 'Titillium Web', sans-serif;
-	font-size: 0.75em;
-	bottom: 0;
-	margin-top: 3em;
+	font-size: .8em;
+    font-weight: bold;
+    text-align: center;
+    position: fixed;
+    background-attachment: scroll;
+    bottom: 0;
+    width: 100%;
+    height: 40px;   /* Height of the footer */
+    background: #000000;
 }
 
-form {
-    width: 80%;
-    margin: 0 auto;
+#footer:hover {
+    color: #ffff0c;
 }
 
-label, input, select, option {
-    display: inline-block;
-}
-
-select {
-	display:inline-block;
-}
-
-label {
-    width: 30%;
-    margin-top: 1em;
-    text-align: left
-}
-
-label + input {
-    width: 30%;
-    margin: 0 15% 0 0%;
-}
-
-#register {
-	padding-left: 2em;
-	padding-right: 2em;
-	text-align: center;
-    float: center;
-}
-
-#error {
-	display: inline;
-	float: center;
-	text-align: center;
-	margin: 0;
-	padding: 0;
-	color: red;
-}
-
-#success {
+fieldset {
 	display: inline;
 	float: center;
 	text-align: center;
