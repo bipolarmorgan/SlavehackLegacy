@@ -26,9 +26,9 @@ mysqli_select_db($link, $db) or die("Cannot connect to database.");
         <title>
             Login
         </title>
-        <?php //clock_head() ?>
+        <?php clock_head() ?>
     </head>
-    <body> <!-- onload="startTime()" -->
+    <body onload="startTime()">
     <?php menu() ?>
 
     <div id = "wrapper">
@@ -44,9 +44,9 @@ mysqli_select_db($link, $db) or die("Cannot connect to database.");
                     </div>
                     <div id="error"></div><div id="success"></div>
                     <form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                        <span>Remember me? <span><input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember"><br>
                         <input style="text-align: center; margin-bottom: 2px;" type = "text" name = "user" placeholder="Username" autocomplete = "off"><br>
-                        <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off"><br /><br />
+                        <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off"><br>
+                        <span>Remember me? <span><input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember"><br /><br />
                         <input type = "submit" value = "Login" name = "login" id = "login">
                     </form>
                 </div>

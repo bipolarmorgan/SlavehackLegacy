@@ -49,23 +49,15 @@
 // 	        	}
 // 	        }
       	</script>
+
+        <?php clock_head() ?>
+
 	</head>
-	<body>
-		<div id = "userinfo">
-<!-- 		<div id = "recaptcha_div">
-			<div id = "captcha_block"></div>
-		</div> -->
-		<div id = "leftColumn">
-			<ul>
-				<li><a href = "index.php"><img src = "img/ico_comp.png">My Computer</a></li>
-				<li><a href = "processes.php"><img src = "img/ico_procs.png">Processes</a></li>
-				<li><a href = "logs.php"><img src = "img/ico_logs.png">Computer Logs</a></li>
-				<li><a href = "files.php"><img src = "img/ico_files.png">Files</a></li>
-				<li><a href = "internet.php"><img src = "img/ico_world.png">Internet</a></li>
-				<li><a href = "slaves.php"><img src = "img/ico_slaves.png">My Slaves</a></li>
-                <li><a href = "../logout.php"><img src = "img/ico_err.png">Logout</a></li>
-			</ul>
-		</div>
+	<body onload="startTime()">
+
+        <?php //capta_check() ?>
+
+        <?php side_menu() ?>
 
 		<div id = "background">
 			<div id = "container">
@@ -147,6 +139,7 @@
                     `ransomware_inf` VARCHAR(32) NOT NULL,
                     `spyware_inf` VARCHAR(32) NOT NULL,
                     `spamware_inf` VARCHAR(32) NOT NULL,
+                    `user_bg_img` MEDIUMBLOB NOT NULL,
                     PRIMARY KEY(`uid`),
                     UNIQUE KEY `username_UNIQUE` (`username`),
                     UNIQUE KEY `comp_pass_UNIQUE` (`comp_pass`),
@@ -157,11 +150,7 @@
 		echo mysqli_error($link);
 	}
 
-	?><script>
-		var img = new Image();
-		img.src = "backgrounds/default.png";
-		document.body.background = img.src;
-	</script><?php 
+	user_bg(); // Moved bg determination script to game_page_parts.php
 
 	$user = $_SESSION['user'];
 
@@ -173,7 +162,7 @@
 	        $n = rand(0, $alphaLength);
 	        $pass[] = $alphabet[$n];
 	    }
-
+        // Recommend adding 0-9 to the string to broaden password combinations.
 	    return implode($pass);
 	}
 

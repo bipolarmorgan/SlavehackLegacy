@@ -24,8 +24,8 @@ Slavehack: Legacy CHANGELOG
 ? Add paypal donation icon to the footer?
 + Added ticking to the clock and date.
 : Changed the layout of the register form to look a little more sleek.
-? Recommending that the hiatus post be removed from "README.md" to attract help.
 + Added a small amount of formatting to "logout.php".
+- Updated the GitHub "Readme.md" file to reflect changes.
 
 *- 9/16/2014 ------------------------------------------*
     Access Site Changes
@@ -33,22 +33,28 @@ Slavehack: Legacy CHANGELOG
 : Fixed the Register and Login forms.
 : Reverted the "terms.php" margins back to CSS default.
 : Fixed "login.php" loading issue.
-+ Created custom form control CSS in nav.css
++ Created custom form control CSS in nav.css.
++ Added direct link to member section of website.
 
     Member Site Changes
     -------------------
-: Change CSS that effects links. (a:link {white}, a:hover {yellow})
+: Change CSS that affects links. (a:link {white}, a:hover {yellow})
++ Added "ico_logout.png" to user menu. (Matches scale of other menu items)
++ Added "game_page_parts.php" to hold common content from across pages.
 
 *- Future Plans ---------------------------------------*
     Access Site Changes
     -------------------
 TODO: : Clean up the stylesheet "main.css" for easier reading and alteration.
-TODO: - Remove static clock code.
-TODO: ? Implement a username and password retrieval system?
-TODO: ? Implement a cookie to save username and password?
+TODO: + Implement a username and password retrieval system.
+TODO: : Transfer username and password tokens from session data to cookies using a unique ID in MySQL.
+TODO: + Look into getting SSL (StartSSL).
 
     Member Site Changes
     -------------------
-TODO: + Add logout button.
-TODO: : Change default background
+TODO: : Change default background.
+TODO: : Update Pulsar's help menu and "login" command.
+TODO: + Add times for processes, especially with Pulsar commands.
+TODO: : Update the logs page so that it pulls from the MySQL database.
+TODO: + Add redirect to login page for players that aren't logged in and try to go straight to the game.
 NOTE: Until further development, no other formatting needed.
