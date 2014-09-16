@@ -1,6 +1,8 @@
 <?php
 	ob_start();
 	session_start();
+    include("game_page_parts.php");
+
 	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 	$server = $url["host"];

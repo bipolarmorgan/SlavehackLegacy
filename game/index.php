@@ -1,5 +1,6 @@
 <?php
 	session_start();
+    include("game-page_parts.php");
 ?>
 
 <html>
@@ -50,7 +51,7 @@
 // 	        }
       	</script>
 
-        <?php //clock_head() ?>
+        <?php clock_head() ?>
 
 	</head>
 	<body onload="startTime()">
