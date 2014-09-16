@@ -128,11 +128,10 @@ if(isset($_POST['login'])){
         else if(verify($pass, $hash)){
 
             if($remember == "on"){
-                echo "test";
-
                 $salt       = "SLAVEHACK";
 
                 $identifier = md5($salt . md5($user . $salt));
+                $token = md5(uniqid(rand(), true));
                 $timeout = time() + 60 * 60 * 24 * 7;
 
                 setcookie('auth', "$identifier:$token", $timeout);
