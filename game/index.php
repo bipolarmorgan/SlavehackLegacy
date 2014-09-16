@@ -63,6 +63,7 @@
 				<li><a href = "files.php"><img src = "img/ico_files.png">Files</a></li>
 				<li><a href = "internet.php"><img src = "img/ico_world.png">Internet</a></li>
 				<li><a href = "slaves.php"><img src = "img/ico_slaves.png">My Slaves</a></li>
+                <li><a href = "../logout.php"><img src = "img/ico_err.png">Logout</a></li>
 			</ul>
 		</div>
 

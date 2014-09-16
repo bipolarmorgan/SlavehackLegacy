@@ -72,11 +72,11 @@ textarea{
 
 #content a:link, a:visited{
      color: white;
-     text-decoration: none;
  }
 
 #content a:hover, a:active{
     color: white;
+    text-decoration: none;
 }
 
 .chat_wrapper{
