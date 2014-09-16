@@ -3,6 +3,7 @@
 -->
 <?php
 include("page_parts.php");
+header("refresh:10;url=login.php");
 ?>
 <html>
 <head>
@@ -32,7 +33,9 @@ include("page_parts.php");
                 <div id="title">
                     <b>Activation</b><br /><br />
                 </div>
-                <div id="error"></div><div id="success"></div>
+                <div style="text-align: center">
+                    <div id="error"></div><div id="success"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,18 +67,20 @@ if(!empty($_GET['code']) && isset($_GET['code'])){
                 echo "Error: " . mysqli_error($link);
             }
             ?><script>
-                $("#success").html("You've successfuly activated your account. You may now <a href='login.php'>log in</a>. Redirecting in 5 seconds.");
-                header("refresh:5;url=login.php");
+                $("#success").html("You've successfuly activated your account.<br>" +
+                    "You may now <a href='login.php'>log in</a>." +
+                    "<br>Redirecting in 10 seconds.");
             </script><?php
         } else {
             ?><script>
-                $("#error").html("Your account has already been activated. Redirecting in 5 seconds.");
-                header("refresh:5;url=login.php");
+                $("#error").html("Your account has already been activated.<br>" +
+                    "Redirecting in 10 seconds.");
             </script><?php
         }
     } else {
         ?><script>
-            $("#error").html("Incorrect activation code.");
+            $("#error").html("Incorrect activation code.<br>" +
+                "Redirecting in 10 seconds.);
         </script><?php
     }
 }
