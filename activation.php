@@ -4,7 +4,6 @@
 -->
 <?php
 include("page_parts.php");
-header("refresh:10;url=login.php");
 ?>
 <html>
 <head>
@@ -85,4 +84,5 @@ if(!empty($_GET['code']) && isset($_GET['code'])){
         </script><?php
     }
 }
+header("refresh:10;url=login.php");
 ?>
