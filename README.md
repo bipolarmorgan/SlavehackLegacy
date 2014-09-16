@@ -1,11 +1,11 @@
 Slavehack: Legacy
 ===============
 
-## Update: Temporary Hiatus (08/24/2014)
+## (NEW) Update: And we're back! (09/15/2014)
 
-I'll be on (and have been on) hiatus for the next week, maybe two. College is starting up again so I have to get situated before returning to work on this. Sorry for the pause in work.
+First off I'd like to go ahead and apologize again for how little time I'm able to devote to this project right now. I literally have little time to spare as it is, so chances for me giving focus to this project are few and far between. However, we now have a front-end developer working on the design aspect as well as helping out on the back-end as well. He's already made massive progress and I really appreciate his efforts. With this extra help, progress should start flowing again, and more and more updates should be seen visibly on the website.
 
-If you need to contact me during this time you can reach me by email at (myusername)@gmail.com.
+As if it hasn't been said enough, this is a massive load for one person, and even one extra helping hand can significantly reduce the workload. Again, if you would like to help out I highly, highly encourage you to send me an e-mail at myusername@gmail.com. Any extra help is much appreciated.
 
 ## F.A.Q.
 
