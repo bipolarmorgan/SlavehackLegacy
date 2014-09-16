@@ -128,6 +128,8 @@ if(isset($_POST['login'])){
         else if(verify($pass, $hash)){
 
             if($remember == "on"){
+                echo "test";
+
                 $salt       = "SLAVEHACK";
 
                 $identifier = md5($salt . md5($user . $salt));
