@@ -1,6 +1,6 @@
 <?php
 	session_start();
-    include("game-page_parts.php");
+    include("game_page_parts.php");
 ?>
 
 <html>
