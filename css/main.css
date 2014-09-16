@@ -198,16 +198,20 @@ input[type=submit]:active {
     top:1px;
 }
 
+input[type=checkbox] {
+    /* All browsers except webkit*/
+    transform: scale(1.5);
+
+    /* Webkit browsers*/
+    -webkit-transform: scale(1.5);
+}
+
 #agreement {
     width: 280px;
 }
 
 #agreement label:hover {
     color: #00ff0c;
-}
-
-#agreement input {
-    background: #000;
 }
 
 select {
