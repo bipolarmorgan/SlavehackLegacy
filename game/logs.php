@@ -118,9 +118,9 @@
 
 							$logRows = mysqli_fetch_array($logRes);
 							?><script>
-							setTimeout(function() {
-								location.reload();
-							}, 15000);
+							//setTimeout(function() {
+							//	location.reload();
+							//}, 15000);
 							</script><?php
 							$log = $logRows['logs'];
 							echo "<textarea id='logs' name='message' cols='90' rows='20'>";
