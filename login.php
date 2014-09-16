@@ -3,7 +3,6 @@ ini_set ('display_errors', '1');
 
 error_reporting (E_ALL | E_STRICT); 
 
-session_start();
 include("page_parts.php");
 
 $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
@@ -16,7 +15,6 @@ $db = substr($url["path"],1);
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 ?>
-
     <html>
     <head>
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
@@ -171,4 +169,6 @@ if(isset($_POST['login'])){
         }
     }
 }
+
+session_start();
 ?>
