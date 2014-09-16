@@ -85,4 +85,5 @@ if(!empty($_GET['code']) && isset($_GET['code'])){
     }
 }
 header("refresh:10;url=login.php");
+
 ?>
