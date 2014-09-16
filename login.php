@@ -134,7 +134,7 @@ if(isset($_POST['login'])){
                 $token = md5(uniqid(rand(), true));
                 $timeout = time() + 60 * 60 * 24 * 7;
 
-                setcookie('auth', "$identifier:$token", $timeout, '/');
+                setcookie('auth', "$identifier:$token", $timeout, "/", ".slavehack-legacy.herokuapp.com");
 
                 if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
                     echo mysqli_error($link);
