@@ -197,7 +197,7 @@ function content_terms(){
     ?>
     <!-- Changed the margins due to the amount of space that this page
     will require. -->
-    <div id = "wrapper" style="margin-left: 10%; margin-right: 10%;">
+    <div id = "wrapper">
         <div id = "entryBlock">
             <div id="ipLog">
                 127.0.0.1@localhost
