@@ -70,12 +70,12 @@ textarea{
 	position: fixed;
 }
 
-#content a:link{
+#content a:link, a:visited{
      color: white;
      text-decoration: none;
  }
 
-#content a:hover{
+#content a:hover, a:active{
     color: white;
 }
 
