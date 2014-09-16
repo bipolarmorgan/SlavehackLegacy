@@ -136,14 +136,18 @@ $zonelist = array('Kwajalein' => '(GMT-12:00) International Date Line West',
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
         <link rel="shortcut icon" href="img/icon.ico" />
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="js/menu_script.js"></script>
         <script type="text/javascript" src="js/jQuery.js"></script>
+        <!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> -->
         <title>
             Register
         </title>
+        <?php clock_head() ?>
     </head>
-    <body>
+    <body onload="startTime()">
 
     <?php menu() ?>
 
@@ -159,40 +163,42 @@ $zonelist = array('Kwajalein' => '(GMT-12:00) International Date Line West',
                         <b>Register</b><br />
                     </div>
                     <div id="error"></div><div id="success"></div>
-                    <form class="pure-form pure-form-aligned" id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                         <p align="center">
+                    <form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <p align="center">
                             <input style="text-align: center; margin-bottom: 2px;" type = "text" name = "user" placeholder="Username" required><br>
                             <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off" required><br>
                             <input style="text-align: center; margin-bottom: 2px;" type = "text" name = "email" placeholder="Email" autocomplete = "off" required><br>
-                        <select name="tz">
-                            <option value="DEFAULT"> Select Your Time Zone</option>
-                            <option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
-                            <option value="America/Anchorage">(GMT-09:00) Alaska</option>
-                            <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                            <option value="America/Phoenix">(GMT-07:00) Arizona</option>
-                            <option value="America/Denver">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                            <option value="America/Chicago">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                            <option value="America/New_York">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                            <option value="America/Indiana/Indianapolis">(GMT-05:00) Indiana (East)</option>
-                            <option disabled="disabled">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</option>
-                            <?php
-                            foreach($zonelist as $key => $value) {
-                                echo '		<option value="' . $key . '">' . $value . '</option>' . "\n";
-                            }
-                            ?>
-                        </select>
-                        <br /><br />
-                        <label style="font-size: 1.5em; text-decoration: underline"><b>Agreements</b></label><br>
-                        <label><b>I understand that I could lose
-                                everything I've worked for in a matter of minutes.</b></label><br>
-                        <input type = "checkbox" name = "ustand"><br>
-                        <label><b>I've read and agree to the terms and conditions.
-                                I also agree to the use of cookies on this website
-                                for the sole purpose of this game.</b></label><br>
-                        <input type = "checkbox" name = "agree"><br>
-                        <label><b>Subscribe to email updates
-                                about the game's development?</b></label><br>
-                        <input type = "checkbox" name = "mlist"><br /><br />
+                            <select name="tz">
+                                <option value="DEFAULT"> Select Your Time Zone</option>
+                                <option value="Pacific/Honolulu">(GMT-10:00) Hawaii</option>
+                                <option value="America/Anchorage">(GMT-09:00) Alaska</option>
+                                <option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                <option value="America/Phoenix">(GMT-07:00) Arizona</option>
+                                <option value="America/Denver">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                <option value="America/Chicago">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                <option value="America/New_York">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                <option value="America/Indiana/Indianapolis">(GMT-05:00) Indiana (East)</option>
+                                <option disabled="disabled">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</option>
+                                <?php
+                                foreach($zonelist as $key => $value) {
+                                    echo '		<option value="' . $key . '">' . $value . '</option>' . "\n";
+                                }
+                                ?>
+                            </select><br>
+                            <label style="font-size: 1.5em; text-decoration: underline"><b>Agreements</b></label><br>
+                        <div id="agreement">
+                            <label for="option1"><span><b>I understand that I could lose everything I've worked for in
+                                        a matter of minutes.</b></span></label>
+                            <input type = "checkbox" name = "ustand" id="option1" required>
+                            <label for="option2"><span><b>I've read and agree to the terms and conditions. I also agree to
+                                        the use of cookies on this website for the sole purpose of this
+                                        game.</b></span></label>
+                            <input type = "checkbox" name = "agree" id="option2" required>
+                            <label for="option3"><span><b>Subscribe to email updates
+                                        about the game's development?</b></span></label>
+                            <input type = "checkbox" name = "mlist" id="option3">
+                        </div>
+                        <br>
                         <input type = "submit" value = "Submit" name = "register" id = "register" class="pure-skin-mine pure-button">
                         </p>
                     </form>

@@ -1,18 +1,69 @@
 <?php
+
+function clock_head()
+{
+    ?>
+
+    <script>
+        function startTime() {
+            var today=new Date();
+            var h=today.getHours();
+            var m=today.getMinutes();
+            var s=today.getSeconds();
+            var mm=today.getMonth()+1;
+            var dd=today.getDate();
+            var yyyy=today.getFullYear()
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('date').innerHTML = h+":"+m+":"+s+" - "+mm+"/"+dd+"/"+yyyy;
+            var t = setTimeout(function(){startTime()},500);
+        }
+
+        function checkTime(i) {
+            if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+    <?php
+}
+
 function menu()
 {
     ?>
 
+    <?php
+    if(basename($_SERVER['PHP_SELF']) == 'index.php') {
+        $thisPage="index";
+    } else if (basename($_SERVER['PHP_SELF']) == 'news.php'){
+        $thisPage="news";
+    } else if (basename($_SERVER['PHP_SELF']) == 'about.php'){
+        $thisPage="about";
+    } else if (basename($_SERVER['PHP_SELF']) == 'terms.php'){
+        $thisPage="terms";
+    } else if (basename($_SERVER['PHP_SELF']) == 'register.php'){
+        $thisPage="register";
+    } else if (basename($_SERVER['PHP_SELF']) == 'login.php') {
+        $thisPage = "login";
+    } else {
+        $thisPage = "index";
+    }
+    ?>
+
     <div id = "bgMenuBar">
-        <div class = "logo" style="font-family: 'Oswald', sans-serif;">Slavehack: Legacy</div>
-        <ul id = "homeMenu" style="font-family: 'Oswald', sans-serif;">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="news.php">News</a></li>
-            <li><a href="about.php">About</a></li>
-            <li><a href="register.php">Register</a></li>
-            <li><a href="terms.php">Terms</a></li>
-            <li><span id = "logswitch"></span></li>
-        </ul>
+        <div class = "logo" style="font-family: 'Oswald', sans-serif;">
+            <img src="img/shl_logo.png">
+        </div>
+        <div id="cssmenu">
+            <ul>
+                <li <?php if ($thisPage=="index") echo "class=\"active\""; ?>><a href="index.php"><span>Home</span></a></li>
+                <li <?php if ($thisPage=="news") echo "class=\"active\""; ?>><a href='news.php'><span>News</span></a></li>
+                <li <?php if ($thisPage=="about") echo "class=\"active\""; ?>><a href='about.php'><span>About</span></a></li>
+                <li <?php if ($thisPage=="terms") echo "class=\"active\""; ?>><a href='terms.php'><span>Terms</span></a></li>
+                <li <?php if ($thisPage=="register") echo "class=\"active\""; ?>><a href='register.php'><span>Register</span></a></li>
+                <li <?php if ($thisPage=="login" || $thisPage=="logout") echo "class=\"active\""; ?>><span id = "logswitch"></span></li>
+            </ul>
+        </div>
     </div>
 
 <?php
@@ -22,6 +73,11 @@ function footer()
 {
     ?>
     <div id = "footer">
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+                 src="http://jigsaw.w3.org/css-validator/images/vcss"
+                 alt="Valid CSS!" />
+        </a>
         Copyright (C) "Slavehack: Legacy" 2014<br>
         An open-source project founded by Trizzle, developed by WitheredGryphon
     </div>

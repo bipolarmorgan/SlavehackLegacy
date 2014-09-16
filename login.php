@@ -14,16 +14,20 @@
 
 <html>
 	<head>
-		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
-	    <link rel="stylesheet" type="text/css" href="css/main.css">
-		<link rel="shortcut icon" href="img/icon.ico" />
-    	<script type="text/javascript" src="js/jQuery.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
+        <link rel="shortcut icon" href="img/icon.ico" />
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="js/menu_script.js"></script>
+        <script type="text/javascript" src="js/jQuery.js"></script>
 		<title>
 			Login
 		</title>
+        <?php clock_head() ?>
 	</head>
-	<body>
+	<body onload="startTime()">
 		<div id = "bgMenuBar">
 			<div class = "logo">Slavehack: Legacy</div>
 			<ul id = "homeMenu">
