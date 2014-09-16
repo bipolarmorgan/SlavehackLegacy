@@ -44,6 +44,7 @@ mysqli_select_db($link, $db) or die("Cannot connect to database.");
                     </div>
                     <div id="error"></div><div id="success"></div>
                     <form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember" placeholder="Remember Me"><br>
                         <input style="text-align: center; margin-bottom: 2px;" type = "text" name = "user" placeholder="Username" autocomplete = "off"><br>
                         <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off"><br /><br />
                         <input type = "submit" value = "Login" name = "login" id = "login">
