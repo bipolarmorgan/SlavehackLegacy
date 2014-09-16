@@ -187,16 +187,17 @@ $zonelist = array('Kwajalein' => '(GMT-12:00) International Date Line West',
                             </select><br>
                             <label style="font-size: 1.5em; text-decoration: underline"><b>Agreements</b></label><br>
                         <div id="agreement">
+                            <table><tr><td>
                             <label for="option1"><span><b>I understand that I could lose everything I've worked for in
-                                        a matter of minutes.</b></span></label>
-                            <input type = "checkbox" name = "ustand" id="option1" required>
-                            <label for="option2"><span><b>I've read and agree to the terms and conditions. I also agree to
+                                        a matter of minutes.</b></span></label></td>
+                            <td><input type = "checkbox" name = "ustand" id="option1" required></td>
+                            <tr><td><label for="option2"><span><b>I've read and agree to the terms and conditions. I also agree to
                                         the use of cookies on this website for the sole purpose of this
-                                        game.</b></span></label>
-                            <input type = "checkbox" name = "agree" id="option2" required>
-                            <label for="option3"><span><b>Subscribe to email updates
-                                        about the game's development?</b></span></label>
-                            <input type = "checkbox" name = "mlist" id="option3">
+                                        game.</b></span></label></td>
+                            <td><input type = "checkbox" name = "agree" id="option2" required></td></tr>
+                            <tr><td><label for="option3"><span><b>Subscribe to email updates
+                                        about the game's development?</b></span></label></td>
+                            <td><input type = "checkbox" name = "mlist" id="option3"></td></tr></table>
                         </div>
                         <br>
                         <input type = "submit" value = "Submit" name = "register" id = "register" class="pure-skin-mine pure-button">
