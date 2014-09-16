@@ -1,6 +1,8 @@
 <?php
 	ob_start();
 	session_start();
+    include("game_page_parts.php");
+
 	$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 	$server = $url["host"];
@@ -41,18 +43,16 @@
  		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
      	<script type="text/javascript" src="../js/jQuery.js"></script>
      	<script type="text/javascript" src="js/termlib/termlib.js"></script>
+
+        <?php clock_head() ?>
+
 	</head>
-	<body>
-		<div id = "leftColumn">
-			<ul>
-				<li><a href = "index.php"><img src = "img/ico_comp.png">My Computer</a></li>
-				<li><a href = "processes.php"><img src = "img/ico_procs.png">Processes</a></li>
-				<li><a href = "logs.php"><img src = "img/ico_logs.png">Computer Logs</a></li>
-				<li><a href = "files.php"><img src = "img/ico_files.png">Files</a></li>
-				<li><a href = "internet.php"><img src = "img/ico_world.png">Internet</a></li>
-				<li><a href = "slaves.php"><img src = "img/ico_slaves.png">My Slaves</a></li>
-			</ul>
-		</div>
+	<body onload="startTime()">
+
+        <!-- Should there be a Capta check here? -->
+
+        <?php side_menu() ?>
+
 		<div id = "background">
 			<div id = "container">
 				<div id = "header">
@@ -122,11 +122,8 @@
 		$("#timedate").html("<?php echo ($curTime); ?>");
 	</script><?php
 
-	?><script>
-		var img = new Image();
-		img.src = "backgrounds/default.png";
-		document.body.background = img.src;
-	</script><?php 
+    user_bg(); // Moved bg determination script to game_page_parts.php
+
     $npcQry = "CREATE TABLE IF NOT EXISTS `npcs` (
                     `uid` INT(128) unsigned NOT NULL AUTO_INCREMENT,
                     `name` VARCHAR(64) NOT NULL,
