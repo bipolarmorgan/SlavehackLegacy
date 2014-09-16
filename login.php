@@ -127,16 +127,16 @@ if(isset($_POST['login'])){
         }
         else if(verify($pass, $hash)){
 
-            if($remember == "on"){
-                $salt       = "";
-                $salt_chars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
-                for ($i = 0; $i < 22; $i++) {
-                    $salt .= $salt_chars[array_rand($salt_chars)];
-                }
+            // if($remember == "on"){
+            //     $salt       = "";
+            //     $salt_chars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
+            //     for ($i = 0; $i < 22; $i++) {
+            //         $salt .= $salt_chars[array_rand($salt_chars)];
+            //     }
 
-                $ident = md5($salt . md5($user . $salt));
-                $token = md5(uniq)
-            }
+            //     $ident = md5($salt . md5($user . $salt));
+            //     $token = md5(uniq)
+            // }
 
             $_SESSION['user'] = $user;
             $_SESSION['tz'] = $row['timezone'];
