@@ -1,5 +1,6 @@
-<!-- Credits to Srinivas Tamada Production
-	for help with the email verification code.
+<!--
+    Credits to Srinivas Tamada Production
+    for help with the email verification code.
 -->
 <?php
 include("page_parts.php");
