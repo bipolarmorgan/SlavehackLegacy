@@ -28,17 +28,7 @@
         <?php clock_head() ?>
 	</head>
 	<body onload="startTime()">
-		<div id = "bgMenuBar">
-			<div class = "logo">Slavehack: Legacy</div>
-			<ul id = "homeMenu">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="news.php">News</a></li>
-				<li><a href="about.php">About</a></li>
-				<li><a href="register.php">Register</a></li>
-				<li><a href="terms.html">Terms of Use</a></li>
-				<li><span id="logswitch"></span></li>
-			</ul>
-		</div>
+    <?php menu() ?>
 
 		<div id = "wrapper">
 			<div id = "entryBlock">
