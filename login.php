@@ -127,16 +127,18 @@ if(isset($_POST['login'])){
         }
         else if(verify($pass, $hash)){
 
-            // if($remember == "on"){
-            //     $salt       = "";
-            //     $salt_chars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
-            //     for ($i = 0; $i < 22; $i++) {
-            //         $salt .= $salt_chars[array_rand($salt_chars)];
-            //     }
+            if($remember == "on"){
+                $salt       = "SLAVEHACK";
 
-            //     $ident = md5($salt . md5($user . $salt));
-            //     $token = md5(uniq)
-            // }
+                $identifier = md5($salt . md5($user . $salt));
+                $timeout = time() + 60 * 60 * 24 * 7;
+
+                setcookie('auth', "$identifier:$token", $timeout);
+
+                if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
+                    echo mysqli_error($link);
+                }
+            }
 
             $_SESSION['user'] = $user;
             $_SESSION['tz'] = $row['timezone'];
