@@ -71,7 +71,9 @@ textarea{
 }
 
 #content a:link, a:visited{
-     color: white;
+    color: white;
+    border-bottom: 1px solid white;
+    text-decoration: none;
  }
 
 #content a:hover, a:active{
