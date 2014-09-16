@@ -39,8 +39,11 @@ Slavehack: Legacy CHANGELOG
     Member Site Changes
     -------------------
 : Change CSS that affects links. (a:link {white}, a:hover {yellow})
+<<<<<<< HEAD
+=======
 + Added "ico_logout.png" to user menu. (Matches scale of other menu items)
 + Added "game_page_parts.php" to hold common content from across pages.
+>>>>>>> 96874fc64a723aceaafb2d5cfef41ebf8df5dfff
 
 *- Future Plans ---------------------------------------*
     Access Site Changes
@@ -52,9 +55,16 @@ TODO: + Look into getting SSL (StartSSL).
 
     Member Site Changes
     -------------------
+<<<<<<< HEAD
+TODO: + Add logout button.
+=======
+>>>>>>> 96874fc64a723aceaafb2d5cfef41ebf8df5dfff
 TODO: : Change default background.
 TODO: : Update Pulsar's help menu and "login" command.
 TODO: + Add times for processes, especially with Pulsar commands.
 TODO: : Update the logs page so that it pulls from the MySQL database.
+<<<<<<< HEAD
+=======
 TODO: + Add redirect to login page for players that aren't logged in and try to go straight to the game.
+>>>>>>> 96874fc64a723aceaafb2d5cfef41ebf8df5dfff
 NOTE: Until further development, no other formatting needed.

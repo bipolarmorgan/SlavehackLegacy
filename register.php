@@ -293,6 +293,9 @@ if (isset($_POST['register'])) {
                         `uid` INT(10) unsigned NOT NULL AUTO_INCREMENT,
                         `login` VARCHAR(50) NOT NULL,
                         `hash` VARCHAR(64) NOT NULL,
+                        `identifier` VARCHAR(32) DEFAULT NULL,
+                        `token` VARCHAR(32) DEFAULT NULL,
+                        `timeout` VARCHAR(32) DEFAULT NULL,
                         `email` CHAR(100) NOT NULL,
                         `timezone` VARCHAR(50) NOT NULL,
                         `activation` VARCHAR(255) NOT NULL UNIQUE,
@@ -312,6 +315,12 @@ if (isset($_POST['register'])) {
     $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
     $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
     $email = mysqli_real_escape_string($link, stripslashes($_POST['email']));
+
+    $salt = "SLAVEHACK";
+
+    $identifier = md5($salt . md5($user . $salt));
+    $token = md5(uniqid(rand(), TRUE));
+    $timeout = time() + 60 * 60 * 24 * 7;
 
     $lC = preg_match('@[a-z]@', $pass);
     $uC = preg_match('@[A-Z]@', $pass);
@@ -376,13 +385,13 @@ if (isset($_POST['register'])) {
                     $_SERVER['activation'] = $activation;
 
                     if($listChk){
-                        if(!mysqli_query($link, "INSERT INTO users(login, hash, email, timezone, activation, email_confirmed, mailing_list)
-		    					VALUES('$user', '$newPass', '$email', '$tz', '$activation', false, 1)")) {
+                        if(!mysqli_query($link, "INSERT INTO users(login, hash, identifier, token, timeout, email, timezone, activation, email_confirmed, mailing_list)
+		    					VALUES('$user', '$newPass', '$identifier', '$token', '$timeout', '$email', '$tz', '$activation', false, 1)")) {
                             echo "Error: " . mysqli_error($link);
                         }
                     } else {
-                        if(!mysqli_query($link, "INSERT INTO users(login, hash, email, timezone, activation, email_confirmed, mailing_list)
-		    					VALUES('$user', '$newPass', '$email', '$tz', '$activation', false, false)")) {
+                        if(!mysqli_query($link, "INSERT INTO users(login, hash, identifier, token, timeout, email, timezone, activation, email_confirmed, mailing_list)
+		    					VALUES('$user', '$newPass', '$identifier', '$token', '$timeout', '$email', '$tz', '$activation', false, false)")) {
                             echo "Error: " . mysqli_error($link);
                         }
                     }

@@ -45,8 +45,8 @@ mysqli_select_db($link, $db) or die("Cannot connect to database.");
                     <div id="error"></div><div id="success"></div>
                     <form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <input style="text-align: center; margin-bottom: 2px;" type = "text" name = "user" placeholder="Username" autocomplete = "off"><br>
-                        <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off"><br>
-                        <span>Remember me? <span><input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember"><br /><br />
+                        <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off"><br />
+                        <input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember"><span>Keep me logged in</span><br><br />
                         <input type = "submit" value = "Login" name = "login" id = "login">
                     </form>
                 </div>
@@ -109,6 +109,8 @@ if(isset($_POST['login'])){
         $pass = "";
     }
 
+    $remember = $_POST['remember'];
+
     $qry = "SELECT * FROM users WHERE login='" . $user . "'";
     if(!mysqli_query($link,$qry)){
         ?><script>
@@ -124,6 +126,18 @@ if(isset($_POST['login'])){
             </script><?php
         }
         else if(verify($pass, $hash)){
+
+            // if($remember == "on"){
+            //     $salt       = "";
+            //     $salt_chars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
+            //     for ($i = 0; $i < 22; $i++) {
+            //         $salt .= $salt_chars[array_rand($salt_chars)];
+            //     }
+
+            //     $ident = md5($salt . md5($user . $salt));
+            //     $token = md5(uniq)
+            // }
+
             $_SESSION['user'] = $user;
             $_SESSION['tz'] = $row['timezone'];
             $dtzone = new DateTimeZone($_SESSION['tz']);
