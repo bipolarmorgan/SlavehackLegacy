@@ -1,95 +1,20 @@
 <?php
-    if(isset($_POST['login'])){
+ini_set ('display_errors', '1');
 
-        function verify($password, $hashedPassword){
-            return crypt($password, $hashedPassword) == $hashedPassword;
-        }
+error_reporting (E_ALL | E_STRICT); 
 
-        if(isset($_POST['user'])){
-            $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
-        } else {
-            $user = "";
-        }
+include("page_parts.php");
 
-        if(isset($_POST['pass'])){
-            $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
-        } else {
-            $pass = "";
-        }
+$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-        $remember = $_POST['remember'];
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"],1);
 
-        $qry = "SELECT * FROM users WHERE login='" . $user . "'";
-        if(!mysqli_query($link,$qry)){
-            ?><script>
-                $("#error").html("Invalid username or password.");
-            </script><?php
-        } else {
-            $result = mysqli_query($link, $qry);
-            $row = mysqli_fetch_array($result);
-            $hash = $row['hash'];
-            if($row['email_confirmed'] == 0){
-                ?><script>
-                    $("#error").html('<?php echo "Please confirm your email. If you need another e-mail, please click <a href=\"register.php?resend=true&user=$user\">here.</a>"; ?>');
-                </script><?php
-            }
-            else if(verify($pass, $hash)){
-
-                if($remember == "on"){
-                    $salt       = "SLAVEHACK";
-
-                    $identifier = md5($salt . md5($user . $salt));
-                    $token = md5(uniqid(rand(), true));
-                    $timeout = time() + 60 * 60 * 24 * 7;
-
-                    setcookie('auth', "$identifier:$token", $timeout, "/", ".slavehack-legacy.herokuapp.com");
-
-                    echo "test";
-
-                    if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
-                        echo mysqli_error($link);
-                    }
-                }
-
-                $_SESSION['user'] = $user;
-                $_SESSION['tz'] = $row['timezone'];
-                $dtzone = new DateTimeZone($_SESSION['tz']);
-                $dtime->setTimestamp($timestamp);
-                $dtime->setTimeZone($dtzone);
-                $tz = $_SESSION['tz'];
-                $time = $dtime->format('g:i A m/d/y');
-                $_SESSION['TWLI'] = $time;
-                $logTime = $_SESSION['TWLI'];
-                ?><script>
-                    $("#date").html('<?php echo $logTime; ?>');
-                    $("#logswitch").html("<a href='logout.php'>Logout</a>");
-                    $("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
-                    window.setTimeout( function() {
-                        window.location.href = "/game/index.php?login=success";
-                    }, 3000);
-                </script><?php
-            } else {
-                ?><script>
-                    $("#error").html("Invalid username or password.");
-                </script><?php
-            }
-        }
-    }
-
-    session_start();
-    include("page_parts.php");
-
-    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"],1);
-
-    $link = mysqli_connect($server, $username, $password);
-    mysqli_select_db($link, $db) or die("Cannot connect to database.");
+$link = mysqli_connect($server, $username, $password);
+mysqli_select_db($link, $db) or die("Cannot connect to database.");
 ?>
-
     <html>
     <head>
         <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
@@ -163,6 +88,87 @@ $dtime->setTimeZone($dtzone);
 $time = $dtime->format('g:i A m/d/y');
 
 ?>
-<script>
-    $("#date").html('<?php echo $time; ?>');
-</script>
+    <script>
+        $("#date").html('<?php echo $time; ?>');
+    </script>
+<?php
+
+if(isset($_POST['login'])){
+
+    function verify($password, $hashedPassword){
+        return crypt($password, $hashedPassword) == $hashedPassword;
+    }
+
+    if(isset($_POST['user'])){
+        $user = mysqli_real_escape_string($link, stripslashes($_POST['user']));
+    } else {
+        $user = "";
+    }
+
+    if(isset($_POST['pass'])){
+        $pass = mysqli_real_escape_string($link, stripslashes($_POST['pass']));
+    } else {
+        $pass = "";
+    }
+
+    $remember = $_POST['remember'];
+
+    $qry = "SELECT * FROM users WHERE login='" . $user . "'";
+    if(!mysqli_query($link,$qry)){
+        ?><script>
+            $("#error").html("Invalid username or password.");
+        </script><?php
+    } else {
+        $result = mysqli_query($link, $qry);
+        $row = mysqli_fetch_array($result);
+        $hash = $row['hash'];
+        if($row['email_confirmed'] == 0){
+            ?><script>
+                $("#error").html('<?php echo "Please confirm your email. If you need another e-mail, please click <a href=\"register.php?resend=true&user=$user\">here.</a>"; ?>');
+            </script><?php
+        }
+        else if(verify($pass, $hash)){
+
+            if($remember == "on"){
+                $salt       = "SLAVEHACK";
+
+                $identifier = md5($salt . md5($user . $salt));
+                $token = md5(uniqid(rand(), true));
+                $timeout = time() + 60 * 60 * 24 * 7;
+
+                setcookie('auth', "$identifier:$token", $timeout, "/", ".slavehack-legacy.herokuapp.com");
+
+                echo "test";
+
+                if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
+                    echo mysqli_error($link);
+                }
+            }
+
+            $_SESSION['user'] = $user;
+            $_SESSION['tz'] = $row['timezone'];
+            $dtzone = new DateTimeZone($_SESSION['tz']);
+            $dtime->setTimestamp($timestamp);
+            $dtime->setTimeZone($dtzone);
+            $tz = $_SESSION['tz'];
+            $time = $dtime->format('g:i A m/d/y');
+            $_SESSION['TWLI'] = $time;
+            $logTime = $_SESSION['TWLI'];
+            ?><script>
+                $("#date").html('<?php echo $logTime; ?>');
+                $("#logswitch").html("<a href='logout.php'>Logout</a>");
+                $("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
+                window.setTimeout( function() {
+                    window.location.href = "/game/index.php?login=success";
+                }, 3000);
+            </script><?php
+        } else {
+            ?><script>
+                $("#error").html("Invalid username or password.");
+            </script><?php
+        }
+    }
+}
+
+session_start();
+?>
