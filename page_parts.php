@@ -61,8 +61,8 @@ function menu()
                 <li <?php if ($thisPage=="about") echo "class=\"active\""; ?>><a href='about.php'><span>About</span></a></li>
                 <li <?php if ($thisPage=="terms") echo "class=\"active\""; ?>><a href='terms.php'><span>Terms</span></a></li>
                 <li <?php if ($thisPage=="register") echo "class=\"active\""; ?>><a href='register.php'><span>Register</span></a></li>
-                <li <?php if ($thisPage=="login" || $thisPage=="logout") echo "class=\"active\""; ?>><span id = "logswitch"></span></li>
                 <li style = "float: right;"><span id="gameswitch"></span></li>
+                <li style = "float: right;"><?php if ($thisPage=="login" || $thisPage=="logout") echo "class=\"active\""; ?>><span id = "logswitch"></span></li>
             </ul>
         </div>
     </div>
