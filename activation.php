@@ -64,11 +64,13 @@ if(!empty($_GET['code']) && isset($_GET['code'])){
                 echo "Error: " . mysqli_error($link);
             }
             ?><script>
-                $("#success").html("You've successfuly activated your account. You may now log in.");
+                $("#success").html("You've successfuly activated your account. You may now <a href='login.php'>log in</a>. Redirecting in 5 seconds.");
+                header("refresh:5;url=login.php");
             </script><?php
         } else {
             ?><script>
-                $("#error").html("Your account has already been activated.");
+                $("#error").html("Your account has already been activated. Redirecting in 5 seconds.");
+                header("refresh:5;url=login.php");
             </script><?php
         }
     } else {
