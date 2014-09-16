@@ -1,29 +1,16 @@
 html{
 	font-family: 'Oswald', sans-serif;
-	margin: 0;
-	padding: 0;
 }
 
 body{
-    /*
-        The next line displays the background correctly
-        on Chrome, IE, Firefox and Opera
-    */
-    background: #000000 url('../img/Binary_Background.png') repeat top center;
-
+    background: #000000 url('../img/background.png') repeat top center;
     margin:0;
     padding:0;
     color: #ecf0f1;
+}
 
-    /*
-        Merged, and omitted.
-
-        background-image:url('../img/bg-image_repeat.png');
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    */
+body a:link, a:visited {
+    color: #ffffff;
 }
 
 body a:hover, a:active {
@@ -40,49 +27,11 @@ body a:hover, a:active {
 	box-shadow:         0px 16px 100px -7px #222;
 }
 
-.logo{
-	margin-left: 0.67em;
-	font-size: 2em;
-}
-
-#homeMenu{
-	list-style:none;
-	margin:0;
-	padding:0;
-	text-align:center;
-}
-
-#homeMenu a:link, a:visited{
-	color: #ecf0f1;
-	display:inline-block;
-	text-decoration: none;
-	padding-left: 0.33em;
-	padding-right: 0.33em;
-}
-
-#homeMenu a:hover, a:active {
-    color: #ffff0c;
-}
-
-#homeMenu li{
-	border-width: 1px;
-	border-top-style: solid;
-	border-left-style: solid;
-	border-right-style: solid;
-	border-color: #00ff0c;
-	-webkit-border-top-left-radius: 8px;
-	-moz-border-top-left-radius: 8px;
-	border-top-left-radius: 8px;
-	-webkit-border-top-right-radius: 8px;
-	-moz-border-top-right-radius: 8px;
-	border-top-right-radius: 8px;
-	margin: 0;
-	display: inline;
-	margin-right: 0.25em;  /* changed from 1.75em for a better look in smaller windows */
-	margin-left: 0.25em;
-	padding-left: 1em;
-	padding-right: 1em;
-    background: #00660c;
+.logo img{
+    width: 400px;
+    height: auto;
+    margin-left: 15px;
+    margin-bottom: 10px;
 }
 
 hr {
@@ -172,11 +121,81 @@ hr {
     color: #ffff0c;
 }
 
+#footer img {
+    bottom: 5px;
+    left: 5px;
+    position: fixed;
+    background-attachment: scroll;
+    z-index: -1;
+}
+
 fieldset {
 	display: inline;
-	float: center;
 	text-align: center;
 	margin: 0;
 	padding: 0;
 	color: green;
+}
+
+input[type=text],
+input[type=password],
+input[type=submit],
+button {
+    border-radius: 8px;
+    padding:8px;
+    margin-bottom:20px;
+    width:280px;
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For all Gecko based browsers */
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color:#77d42a;
+    border-color: #55b208;
+    margin-top: 20px;
+}
+
+#agreement label:hover {
+    color: #00ff0c;
+}
+
+#agreement input {
+    background: #000;
+}
+
+select {
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    padding:8px;
+    margin-bottom:20px;
+    margin-left: 4px;
+    width:280px;
+    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+    -moz-box-sizing: border-box; /* For all Gecko based browsers */
+    box-sizing: border-box;
+}
+
+#register {
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+}
+
+#error {
+    display: inline;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+#success {
+    display: inline;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: green;
 }

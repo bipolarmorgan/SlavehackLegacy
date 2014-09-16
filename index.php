@@ -25,7 +25,10 @@ include("page_parts.php");
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:700,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="shortcut icon" href="img/icon.ico" />
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/menu_script.js"></script>
     <script type="text/javascript" src="js/jQuery.js"></script>
     <title>
         Slavehack: Legacy
@@ -38,9 +41,11 @@ include("page_parts.php");
         }
     </style>
     <![endif]-->
+
+    <?php clock_head() ?>
 </head>
 
-<body>
+<body onload="startTime()">
 
 <?php menu() ?>
 
@@ -52,23 +57,27 @@ include("page_parts.php");
 </html>
 
 <?php
-$timestamp = $_SERVER['REQUEST_TIME'];
-date_default_timezone_set('UTC');
+    $timestamp = $_SERVER['REQUEST_TIME'];
+    date_default_timezone_set('UTC');
 
-$tz = "America/Chicago";
+    $tz = "America/Chicago";
 
-if(isset($_SESSION['tz'])){
-    $tz = $_SESSION['tz'];
-}
+    if(isset($_SESSION['tz'])){
+        $tz = $_SESSION['tz'];
+    }
 
-if(isset($_SESSION['user'])){
-    ?><script>
-        $("#logswitch").html("<a href='logout.php'>Logout</a>");
-    </script><?php
-} else {
-    ?><script>
-        $("#logswitch").html("<a href='login.php'>Login</a>");
-    </script><?php
+    if(isset($_SESSION['user'])){
+?>
+<script>
+    $("#logswitch").html("<a href='logout.php'>Logout</a>");
+</script>
+<?php
+    } else {
+?>
+<script>
+    $("#logswitch").html("<a href='login.php'>Login</a>");
+</script>
+<?php
 }
 
 $dtzone = new DateTimeZone($tz);
