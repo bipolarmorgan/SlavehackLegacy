@@ -67,10 +67,12 @@ if(isset($_SESSION['tz'])){
 
 if(isset($_SESSION['user'])){
     ?><script>
+        $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
         $("#logswitch").html("<a href='logout.php'>Logout</a>");
     </script><?php
 } else {
     ?><script>
+        $("#gameswitch").html("");
         $("#logswitch").html("<a href='login.php'>Login</a>");
     </script><?php
 }
