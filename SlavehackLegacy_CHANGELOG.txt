@@ -1,7 +1,9 @@
-All changes below are for the pre-game site only.
+Slavehack: Legacy CHANGELOG
 ============================================
 
 *- 9/14/2014 ------------------------------------------*
+    Access Site Changes
+    -------------------
 + Added a simple hover effect to the menu, links and footer.
 - Removed some needless/redundant CSS formatting codes throughout.
 + Added a "page_parts.php" file that enables us to change one file versus each page individually. The "page_parts.php" file currently includes the menu, footer and individual page contents in separate functions. Pages with forms have not beed added yet, but will be added after thorough testing. Eventually one-file-maintenance can be achieved.
@@ -13,6 +15,8 @@ All changes below are for the pre-game site only.
 + Added Pure CSS stylesheet to "register.php" to improve the look of form components. All form pages will have some version of this for flow.
 
 *- 9/15/2014 ------------------------------------------*
+    Access Site Changes
+    -------------------
 - Removed the old navigation menu.
 + Added a new menu. Fixed navigation to highlight current page.
 : Changed the logo to a graphic. Up for debate and can be changed easily.
@@ -23,8 +27,28 @@ All changes below are for the pre-game site only.
 ? Recommending that the hiatus post be removed from "README.md" to attract help.
 + Added a small amount of formatting to "logout.php".
 
+*- 9/16/2014 ------------------------------------------*
+    Access Site Changes
+    -------------------
+: Fixed the Register and Login forms.
+: Reverted the "terms.php" margins back to CSS default.
+: Fixed "login.php" loading issue.
++ Created custom form control CSS in nav.css
+
+    Member Site Changes
+    -------------------
+: Change CSS that effects links. (a:link {white}, a:hover {yellow})
+
 *- Future Plans ---------------------------------------*
-TODO: Clean up the stylesheet "main.css" for easier reading and alteration.
-TODO: Remove static clock code.
-TODO: Download only the needed components of Pure CSS to be altered for our color scheme. This requires us to add a comment that the stylesheet is from Pure and edited by us.
-TODO: Get database to properly test login, logout, and activation pages.
+    Access Site Changes
+    -------------------
+TODO: : Clean up the stylesheet "main.css" for easier reading and alteration.
+TODO: - Remove static clock code.
+TODO: ? Implement a username and password retrieval system?
+TODO: ? Implement a cookie to save username and password?
+
+    Member Site Changes
+    -------------------
+TODO: + Add logout button.
+TODO: : Change default background
+NOTE: Until further development, no other formatting needed.

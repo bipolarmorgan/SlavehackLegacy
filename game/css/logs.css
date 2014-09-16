@@ -32,7 +32,6 @@ body{
 }
 
 textarea{
-	float: center;
 	padding-bottom: 6px;
 	text-align: left;
 	font-family: logsFont;
@@ -54,14 +53,13 @@ textarea{
 #msgForm{
 	margin: 0;
 	padding-top: 16%;
-	float: center;
 	text-align: center;
 	margin-left: 1%;
 	width: 100%;
 }
 
 #content{
-	margin-0;
+	margin:0;
 	font-family: logsFont;
 	text-align: center;
 	font-size: 12px;
@@ -72,12 +70,21 @@ textarea{
 	position: fixed;
 }
 
+#content a:link{
+     color: white;
+     text-decoration: none;
+ }
+
+#content a:hover{
+    color: white;
+}
+
 .chat_wrapper{
 	overflow: hidden;
 }
 
 #contentHolder{
-	margin-0;
+	margin:0;
 	font-family: logsFont;
 	text-align: center;
 	font-size: 12px;
@@ -86,7 +93,7 @@ textarea{
 }
 
 #result{
-	margin-0;
+	margin:0;
 	text-align: center;
 	font-size: 16px;	
 }
@@ -155,7 +162,6 @@ textarea{
 	height: 38em;
 	width: 54em;
 	margin-top: 2%;
-	float: center;
 	margin-left: 28%;
 	color: #ecf0f1;
 }
