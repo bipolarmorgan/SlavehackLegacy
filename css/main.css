@@ -214,10 +214,6 @@ input[type=checkbox] {
     color: #00ff0c;
 }
 
-td {
-    border-bottom: 1px solid green;
-}
-
 select {
     border-radius: 8px;
     -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
