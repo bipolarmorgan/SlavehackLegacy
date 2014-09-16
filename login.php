@@ -25,9 +25,9 @@
 		<title>
 			Login
 		</title>
-        <?php clock_head() ?>
+        <?php //clock_head() ?>
 	</head>
-	<body onload="startTime()">
+	<body> <!-- onload="startTime()" -->
     <?php menu() ?>
 
 		<div id = "wrapper">
