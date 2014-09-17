@@ -10,6 +10,9 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"],1);
 
+$dtzone = new DateTimeZone($tz);
+$dtime = new DateTime();
+
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
@@ -68,18 +71,18 @@ if(isset($_POST['login'])){
                     echo mysqli_error($link);
                 }
             }
-
-            session_start();
-
-            $_SESSION['user'] = $user;
-            $_SESSION['tz'] = $row['timezone'];
+            $timestamp = $_SERVER['REQUEST_TIME'];
+            date_default_timezone_set('UTC');
+            
+            $_COOKIE['user'] = $user;
+            $_COOKIE['tz'] = $row['timezone'];
             $dtzone = new DateTimeZone($_SESSION['tz']);
             $dtime->setTimestamp($timestamp);
             $dtime->setTimeZone($dtzone);
             $tz = $_SESSION['tz'];
             $time = $dtime->format('g:i A m/d/y');
-            $_SESSION['TWLI'] = $time;
-            $logTime = $_SESSION['TWLI'];
+            $_COOKIE['TWLI'] = $time;
+            $logTime = $_COOKIE['TWLI'];
             ?><script>
                 $(document).ready(function() {
                     $("#date").html('<?php echo $logTime; ?>');
@@ -146,11 +149,9 @@ include("page_parts.php");
     </html>
 
 <?php
-$timestamp = $_SERVER['REQUEST_TIME'];
-date_default_timezone_set('UTC');
 
-if(isset($_SESSION['tz'])){
-    $tz = $_SESSION['tz'];
+if(isset($_COOKIE['tz'])){
+    $tz = $_COOKIE['tz'];
 } else {
     $tz = "America/Chicago";
 }
@@ -166,9 +167,6 @@ if(isset($_SESSION['user'])){
         $("#logswitch").html("<a href='login.php'>Login</a>");
     </script><?php
 }
-
-$dtzone = new DateTimeZone($tz);
-$dtime = new DateTime();
 
 $dtime->setTimestamp($timestamp);
 $dtime->setTimeZone($dtzone);
