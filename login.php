@@ -74,7 +74,7 @@ if(isset($_POST['login'])){
                 } else {
                     $tz = "America/Chicago";
                 }
-                
+
                 $dtzone = new DateTimeZone($tz);
                 $dtime = new DateTime();
 
@@ -83,8 +83,8 @@ if(isset($_POST['login'])){
 
                 $time = $dtime->format('g:i A m/d/y');
                 
-                setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
-                setcookie('twli', "$time", 0, "/", ".slavehack-legacy.herokuapp.com");
+                // setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
+                // setcookie('twli', "$time", 0, "/", ".slavehack-legacy.herokuapp.com");
 
                 $logTime = $_COOKIE['TWLI'];
             }
