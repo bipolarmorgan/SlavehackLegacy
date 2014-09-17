@@ -62,8 +62,6 @@ if(isset($_POST['login'])){
 
                 setcookie('auth', "$identifier:$token", $timeout, "/", ".slavehack-legacy.herokuapp.com");
 
-                echo "test";
-
                 if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
                     echo mysqli_error($link);
                 }
@@ -71,10 +69,12 @@ if(isset($_POST['login'])){
                 $timestamp = $_SERVER['REQUEST_TIME'];
                 date_default_timezone_set('UTC');
 
-                $_COOKIE['ident'] = $identifier;
-                $_COOKIE['tz'] = $row['timezone'];
-
-                $tz = $_COOKIE['tz'];
+                if(isset($_COOKIE['timezone'])){
+                    $tz = $_COOKIE['tz'];                    
+                } else {
+                    $tz = "America/Chicago";
+                }
+                
                 $dtzone = new DateTimeZone($tz);
                 $dtime = new DateTime();
 
@@ -82,11 +82,11 @@ if(isset($_POST['login'])){
                 $dtime->setTimeZone($dtzone);
 
                 $time = $dtime->format('g:i A m/d/y');
-                $_COOKIE['TWLI'] = $time;
-                $logTime = $_COOKIE['TWLI'];
-
+                
                 setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
                 setcookie('twli', "$time", 0, "/", ".slavehack-legacy.herokuapp.com");
+
+                $logTime = $_COOKIE['TWLI'];
             }
             ?><script>
                 $(document).ready(function() {
