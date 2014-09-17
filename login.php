@@ -83,14 +83,11 @@ if(isset($_POST['login'])){
 
                 $time = $dtime->format('g:i A m/d/y');
                 
-                // setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
-                // setcookie('twli', "$time", 0, "/", ".slavehack-legacy.herokuapp.com");
-
-                $logTime = $_COOKIE['TWLI'];
+                setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
             }
             ?><script>
                 $(document).ready(function() {
-                    $("#date").html('<?php echo $logTime; ?>');
+                    $("#date").html('<?php echo $time; ?>');
                     $("#logswitch").html("<a href='logout.php'>Logout</a>");
                     $("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
                     window.setTimeout( function() {
