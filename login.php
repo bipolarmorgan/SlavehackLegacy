@@ -67,28 +67,27 @@ if(isset($_POST['login'])){
                 if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
                     echo mysqli_error($link);
                 }
+            } else {
+                $timestamp = $_SERVER['REQUEST_TIME'];
+                date_default_timezone_set('UTC');
+
+                $_COOKIE['ident'] = $identifier;
+                $_COOKIE['tz'] = $row['timezone'];
+
+                $tz = $_COOKIE['tz'];
+                $dtzone = new DateTimeZone($tz);
+                $dtime = new DateTime();
+
+                $dtime->setTimestamp($timestamp);
+                $dtime->setTimeZone($dtzone);
+
+                $time = $dtime->format('g:i A m/d/y');
+                $_COOKIE['TWLI'] = $time;
+                $logTime = $_COOKIE['TWLI'];
+
+                setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
+                setcookie('twli', "$time", 0, "/", ".slavehack-legacy.herokuapp.com");
             }
-
-            $timestamp = $_SERVER['REQUEST_TIME'];
-            date_default_timezone_set('UTC');
-
-            $_COOKIE['user'] = $user;
-            $_COOKIE['tz'] = $row['timezone'];
-
-            $tz = $_COOKIE['tz'];
-            $dtzone = new DateTimeZone($tz);
-            $dtime = new DateTime();
-
-            $dtime->setTimestamp($timestamp);
-            $dtime->setTimeZone($dtzone);
-            
-
-    $dtime->setTimestamp($timestamp);
-    $dtime->setTimeZone($dtzone);
-
-            $time = $dtime->format('g:i A m/d/y');
-            $_COOKIE['TWLI'] = $time;
-            $logTime = $_COOKIE['TWLI'];
             ?><script>
                 $(document).ready(function() {
                     $("#date").html('<?php echo $logTime; ?>');
