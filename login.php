@@ -10,9 +10,6 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"],1);
 
-$dtzone = new DateTimeZone($tz);
-$dtime = new DateTime();
-
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
@@ -73,13 +70,18 @@ if(isset($_POST['login'])){
             }
             $timestamp = $_SERVER['REQUEST_TIME'];
             date_default_timezone_set('UTC');
-            
+
             $_COOKIE['user'] = $user;
             $_COOKIE['tz'] = $row['timezone'];
             $dtzone = new DateTimeZone($_SESSION['tz']);
+            
             $dtime->setTimestamp($timestamp);
             $dtime->setTimeZone($dtzone);
-            $tz = $_SESSION['tz'];
+            $tz = $_COOKIE['tz'];
+
+            $dtzone = new DateTimeZone($tz);
+            $dtime = new DateTime();
+
             $time = $dtime->format('g:i A m/d/y');
             $_COOKIE['TWLI'] = $time;
             $logTime = $_COOKIE['TWLI'];
