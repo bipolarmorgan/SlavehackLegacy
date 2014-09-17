@@ -68,19 +68,23 @@ if(isset($_POST['login'])){
                     echo mysqli_error($link);
                 }
             }
+
             $timestamp = $_SERVER['REQUEST_TIME'];
             date_default_timezone_set('UTC');
 
             $_COOKIE['user'] = $user;
             $_COOKIE['tz'] = $row['timezone'];
             $dtzone = new DateTimeZone($_SESSION['tz']);
-            
+
             $dtime->setTimestamp($timestamp);
             $dtime->setTimeZone($dtzone);
             $tz = $_COOKIE['tz'];
 
             $dtzone = new DateTimeZone($tz);
             $dtime = new DateTime();
+            
+    $dtime->setTimestamp($timestamp);
+    $dtime->setTimeZone($dtzone);
 
             $time = $dtime->format('g:i A m/d/y');
             $_COOKIE['TWLI'] = $time;
@@ -169,10 +173,6 @@ if(isset($_SESSION['user'])){
         $("#logswitch").html("<a href='login.php'>Login</a>");
     </script><?php
 }
-
-$dtime->setTimestamp($timestamp);
-$dtime->setTimeZone($dtzone);
-$time = $dtime->format('g:i A m/d/y');
 
 ?>
 <script>
