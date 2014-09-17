@@ -34,7 +34,8 @@ if(isset($_POST['login'])){
         $pass = "";
     }
 
-    $remember = $_POST['remember'];
+    //$remember = $_POST['remember'];
+    $remember = (isset($_POST['remember']) ? $_POST['remember'] : null);
 
     $qry = "SELECT * FROM users WHERE login='" . $user . "'";
     if(!mysqli_query($link,$qry)){
