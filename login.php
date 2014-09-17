@@ -74,7 +74,7 @@ if(isset($_POST['login'])){
 
             $_COOKIE['user'] = $user;
             $_COOKIE['tz'] = $row['timezone'];
-            $dtzone = new DateTimeZone($_SESSION['tz']);
+            $dtzone = new DateTimeZone($_COOKIE['tz']);
 
             $dtime->setTimestamp($timestamp);
             $dtime->setTimeZone($dtzone);
@@ -82,7 +82,7 @@ if(isset($_POST['login'])){
 
             $dtzone = new DateTimeZone($tz);
             $dtime = new DateTime();
-            
+
     $dtime->setTimestamp($timestamp);
     $dtime->setTimeZone($dtzone);
 
