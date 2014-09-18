@@ -29,6 +29,8 @@
     mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
     $loggedIn = cookie_check();
+
+    echo $loggedIn;
 ?>
 
 <html>
