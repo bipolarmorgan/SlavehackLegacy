@@ -189,7 +189,7 @@ if(isset($_COOKIE['auth'])){
             else if($now > $record['timeout']){
                 echo("Timeout detected.");
             }
-            else if($clean['identifier'] != md5($salt .md5($record['username'] . $salt))) {
+            else if($clean['identifier'] != md5($salt . md5($record['login'] . $salt))) {
                 echo("Invalid identifier.");
             }
             else {
