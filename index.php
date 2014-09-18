@@ -30,8 +30,7 @@
 
     $loggedIn = "false";
     echo "Test: " . $loggedIn;
-    echo "Test2: " . cookie_test();
-    $loggedIn = cookie_test();
+    $loggedIn = cookie_check();
     echo "Test3: " . $loggedIn;
 ?>
 
