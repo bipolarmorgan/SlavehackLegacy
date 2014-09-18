@@ -2,6 +2,7 @@
 ini_set ('display_errors', '1');
 
 error_reporting (E_ALL | E_STRICT); 
+include("page_parts.php");
 
 $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
@@ -111,7 +112,6 @@ if(isset($_POST['login'])){
     }
 }
 
-include("page_parts.php");
 ?>
     <html>
     <head>

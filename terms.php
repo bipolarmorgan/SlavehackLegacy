@@ -1,6 +1,8 @@
 <?php
 include("page_parts.php");
 
+$loggedIn = cookie_check();
+
 function newEntry( $text ){
     $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
@@ -15,7 +17,6 @@ function newEntry( $text ){
     $user = $_SESSION['user'];
 }
 
-$loggedIn = cookie_check();
 ?>
 
     <html>
