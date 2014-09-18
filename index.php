@@ -30,7 +30,7 @@
 
     $loggedIn = cookie_check();
 
-    echo $loggedIn;
+    echo "Test: " . $loggedIn;
 ?>
 
 <html>
