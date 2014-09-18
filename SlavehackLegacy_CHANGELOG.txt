@@ -39,32 +39,40 @@ Slavehack: Legacy CHANGELOG
     Member Site Changes
     -------------------
 : Change CSS that affects links. (a:link {white}, a:hover {yellow})
-<<<<<<< HEAD
-=======
 + Added "ico_logout.png" to user menu. (Matches scale of other menu items)
 + Added "game_page_parts.php" to hold common content from across pages.
->>>>>>> 96874fc64a723aceaafb2d5cfef41ebf8df5dfff
+
+*- 9/17/2014 ------------------------------------------*
+    Member Site Changes
+    -------------------
+    + "slaves.php" added, as well as a template for what the slaves page will look like.
+
+*- 9/18/2014 ------------------------------------------*
+    Site Wide Changes
+    -----------------
+: Changed from verifying users through session data to now verifying authentication using cookies.
+  This allowed for the implementation of a "remember me" system as well.
+  
+    Access Site Changes
+    -------------------
++ Added a remember me button for users wanting to stay logged in.
+
 
 *- Future Plans ---------------------------------------*
     Access Site Changes
     -------------------
 TODO: : Clean up the stylesheet "main.css" for easier reading and alteration.
 TODO: + Implement a username and password retrieval system.
-TODO: : Transfer username and password tokens from session data to cookies using a unique ID in MySQL.
 TODO: + Look into getting SSL (StartSSL).
 
     Member Site Changes
     -------------------
-<<<<<<< HEAD
-TODO: + Add logout button.
-=======
->>>>>>> 96874fc64a723aceaafb2d5cfef41ebf8df5dfff
+TODO: : Fix "logout.php" to destroy cookies instead of just session data.
+TODO: : Transfer cookie authorization system to "page_parts.php". This can be put into a boolean method
+        and called at the top of each page. Returning false meaning not logged in, and vice versa.
 TODO: : Change default background.
 TODO: : Update Pulsar's help menu and "login" command.
 TODO: + Add times for processes, especially with Pulsar commands.
 TODO: : Update the logs page so that it pulls from the MySQL database.
-<<<<<<< HEAD
-=======
 TODO: + Add redirect to login page for players that aren't logged in and try to go straight to the game.
->>>>>>> 96874fc64a723aceaafb2d5cfef41ebf8df5dfff
 NOTE: Until further development, no other formatting needed.
