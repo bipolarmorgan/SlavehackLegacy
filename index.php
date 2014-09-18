@@ -18,12 +18,19 @@
 <?php
     include("page_parts.php");
 
-    echo("Check 0");
+    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"],1);
+
+    $link = mysqli_connect($server, $username, $password);
+    mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
     //COOKIE CHECK//
 
     if(isset($_COOKIE['auth'])){
-        echo("Check 1");
         $clean = array();
         $mysqli = array();
 
@@ -43,13 +50,9 @@
                 FROM users
                 WHERE identifier = '{$mysqli['identifier']}'";
 
-        echo("Check 2");
-
         if ($result = mysqli_query($link, $qry)){
-            echo("Check 3");
             if(mysqli_num_rows($result)){
                 $record = mysqli_fetch_assoc($result);
-                echo("Check 4");
                 if($clean['token'] != $record['token']){
                     echo("Invalid token.");
                 }
