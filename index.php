@@ -28,7 +28,7 @@
     $link = mysqli_connect($server, $username, $password);
     mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
-    $loggedIn = false;
+    $loggedIn = "false";
     echo "Test: " . $loggedIn;
     echo "Test2: " . cookie_test();
     $loggedIn = cookie_test();
@@ -81,7 +81,7 @@
         $tz = $_SESSION['tz'];
     }
 
-    if($loggedIn){
+    if($loggedIn == "true"){
 ?>
 <script>
     $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
