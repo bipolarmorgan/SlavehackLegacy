@@ -1,4 +1,8 @@
 <?php
+
+echo $a;
+print_r(error_get_last());
+
 ob_start();
 session_start();
 include("game_page_parts.php");
