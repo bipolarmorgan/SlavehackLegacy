@@ -28,9 +28,11 @@
     $link = mysqli_connect($server, $username, $password);
     mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
-    $loggedIn = cookie_check();
-
+    $loggedIn = false;
     echo "Test: " . $loggedIn;
+    echo "Test2: " . cookie_test();
+    $loggedIn = cookie_test();
+    echo "Test3: " . $loggedIn;
 ?>
 
 <html>
