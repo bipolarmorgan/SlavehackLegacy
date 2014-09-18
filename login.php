@@ -70,8 +70,8 @@ if(isset($_POST['login'])){
                     echo mysqli_error($link);
                 }
             } else {
-                session_start();
-                $_SESSION['tz'] = $row['timezone']
+                // session_start();
+                // $_SESSION['tz'] = $row['timezone']
                 $timestamp = $_SERVER['REQUEST_TIME'];
                 date_default_timezone_set('UTC');
 
