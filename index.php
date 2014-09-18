@@ -133,7 +133,11 @@ $time = $dtime->format('g:i A m/d/y');
                     echo("Logged in user detected.");
                 }
             }
+        } else {
+            echo mysqli_error($link);
         }
+    } else {
+        echo "Cookie not detected.";
     }
 
     ////////////////
