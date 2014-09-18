@@ -10,6 +10,9 @@ $username = $url["user"];
 $password = $url["pass"];
 $db = substr($url["path"],1);
 
+$time = "";
+$logtime = "";
+
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
@@ -31,7 +34,8 @@ if(isset($_POST['login'])){
         $pass = "";
     }
 
-    $remember = $_POST['remember'];
+    //$remember = $_POST['remember'];
+    $remember = (isset($_POST['remember']) ? $_POST['remember'] : null);
 
     $qry = "SELECT * FROM users WHERE login='" . $user . "'";
     if(!mysqli_query($link,$qry)){
@@ -47,7 +51,7 @@ if(isset($_POST['login'])){
         if($row['email_confirmed'] == 0){
             ?><script>
                 $(document).ready(function() {
-                    $("#error").html('<?php echo "Please confirm your email. If you need another e-mail, please click <a href=\"register.php?resend=true&user=$user\">here.</a>"; ?>');
+                    $("#error").html('<?php echo "Please confirm your email. If you need another e-mail, please click <a href='register.php?resend=true&user=$user'>here.</a>"; ?>');
                 });
             </script><?php
         }
@@ -89,6 +93,7 @@ if(isset($_POST['login'])){
                 $(document).ready(function() {
                     $("#date").html('<?php echo $time; ?>');
                     $("#logswitch").html("<a href='logout.php'>Logout</a>");
+                    // Changed $logTime to $time to check for variable naming mismatch
                     $("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
                     window.setTimeout( function() {
                         window.location.href = "/game/index.php?login=success";
@@ -140,7 +145,7 @@ include("page_parts.php");
                     <form id="register" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                         <input style="text-align: center; margin-bottom: 2px;" type = "text" name = "user" placeholder="Username" autocomplete = "off"><br>
                         <input style="text-align: center; margin-bottom: 2px;" type = "password" name = "pass" placeholder="Password" autocomplete = "off"><br />
-                        <input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember"><span>Keep me logged in</span><br><br />
+                        <input style="text-align: center; margin-bottom: 2px;" type = "checkbox" name = "remember"><label><span>Keep me logged in</span></label><br><br />
                         <input type = "submit" value = "Login" name = "login" id = "login">
                     </form>
                 </div>
@@ -160,7 +165,7 @@ if(isset($_COOKIE['tz'])){
 
 if(isset($_SESSION['user'])){
     ?><script>
-        $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
+        $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>");
         $("#logswitch").html("<a href='logout.php'>Logout</a>");
     </script><?php
 } else {
