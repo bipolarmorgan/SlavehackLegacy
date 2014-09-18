@@ -193,7 +193,7 @@ if(isset($_COOKIE['auth'])){
                 echo("Invalid identifier.");
             }
             else {
-
+                echo("Logged in user detected.");
             }
         }
     }

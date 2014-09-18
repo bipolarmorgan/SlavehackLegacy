@@ -16,8 +16,7 @@
 -->
 
 <?php
-session_start();
-include("page_parts.php");
+    include("page_parts.php");
 ?>
 
 <html>
