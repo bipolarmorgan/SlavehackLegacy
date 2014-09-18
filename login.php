@@ -66,7 +66,7 @@ if(isset($_POST['login'])){
 
                 setcookie('auth', "$identifier:$token", $timeout, "/", ".slavehack-legacy.herokuapp.com");
 
-                if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
+                if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout', token = '$token' WHERE login = '$user'")){
                     echo mysqli_error($link);
                 }
             } else {
