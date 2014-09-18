@@ -1,4 +1,5 @@
 <?php
+setcookie('auth', 'deleted', time());
 session_start();
 unset($_SESSION['user']);
 unset($_SESSION['tz']);
