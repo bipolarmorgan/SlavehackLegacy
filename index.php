@@ -28,52 +28,7 @@
     $link = mysqli_connect($server, $username, $password);
     mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
-    //COOKIE CHECK//
-
-    if(isset($_COOKIE['auth'])){
-        $clean = array();
-        $mysqli = array();
-
-        $now = time();
-        $salt = 'SLAVEHACK';
-
-        list($identifier, $token) = explode(':', $_COOKIE['auth']);
-
-        if(ctype_alnum($identifier) && ctype_alnum($token)){
-            $clean['identifier'] = $identifier;
-            $clean['token'] = $token;
-        }
-
-        $mysqli['identifier'] = mysqli_real_escape_string($link, $clean['identifier']);
-
-        $qry = "SELECT login, token, timeout
-                FROM users
-                WHERE identifier = '{$mysqli['identifier']}'";
-
-        if ($result = mysqli_query($link, $qry)){
-            if(mysqli_num_rows($result)){
-                $record = mysqli_fetch_assoc($result);
-                if($clean['token'] != $record['token']){
-                    echo("Invalid token.");
-                }
-                else if($now > $record['timeout']){
-                    echo("Timeout detected.");
-                }
-                else if($clean['identifier'] != md5($salt . md5($record['login'] . $salt))) {
-                    echo("Invalid identifier.");
-                }
-                else {
-                    echo("Logged in user detected.");
-                }
-            }
-        } else {
-            echo mysqli_error($link);
-        }
-    } else {
-        echo "Cookie not detected.";
-    }
-
-    ////////////////
+    $loggedIn = cookie_check();
 ?>
 
 <html>
@@ -122,7 +77,7 @@
         $tz = $_SESSION['tz'];
     }
 
-    if(isset($_SESSION['user'])){
+    if($loggedIn){
 ?>
 <script>
     $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
