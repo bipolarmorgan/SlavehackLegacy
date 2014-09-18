@@ -13,6 +13,7 @@ $db = substr($url["path"],1);
 $time = "";
 $logtime = "";
 
+$loggedIn = cookie_check();
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
@@ -157,57 +158,13 @@ include("page_parts.php");
 
 <?php
 
-//COOKIE CHECK//
-
-if(isset($_COOKIE['auth'])){
-    $clean = array();
-    $mysqli = array();
-
-    $now = time();
-    $salt = 'SLAVEHACK';
-
-    list($identifier, $token) = explode(':', $_COOKIE['auth']);
-
-    if(ctype_alnum($identifier) && ctype_alnum($token)){
-        $clean['identifier'] = $identifier;
-        $clean['token'] = $token;
-    }
-
-    $mysqli['identifier'] = mysqli_real_escape_string($link, $clean['identifier']);
-
-    $qry = "SELECT login, token, timeout
-            FROM users
-            WHERE identifier = '{$mysqli['identifier']}'";
-
-    if ($result = mysqli_query($link, $qry)){
-        if(mysqli_num_rows($result)){
-            $record = mysqli_fetch_assoc($result);
-
-            if($clean['token'] != $record['token']){
-                echo("Invalid token.");
-            }
-            else if($now > $record['timeout']){
-                echo("Timeout detected.");
-            }
-            else if($clean['identifier'] != md5($salt . md5($record['login'] . $salt))) {
-                echo("Invalid identifier.");
-            }
-            else {
-                echo("Logged in user detected.");
-            }
-        }
-    }
-}
-
-////////////////
-
 if(isset($_SESSION['tz'])){
     $tz = $_SESSION['tz'];
 } else {
     $tz = "America/Chicago";
 }
 
-if(isset($_SESSION['user'])){
+if($loggedIn == "true"){
     ?><script>
         $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>");
         $("#logswitch").html("<a href='logout.php'>Logout</a>");

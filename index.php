@@ -18,10 +18,7 @@
 <?php
     include("page_parts.php");
 
-    $loggedIn = "false";
-    echo "Test: " . $loggedIn;
     $loggedIn = cookie_check();
-    echo "Test3: " . $loggedIn;
 ?>
 
 <html>

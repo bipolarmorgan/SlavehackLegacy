@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("page_parts.php");
 
 function newEntry( $text ){
@@ -15,6 +14,8 @@ function newEntry( $text ){
 
     $user = $_SESSION['user'];
 }
+
+$loggedIn = cookie_check();
 ?>
 
     <html>
@@ -52,7 +53,7 @@ if(isset($_SESSION['tz'])){
     $tz = "America/Chicago";
 }
 
-if(isset($_SESSION['user'])){
+if($loggedIn){
     ?><script>
         $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
         $("#logswitch").html("<a href='logout.php'>Logout</a>");
