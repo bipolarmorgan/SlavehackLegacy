@@ -1,6 +1,7 @@
 <?php
-session_start();
 include("page_parts.php");
+
+$loggedIn = cookie_check();
 
 function newEntry( $text ){
     $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
@@ -15,6 +16,7 @@ function newEntry( $text ){
 
     $user = $_SESSION['user'];
 }
+
 ?>
 
     <html>
@@ -52,7 +54,7 @@ if(isset($_SESSION['tz'])){
     $tz = "America/Chicago";
 }
 
-if(isset($_SESSION['user'])){
+if($loggedIn){
     ?><script>
         $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
         $("#logswitch").html("<a href='logout.php'>Logout</a>");

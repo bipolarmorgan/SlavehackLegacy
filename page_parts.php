@@ -218,4 +218,60 @@ function content_terms(){
 <?php
 }
 
+function cookie_check(){
+
+        $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+        $server = $url["host"];
+        $username = $url["user"];
+        $password = $url["pass"];
+        $db = substr($url["path"],1);
+
+        $link = mysqli_connect($server, $username, $password);
+        mysqli_select_db($link, $db) or die("Cannot connect to database.");
+
+        if(isset($_COOKIE['auth'])){
+        $clean = array();
+        $mysqli = array();
+
+        $now = time();
+        $salt = 'SLAVEHACK';
+
+        list($identifier, $token) = explode(':', $_COOKIE['auth']);
+
+        if(ctype_alnum($identifier) && ctype_alnum($token)){
+            $clean['identifier'] = $identifier;
+            $clean['token'] = $token;
+        }
+
+        $mysqli['identifier'] = mysqli_real_escape_string($link, $clean['identifier']);
+
+        $qry = "SELECT login, token, timeout
+                FROM users
+                WHERE identifier = '{$mysqli['identifier']}'";
+
+        if ($result = mysqli_query($link, $qry)){
+            if(mysqli_num_rows($result)){
+                $record = mysqli_fetch_assoc($result);
+                if($clean['token'] != $record['token']){
+                    return "false";
+                }
+                else if($now > $record['timeout']){
+                    return "false";
+                }
+                else if($clean['identifier'] != md5($salt . md5($record['login'] . $salt))) {
+                    return "false";
+                }
+                else {
+                    return "true";
+                }
+            }
+        } else {
+            return "false";
+        }
+    } else {
+        return "false";
+    }
+}
+
 ?>

@@ -16,8 +16,9 @@
 -->
 
 <?php
-session_start();
-include("page_parts.php");
+    include("page_parts.php");
+
+    $loggedIn = cookie_check();
 ?>
 
 <html>
@@ -66,7 +67,7 @@ include("page_parts.php");
         $tz = $_SESSION['tz'];
     }
 
-    if(isset($_SESSION['user'])){
+    if($loggedIn == "true"){
 ?>
 <script>
     $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
@@ -94,4 +95,5 @@ $time = $dtime->format('g:i A m/d/y');
     $("#date").html('<?php echo $time; ?>');
 </script>
 <?php
+
 ?>

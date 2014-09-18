@@ -2,6 +2,7 @@
 ini_set ('display_errors', '1');
 
 error_reporting (E_ALL | E_STRICT); 
+include("page_parts.php");
 
 $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
@@ -13,6 +14,7 @@ $db = substr($url["path"],1);
 $time = "";
 $logtime = "";
 
+$loggedIn = cookie_check();
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
@@ -48,6 +50,7 @@ if(isset($_POST['login'])){
         $result = mysqli_query($link, $qry);
         $row = mysqli_fetch_array($result);
         $hash = $row['hash'];
+
         if($row['email_confirmed'] == 0){
             ?><script>
                 $(document).ready(function() {
@@ -56,7 +59,6 @@ if(isset($_POST['login'])){
             </script><?php
         }
         else if(verify($pass, $hash)){
-
             if($remember == "on"){
                 $salt       = "SLAVEHACK";
 
@@ -66,15 +68,17 @@ if(isset($_POST['login'])){
 
                 setcookie('auth', "$identifier:$token", $timeout, "/", ".slavehack-legacy.herokuapp.com");
 
-                if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout' WHERE login = '$user'")){
+                if(!mysqli_query($link, "UPDATE `users` SET identifier = '$identifier', timeout = '$timeout', token = '$token' WHERE login = '$user'")){
                     echo mysqli_error($link);
                 }
             } else {
+                // session_start();
+                // $_SESSION['tz'] = $row['timezone']
                 $timestamp = $_SERVER['REQUEST_TIME'];
                 date_default_timezone_set('UTC');
 
-                if(isset($_COOKIE['timezone'])){
-                    $tz = $_COOKIE['tz'];                    
+                if(isset($_SESSION['tz'])){
+                    $tz = $_SESSION['tz'];                    
                 } else {
                     $tz = "America/Chicago";
                 }
@@ -85,11 +89,7 @@ if(isset($_POST['login'])){
                 $dtime->setTimestamp($timestamp);
                 $dtime->setTimeZone($dtzone);
 
-                $time = $dtime->format('g:i A m/d/y');
-                
-                echo $row['timezone'];
-
-                //setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
+                $time = $dtime->format('g:i A m/d/y');       
             }
             ?><script>
                 $(document).ready(function() {
@@ -98,7 +98,7 @@ if(isset($_POST['login'])){
                     // Changed $logTime to $time to check for variable naming mismatch
                     $("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
                     window.setTimeout( function() {
-                        window.location.href = "/game/index.php?login=success";
+                        window.location.reload();
                     }, 3000);
                 });
             </script><?php
@@ -112,7 +112,6 @@ if(isset($_POST['login'])){
     }
 }
 
-include("page_parts.php");
 ?>
     <html>
     <head>
@@ -159,13 +158,13 @@ include("page_parts.php");
 
 <?php
 
-if(isset($_COOKIE['tz'])){
-    $tz = $_COOKIE['tz'];
+if(isset($_SESSION['tz'])){
+    $tz = $_SESSION['tz'];
 } else {
     $tz = "America/Chicago";
 }
 
-if(isset($_SESSION['user'])){
+if($loggedIn == "true"){
     ?><script>
         $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>");
         $("#logswitch").html("<a href='logout.php'>Logout</a>");

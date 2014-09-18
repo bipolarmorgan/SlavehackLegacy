@@ -1,6 +1,7 @@
 <?php
-session_start();
 include("page_parts.php");
+
+$loggedIn = cookie_check();
 
 $zonelist = array('Kwajalein' => '(GMT-12:00) International Date Line West',
     'Pacific/Midway' => '(GMT-11:00) Midway Island',
@@ -242,7 +243,7 @@ if(isset($_POST['mlist'])){
     $listChk = true;
 }
 
-if(isset($_SESSION['user'])){
+if($loggedIn){
     ?><script>
         $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
         $("#logswitch").html("<a href='logout.php'>Logout</a>");
