@@ -85,9 +85,7 @@ if(isset($_POST['login'])){
                 $dtime->setTimestamp($timestamp);
                 $dtime->setTimeZone($dtzone);
 
-                $time = $dtime->format('g:i A m/d/y');
-            
-                setcookie('timezone', "$row['timezone']", 0, "/", ".slavehack-legacy.herokuapp.com");
+                $time = $dtime->format('g:i A m/d/y');            
             }
             ?><script>
                 $(document).ready(function() {
