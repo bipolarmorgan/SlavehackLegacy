@@ -48,6 +48,7 @@ if(isset($_POST['login'])){
         $result = mysqli_query($link, $qry);
         $row = mysqli_fetch_array($result);
         $hash = $row['hash'];
+
         if($row['email_confirmed'] == 0){
             ?><script>
                 $(document).ready(function() {
@@ -56,7 +57,6 @@ if(isset($_POST['login'])){
             </script><?php
         }
         else if(verify($pass, $hash)){
-
             if($remember == "on"){
                 $salt       = "SLAVEHACK";
 
@@ -70,11 +70,13 @@ if(isset($_POST['login'])){
                     echo mysqli_error($link);
                 }
             } else {
+                session_start();
+                $_SESSION['tz'] = $row['timezone']
                 $timestamp = $_SERVER['REQUEST_TIME'];
                 date_default_timezone_set('UTC');
 
-                if(isset($_COOKIE['timezone'])){
-                    $tz = $_COOKIE['tz'];                    
+                if(isset($_SESSION['tz'])){
+                    $tz = $_SESSION['tz'];                    
                 } else {
                     $tz = "America/Chicago";
                 }
@@ -85,7 +87,7 @@ if(isset($_POST['login'])){
                 $dtime->setTimestamp($timestamp);
                 $dtime->setTimeZone($dtzone);
 
-                $time = $dtime->format('g:i A m/d/y');            
+                $time = $dtime->format('g:i A m/d/y');       
             }
             ?><script>
                 $(document).ready(function() {
@@ -94,7 +96,7 @@ if(isset($_POST['login'])){
                     // Changed $logTime to $time to check for variable naming mismatch
                     $("#success").html('<?php echo "Successfully logged in at: ".$logTime."- you will be redirected in 3 seconds."; ?>');
                     window.setTimeout( function() {
-                        window.location.href = "/game/index.php?login=success";
+                        window.location.reload();
                     }, 3000);
                 });
             </script><?php
@@ -155,8 +157,52 @@ include("page_parts.php");
 
 <?php
 
-if(isset($_COOKIE['tz'])){
-    $tz = $_COOKIE['tz'];
+//COOKIE CHECK//
+
+if(isset($_COOKIE['auth'])){
+    $clean = array();
+    $mysqli = array();
+
+    $now = time();
+    $salt = 'SLAVEHACK';
+
+    list($identifier, $token) = explode(':', $_COOKIE['auth']);
+
+    if(ctype_alnum($identifier) && ctype_alnum($token)){
+        $clean['identifier'] = $identifier;
+        $clean['token'] = $token;
+    }
+
+    $mysqli['identifier'] = mysqli_real_escape_string($link, $clean['identifier']);
+
+    $qry = "SELECT login, token, timeout
+            FROM users
+            WHERE identifier = '{$mysqli['identifier']}'";
+
+    if ($result = mysqli_query($link, $qry)){
+        if(mysqli_num_rows($result)){
+            $record = mysqli_fetch_assoc($result);
+
+            if($clean['token'] != $record['token']){
+                echo("Invalid token.");
+            }
+            else if($now > $record['timeout']){
+                echo("Timeout detected.");
+            }
+            else if($clean['identifier'] != md5($salt .md5($record['username'] . $salt))) {
+                echo("Invalid identifier.");
+            }
+            else {
+                echo("Login success.");
+            }
+        }
+    }
+}
+
+////////////////
+
+if(isset($_SESSION['tz'])){
+    $tz = $_SESSION['tz'];
 } else {
     $tz = "America/Chicago";
 }
