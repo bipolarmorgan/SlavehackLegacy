@@ -243,22 +243,28 @@ function cookie_check(){
             if(mysqli_num_rows($result)){
                 $record = mysqli_fetch_assoc($result);
                 if($clean['token'] != $record['token']){
+                    echo "Fail 1";
                     return "false";
                 }
                 else if($now > $record['timeout']){
+                    echo "Fail 2";
                     return "false";
                 }
                 else if($clean['identifier'] != md5($salt . md5($record['login'] . $salt))) {
+                    echo "Fail 3";
                     return "false";
                 }
                 else {
+                    echo "Success";
                     return "true";
                 }
             }
         } else {
+            echo "Fail 4";
             return "false";
         }
     } else {
+        echo "Fail 5";
         return "false";
     }
 }
