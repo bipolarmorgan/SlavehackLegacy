@@ -69,6 +69,7 @@ if($loggedIn == "true"){
 </script>
 <?php
 }
+
 $dtzone = new DateTimeZone($tz);
 $dtime = new DateTime();
 
