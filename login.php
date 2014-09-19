@@ -180,4 +180,9 @@ if($loggedIn == "true"){
 ?>
 <script>
     $("#date").html('<?php echo $time; ?>');
+
+    if (navigator.cookieEnabled)
+       console.log("Cookies are currently enabled.");
+    else
+       console.log("Cookies are not enabled.");
 </script>
