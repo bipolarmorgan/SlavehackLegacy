@@ -14,8 +14,6 @@ $db = substr($url["path"],1);
 $time = "";
 $logtime = "";
 
-$loggedIn = cookie_check();
-echo $loggedIn;
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
@@ -112,6 +110,8 @@ if(isset($_POST['login'])){
         }
     }
 }
+
+$loggedIn = cookie_check();
 
 ?>
     <html>
