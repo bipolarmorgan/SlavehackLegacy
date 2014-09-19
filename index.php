@@ -19,6 +19,7 @@
     include("page_parts.php");
 
     $loggedIn = cookie_check();
+echo $loggedIn;
 ?>
 
 <html>
