@@ -68,7 +68,7 @@ echo $loggedIn;
         $tz = $_SESSION['tz'];
     }
 
-    if($loggedIn == "true"){
+if($loggedIn == "true"){
 ?>
 <script>
     $("#gameswitch").html("<a href='/game/index.php?login=success'>Game</a>")
