@@ -16,6 +16,7 @@ function newEntry( $text ){
 }
 
 $loggedIn = cookie_check();
+echo $loggedIn;
 ?>
 
     <html>
