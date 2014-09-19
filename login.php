@@ -15,6 +15,7 @@ $time = "";
 $logtime = "";
 
 $loggedIn = cookie_check();
+echo $loggedIn;
 $link = mysqli_connect($server, $username, $password);
 mysqli_select_db($link, $db) or die("Cannot connect to database.");
 
