@@ -1,5 +1,6 @@
 Slavehack: Legacy
 ===============
+## NONE SHALL PASS
 
 ## (NEW) Update: And we're back! (09/15/2014)
 
