@@ -220,12 +220,7 @@ function content_terms(){
 
 function cookie_check(){
 
-        $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-        $server = $url["host"];
-        $username = $url["user"];
-        $password = $url["pass"];
-        $db = substr($url["path"],1);
+        require "config.php";
 
         $link = mysqli_connect($server, $username, $password);
         mysqli_select_db($link, $db) or die("Cannot connect to database.");

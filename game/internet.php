@@ -7,15 +7,7 @@ ob_start();
 session_start();
 include("game_page_parts.php");
 
-$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"],1);
-
-$link = mysqli_connect($server, $username, $password);
-mysqli_select_db($link, $db) or die("Cannot connect to database.");
+require "config.php";
 $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $tz = $_SESSION['tz'];

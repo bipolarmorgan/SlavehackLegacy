@@ -284,15 +284,7 @@ if (isset($_POST['register'])) {
         return crypt($input, sprintf('$2a$%02d$', $rounds) . $salt);
     }
 
-    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"],1);
-
-    $link = mysqli_connect($server, $username, $password);
-    mysqli_select_db($link, $db) or die("Cannot connect to database.");
+    require "config.php";
 
     $query2 = "CREATE TABLE IF NOT EXISTS `users` (
                         `uid` INT(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -426,15 +418,7 @@ if (isset($_POST['register'])) {
 
 if(isset($_GET['resend']) && $_GET['resend'] == true){
     include 'smtp/Send_Mail.php';
-    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"],1);
-
-    $link = mysqli_connect($server, $username, $password);
-    mysqli_select_db($link, $db) or die("Cannot connect to database.");
+    require "config.php";
 
     $user = mysqli_real_escape_string($link, $_GET['user']);
     $result = mysqli_query($link, "SELECT * FROM users WHERE login = '$user'");

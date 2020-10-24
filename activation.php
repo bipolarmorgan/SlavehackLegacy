@@ -44,15 +44,8 @@ include("page_parts.php");
 </html>
 
 <?php
-$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"],1);
-
-$link = mysqli_connect($server, $username, $password);
-mysqli_select_db($link, $db) or die("Cannot connect to database.");
+require "config.php";
 
 $msg = '';
 if(!empty($_GET['code']) && isset($_GET['code'])){

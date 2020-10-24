@@ -4,15 +4,7 @@ include("page_parts.php");
 $loggedIn = cookie_check();
 
 function newEntry( $text ){
-    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"],1);
-
-    $newlink = mysqli_connect($server, $username, $password);
-    mysqli_select_db($newlink, $db) or die("Cannot connect to database.");
+    require "config.php";
 
     $user = $_SESSION['user'];
 }

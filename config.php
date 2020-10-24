@@ -1,7 +1,12 @@
 <?php
-	$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    define ('DB_USER', $url["user"]);
-    define ('DB_PASS', $url["pass"]);
-    define ('DB_NAME', substr($url["path"], 1));
-    define ('DB_HOST', $url["host"]);
+	$server = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $db = "SHL";
+    
+    $link = mysqli_connect($server, $username, $password, $db);
+    
+    if (!$link) {
+        die("Connection Failed: ".mysqli_connect_error());
+    }
 ?>
